@@ -1,77 +1,77 @@
-# ���C�Z���X�R���g���N�g(licenseContract)
-���C�Z���X�R���g���N�g���x(LC���x)�́A�s����Ȑl�X�̊ԂŋZ�p�I���l�ƎЉ�I���l�̌�����ϋɉ����邽�߂̎d�g�݂ł���B  
-����31�N3��14���ɑ��ŊJ�Â��ꂽ�C�Ӓc�̒j����c�ݗ�����ŁA���c�q���ɂ���Ē�Ă��ꂽ�B
-��\�I�Ȏ�@�Ƃ��ẮA�J���ґ����Z�p��\�t�g�̎g�p�����̈��������Ƃ��āA���p�҂ɎЉ�I�ȗv�������邱�Ƃ��l������B��������ς���΁ALC���x�ɂ���ĊJ���҂͋Z�p�񋟂̑Ή��Ƃ��āu�Љ�^���̐��ʁv�𓾂邱�Ƃ��ł���悤�ɂȂ�B  
-�}1��LC���x���������f���}�ł���B�Z�p�I���l��񋟂���҂��u�J���ҁv�A�Љ�I���l��񋟂���҂��u���p�ҁv�ƕ\�����Ă���B���̕\���͈ȍ~���g���B  
-![�}1 LC���x�̃��f���}](img/1.png)  
-�}1 LC���x�̃��f���}
+# ライセンスコントラクト(licenseContract)
+ライセンスコントラクト制度(LC制度)は、不特定な人々の間で技術的価値と社会的価値の交換を積極化するための仕組みである。  
+平成31年3月14日に大阪で開催された任意団体男性会議設立総会で、平田智剛によって提案された。
+代表的な手法としては、開発者側が技術やソフトの使用許諾の引換条件として、利用者に社会的な要求をすることが考えられる。言い方を変えれば、LC制度によって開発者は技術提供の対価として「社会運動の成果」を得ることができるようになる。  
+図1はLC制度を示すモデル図である。技術的価値を提供する者を「開発者」、社会的価値を提供する者を「利用者」と表現している。この表現は以降も使う。  
+![図1 LC制度のモデル図](img/1.png)  
+図1 LC制度のモデル図
 
-## LC���x����Z�p
-LC���x�ł́A�J���҂���ɗ��p�҂�����̋`�����ʂ����̂��Ó��ł���B  
-���p�҂̂����`�����ʂ������҂��u���C�Z���X�ۗL�ҁv�ƌĂԂ��Ƃɂ���B  
-���ׂẴ��C�Z���X�ۗL�҂ɑ΂��ċZ�p�I���l�̒񋟂��m���ɍs�����Ƃ͉\����  
-�\�ߋZ�p�I���l�����󂵂����p�҂��m���Ƀ��C�Z���X�ۗL�҂ƂȂ邱�Ƃ͌����I�ɂ��蓾�Ȃ�����ł���B  
+## LCを支える技術
+LC制度では、開発者より先に利用者が自らの義務を果たすのが妥当である。  
+利用者のうち義務を果たした者を「ライセンス保有者」と呼ぶことにする。  
+すべてのライセンス保有者に対して技術的価値の提供を確実に行うことは可能だが  
+予め技術的価値を享受した利用者が確実にライセンス保有者となることは原理的にあり得ないからである。  
 
-LC���x�𐬂藧�����邽�߂ɕK�v�ȋZ�p�𒊏ۓI�ɏq�ׂ�Ȃ�A�ȉ��̒ʂ�ł���B  
+LC制度を成り立たせるために必要な技術を抽象的に述べるなら、以下の通りである。  
 
-- ���ׂẴ��C�Z���X�ۗL�҂ɑ΂��A���l�̂���Z�p�ւ̃A�N�Z�X���\�ɂ���Z�p
+- すべてのライセンス保有者に対し、価値のある技術へのアクセスを可能にする技術
 
-- ���C�Z���X�ۗL�҂łȂ��҂ɑ΂��A���l�̂���Z�p�ւ̃A�N�Z�X���֎~����Z�p
+- ライセンス保有者でない者に対し、価値のある技術へのアクセスを禁止する技術
 
-- ���C�Z���X�ۗL�҂łȂ��҂ɑ΂��A���l�̂���Z�p���Љ��Z�p
+- ライセンス保有者でない者に対し、価値のある技術を紹介する技術
 
-�ȏ�  
+以上  
 
-�\�t�g�ł͂Ȃ��A�R�[�h���̂��̂�񋟂���ꍇ�ɂ��ẮA1�ڂ�2�ڂ̑o�������S�ɖ��������Ƃ́A��{�I�ɂقڕs�\�ł���B�񋟂���(���S��)�R�[�h�����̂܂܃R�s�[����Ă��܂��΁A���C�Z���X���֌W�œ��삵�Ă��܂����炾�B
-<!--  [�Q�l�T�C�g](http://www.1kproduct.com/protector_k/contens/softmaker.html) �̗�����Ăق����B���̗�̂悤�ɁA�I�t���C���̃R�s�[�K�[�h(�R�s�[�v���e�N�g)�̓\�t�g���̂��̂ł͂Ȃ��A�f�o�C�X�ɑ΂��ē���ȉ��H���{�����ƂŎ�����������̂��قƂ�ǂ̂悤�ł���B  -->  
-1�ڂ�2�ڂ��o�����X�悭������������@�Ƃ��āA�{�e�ł�lcrp�ʐM��񏥂���B
+ソフトではなく、コードそのものを提供する場合については、1つ目と2つ目の双方を完全に満たすことは、基本的にほぼ不可能である。提供した(完全な)コードをそのままコピーされてしまえば、ライセンス無関係で動作してしまうからだ。
+<!--  [参考サイト](http://www.1kproduct.com/protector_k/contens/softmaker.html) の例を見てほしい。この例のように、オフラインのコピーガード(コピープロテクト)はソフトそのものではなく、デバイスに対して特殊な加工を施すことで実現させるものがほとんどのようである。  -->  
+1つ目と2つ目をバランスよく実現させる方法として、本稿ではlcrp通信を提唱する。
 
-## lcrp�ʐM
+## lcrp通信
 
-### lcrp�ʐM�̊J�n(lcrp�ڑ�)
+### lcrp通信の開始(lcrp接続)
 
-lcrp(License Contract Realization Protocol�^���C�Z���X�R���g���N�g�����v���g�R��)�ʐM�́A�N���C�A���g�����C�Z���X�ۗL�҂ł���ꍇ�݂̂ɃA�N�Z�X��������ʐM�v���g�R���ł���B  
-��̓I�ɂ�  
+lcrp(License Contract Realization Protocol／ライセンスコントラクト実現プロトコル)通信は、クライアントがライセンス保有者である場合のみにアクセスを許可する通信プロトコルである。  
+具体的には  
 
-- �N���C�A���g��http�Ń��C�Z���X�L�[�Ɨv�����T�[�o�֑��M���A���̃��C�Z���X�L�[�������Ȃ��̂ł���΃T�[�o��lcrp�������A�����Ȃ��̂łȂ���΃T�[�o�͉������Ȃ����G���[��ԋp����  
+- クライアントがhttpでライセンスキーと要求をサーバへ送信し、そのライセンスキーが正当なものであればサーバがlcrp応答し、正当なものでなければサーバは応答しないかエラーを返却する  
 
-�Ƃ������̂ł���B  
+というものである。  
 
-LC���x���J�����Ă���҂ɃX�L�[���Ɋւ���m�����s�����Ă��邽�߁Alcrp�ʐM�ɂ��ē��ʂ�http�Ŏ�������B
-### lcrp�B��
+LC制度を開発している者にスキームに関する知識が不足しているため、lcrp通信について当面はhttpで実装する。
+### lcrp隠蔽
 
-�܂��A�N�Z�X�����lcrp�ʐM�ł́A�N���C�A���g�����M�����֐����A�T�[�o������Ɏ��s���A�N���C�A���g�ɖ߂�l��ԋp����B�܂��K�v�ȑ�����`����(�|�C���^����A�N���X���̃t�B�[���h�̑���A�W�����o�͂Ȃ�)
+またアクセス許可後のlcrp通信では、クライアントが送信した関数を、サーバが代わりに実行し、クライアントに戻り値を返却する。また必要な操作も伝える(ポインタ操作、クラス内のフィールドの操作、標準入出力など)
 
-��������f���}�ɂ������̂��}2�ł���B  
-���̎�@�ɂ��A�J���҂͈ꕔ�̊֐��̓����R�[�h�����J�ɂ��邱��(lcrp�B�����邱��)���ł���B���̂悤��lcrp�ʐM����Ȃ��ƃA�N�Z�X�ł��Ȃ��֐����ulcrp�B�����ꂽ�֐��v���邢�́ulcrp�֐��v�ƌĂԂ��Ƃɂ���B
-���̂��Ƃɂ��J���҂́A���p�҂ɂ��d�x�̃��C�Z���X�ᔽ��[���Ȓm�I���Y���N�Q��h���A���p�҂ɂ�����x�_��ȉ��ҁE���p�������ׂ��\�[�X�����J���邱�Ƃ��ł���B  
+これをモデル図にしたものが図2である。  
+この手法により、開発者は一部の関数の内部コードを非公開にすること(lcrp隠蔽すること)ができる。このようなlcrp通信を介さないとアクセスできない関数を「lcrp隠蔽された関数」あるいは「lcrp関数」と呼ぶことにする。
+このことにより開発者は、利用者による重度のライセンス違反や深刻な知的財産権侵害を防ぎつつ、利用者にある程度柔軟な改編・応用を許すべくソースを公開することができる。  
  
-��̗�Ƃ��āA���̃R�[�h���l����B���̃R�[�h��php�ŏ����ꂽ�Aget��M�����ϐ�num(2�ȏ�)�ׂ̂��悪�A�f��+1�ɂȂ邩�ۂ��𔻒肷��v���O�����ł���B  
+具体例として、次のコードを考える。このコードはphpで書かれた、get受信した変数num(2以上)のべき乗が、素数+1になるか否かを判定するプログラムである。  
 [test.php](test.php)  
 
 ```php
 <?php
-//����
+//準備
 $num = $_GET['num'];
-//���������܂�
+//準備ここまで
 
-//���C���v���O����
+//メインプログラム
     myFunc($num,9999999999999);
-    //9999999999999�ȉ��ׂ̂������l����
-//���C���v���O���������܂�
+    //9999999999999以下のべき数を考える
+//メインプログラムここまで
 
-//myFunc�̐���
+//myFuncの説明
     function myFunc($num,$max)
     /*
-    $num�ׂ̂����̂����A$max�����̂��̂����߁A
-    ����炩��1�������Z�������̂��f���ɂȂ邩�𒲂ׁA
-    ���ʂ�print����
+    $numのべき数のうち、$max未満のものを求め、
+    それらから1を引き算したものが素数になるかを調べ、
+    結果をprintする
     */
     {
         if($num<2)
-        //2�������f��
+        //2未満お断り
         {
-            print "�G���[ 2�ȏ�̐������w�肵�Ȃ���";
+            print "エラー 2以上の整数を指定しなさい";
             return 1;
         }
         $j=1;
@@ -79,101 +79,101 @@ $num = $_GET['num'];
         while($pow<$max)
         {
             print isPlus1Prime($pow,$j);
-            //$pow����1�����Z�������̂��f�����ǂ�������
+            //$powから1引き算したものが素数かどうか言う
             $j++;
-            //$j�́A$pow��$num��$j��ł��邱�Ƃ��������߂̂��́B
+            //$jは、$powが$numの$j乗であることを示すためのもの。
             $pow=getNextPow($pow,$num);
-            //���ׂ̂��������߂�B�܂�$num�{����
+            //次のべき数を求める。つまり$num倍する
         }
     }
-//myFunc�̐��������܂�
+//myFuncの説明ここまで
 
-    //isPlus1Prime�̐���
+    //isPlus1Primeの説明
         function isPlus1Prime($pow,$j)
         /*
-        $pow����1�����Z�������̂��f�����ǂ���print����B
-        �܂�$j�́A$pow��$num�̉���ł��邩�������Bprint���Ɏg���B
+        $powから1引き算したものが素数かどうかprintする。
+        また$jは、$powが$numの何乗であるかを示す。print時に使う。
         */
         {
             $p=$pow+1;
             if($p%2==0)
             {
-            //�f���łȂ��Ƃ�
-                $str=$p."=(".$j."���1�𑫂�������)�͍������B\n<br>";
+            //素数でないとき
+                $str=$p."=(".$j."乗に1を足したもの)は合成数。\n<br>";
                 return $str;
             }
             for($i=3; $i*$i<=$p; $i+=2)
             {
                 if($p%$i==0)
                 {
-                //�f���łȂ��Ƃ�
-                    $str=$p."=(".$j."���1�𑫂�������)�͍������B\n<br>";
+                //素数でないとき
+                    $str=$p."=(".$j."乗に1を足したもの)は合成数。\n<br>";
                     return $str;
                 }
             }
-            //�f���������Ƃ�
-            $str="<strong>".$p."=(".$j."���1�𑫂�������)�͑f���B</strong>\n<br>";
+            //素数だったとき
+            $str="<strong>".$p."=(".$j."乗に1を足したもの)は素数。</strong>\n<br>";
             return $str;
         }
-    //isPlus1Prime�̐��������܂�
+    //isPlus1Primeの説明ここまで
 
-    //getNextPow�̐���
+    //getNextPowの説明
         function getNextPow($pow,$num)
         {
             return $pow*$num;
         }
-    //getNextPow�̐��������܂�
+    //getNextPowの説明ここまで
 ```
 
-���̃R�[�h���t���[�`���[�g�ɂ���ƁA�}2�̂悤�ɂȂ�B  
+このコードをフローチャートにすると、図2のようになる。  
 ![](img/2.png)  
-�}2. �R�[�h�̃t���[�`���[�g
+図2. コードのフローチャート
 
 
-���̃R�[�h�ł́A�֐�������q�\���ɂȂ�悤�ɃR�[�h��������Ă���B  
-����̓t���[�`���[�g��ł́A���C���̃t���[�ɂ������`�ςݏ���(myFunc�֐�)�̃t���[���ɁA����ɒ�`�ςݏ���(isPlus1Prime�֐��AgetNextPow�֐�)�����݂��邱�Ƃɂ��m�F�ł���BmyFunc�֐����猩�āAisPlus1Prime�֐���getNextPow�֐��͓���q��(1��)�����ɂ���Ƃ����A���C���͓���q��(1��)�O���ɂ���Ƃ����B���ɖ{�e�ł́A���̗�ɂ����郁�C���̈ʒu���u��0�i�K�v�Ƃ��A���̓���q��n�������u��n�i�K�v�Ƃ������Ƃɂ���B
+このコードでは、関数が入れ子構造になるようにコードが書かれている。  
+これはフローチャート上では、メインのフローにおける定義済み処理(myFunc関数)のフロー内に、さらに定義済み処理(isPlus1Prime関数、getNextPow関数)が存在することにより確認できる。myFunc関数から見て、isPlus1Prime関数やgetNextPow関数は入れ子の(1つ)内側にあるといい、メインは入れ子の(1つ)外側にあるという。特に本稿では、この例におけるメインの位置を「第0段階」とし、その入れ子のnつ内側を「第n段階」ということにする。
 
-���̂悤�ȏꍇ�A�J���҂͂ǂ̒i�K�̊֐���lcrp�B�����邩�̑I���ɂ���āA�u�ǂ̒��x�܂Ń\�[�X��ی삷�邩�v�A�u�ǂ̒��x�܂ŏ_��ȉ��p�𗘗p�҂ɋ������v�����߂邱�Ƃ��ł���B  
+このような場合、開発者はどの段階の関数をlcrp隠蔽するかの選択によって、「どの程度までソースを保護するか」、「どの程度まで柔軟な応用を利用者に許すか」を決めることができる。  
 
-����̃R�[�h�̏ꍇ�ōl���悤�B  
-��1�i�K��myFunc�֐���lcrp�B�������ꍇ�A���p�҂������\�[�X�R�[�h�����ׂăt���[�`���[�g�ɂ������̂́A�Ԃň͂񂾂��̂̂݁A���Ȃ킿���C���̃t���[�`���[�g�����ɂȂ�BmyFunc�֐��̃t���[�`���[�g��isPlus1Prime�֐��̃t���[�`���[�g�����邱�Ƃ͂ł��Ȃ��B  
-���̏ꍇ�A���C�Z���X�ᔽ��m�����̐N�Q�ɂ͂Ȃ���ɂ������A���p�҂̎��R�ȉ��ҁA���p�̗]�n���قƂ�ǂȂ��B  
-��2�i�K��isPlus1Prime�֐���getNextPow�֐���lcrp�B�������ꍇ�A���p�҂������̂͐ň͂񂾃t���[�`���[�g�݂̂ƂȂ�B  
-���̏ꍇ�A�ו��݂͂�Ȃ����̗̂��p�҂̍H�v�̗]�n�͑傫���B$num�̍ŏ��l��ύX���邱�Ƃ���ł��邵�A�\�����e��ς��邱�Ƃ��o����B���p�҂̎��R���������ʁA�S�̂̃v���O���������ۓI�Ƃ͂����ی����Ȃ��߁A���p�҂��v���O�����𓐍삵�Ă��܂�������łĂ���B  
+今回のコードの場合で考えよう。  
+第1段階のmyFunc関数をlcrp隠蔽した場合、利用者が見れるソースコードをすべてフローチャートにしたものは、赤で囲んだもののみ、すなわちメインのフローチャートだけになる。myFunc関数のフローチャートもisPlus1Prime関数のフローチャートも見ることはできない。  
+この場合、ライセンス違反や知財権の侵害にはつながりにくいが、利用者の自由な改編、応用の余地がほとんどない。  
+第2段階のisPlus1Prime関数とgetNextPow関数をlcrp隠蔽した場合、利用者が見れるのは青で囲んだフローチャートのみとなる。  
+この場合、細部はみれないものの利用者の工夫の余地は大きい。$numの最小値を変更することやもできるし、表示内容を変えることも出来る。利用者の自由が高い反面、全体のプログラムが抽象的とはいえ丸見えなため、利用者がプログラムを盗作してしまう恐れもでてくる。  
   
-isPlus1Prime�֐���getNextPow�֐���lcrp�B�������ꍇ�A���p�҂����肷��R�[�h�t�@�C���͎��̂悤�ɂȂ�B  
+isPlus1Prime関数とgetNextPow関数をlcrp隠蔽した場合、利用者が入手するコードファイルは次のようになる。  
 [usingLcrp.php](usingLcrp.php)  
 
 ```php
 <?php
-//����(�V�X�e��)
-include 'lcrp.php';//function_get_return�֐����C���N���[�h
-//����(�V�X�e��)�����܂�
+//準備(システム)
+include 'lcrp.php';//function_get_return関数をインクルード
+//準備(システム)ここまで
 
-$licenseKey="key";//�����Ƀ��C�Z���X�L�[�����
+$licenseKey="key";//ここにライセンスキーを入力
 
-//����
+//準備
 $num = $_GET['num'];
-//���������܂�
+//準備ここまで
 
-//���C���v���O����
+//メインプログラム
     myFunc($num,9999999999999);
-    //9999999999999�ȉ��ׂ̂������l����
-//���C���v���O���������܂�
+    //9999999999999以下のべき数を考える
+//メインプログラムここまで
 
-//myFunc�̐���
+//myFuncの説明
     function myFunc($num,$max)
     /*
-    $num�ׂ̂����̂����A$max�����̂��̂����߁A
-    ����炩��1�������Z�������̂��f���ɂȂ邩�𒲂ׁA
-    ���ʂ�print����
+    $numのべき数のうち、$max未満のものを求め、
+    それらから1を引き算したものが素数になるかを調べ、
+    結果をprintする
     */
     {
         global $licenseKey;
         if($num<2)
-        //2�������f��
+        //2未満お断り
         {
-            print "�G���[ 2�ȏ�̐������w�肵�Ȃ���";
+            print "エラー 2以上の整数を指定しなさい";
             return 1;
         }
         $j=1;
@@ -181,68 +181,68 @@ $num = $_GET['num'];
         while($pow<$max)
         {
             print function_get_return("lcrp://isPlus1Prime(".$pow.",".$j.")",$licenseKey);
-            //$pow����1�����Z�������̂��f�����ǂ�������
+            //$powから1引き算したものが素数かどうか言う
             $j++;
-            //$j�́A$pow��$num��$j��ł��邱�Ƃ��������߂̂��́B
+            //$jは、$powが$numの$j乗であることを示すためのもの。
             $pow= function_get_return("lcrp://getNextPow(".$pow.",".$num.")",$licenseKey);
-            //���ׂ̂��������߂�B�܂�$num�{����
+            //次のべき数を求める。つまり$num倍する
         }
     }
-//myFunc�̐��������܂�
+//myFuncの説明ここまで
 ```
 
-[usingLcrp.php](usingLcrp.php) �� [test.php](test.php) �Ƃ̈Ⴂ���r����ƁA  
+[usingLcrp.php](usingLcrp.php) の [test.php](test.php) との違いを比較すると、  
 
-1. isPlus1Prime�֐���getNextPow�֐��́u�����v���Ȃ�
+1. isPlus1Prime関数やgetNextPow関数の「説明」がない
 
-2. �����̊֐����Ăяo�����߂�function_get_return�֐����Ăяo���Ă���
+2. これらの関数を呼び出すためにfunction_get_return関数を呼び出している
 
-3. function_get_return�֐��𗘗p�\�ɂ��邽�߂�lcrp.php���C���N���[�h����Ă���
+3. function_get_return関数を利用可能にするためにlcrp.phpがインクルードされている
 
-�ƂȂ�B  
+となる。  
 
-1��2�ɂ��ďq�ׂ�B  
-1�ɂ�����֐���lcrp�B������Ă���A���̊֐��́u�����v��lcrp�T�[�o��ɕۊǂ���Ă���B  
-�����Ă���lcrp�T�[�o�ɖ₢���킹�A�߂�l���󂯎��ׂ��A2�̎葱�����s���Ă���B  
-3�ɂ��ẮAlcrp.php���function_get_return�֐����u�����v���Ă��邽�߂ł���B  
+1と2について述べる。  
+1における関数はlcrp隠蔽されており、その関数の「説明」はlcrpサーバ上に保管されている。  
+そしてこのlcrpサーバに問い合わせ、戻り値を受け取るべく、2の手続きが行われている。  
+3については、lcrp.php上でfunction_get_return関数を「説明」しているためである。  
 
-���̒ʐM���f����}�ɂ������̂��}3�ł���B�A�����F�̐���lcrp�ʐM��\���B  
+この通信モデルを図にしたものが図3である。但し黄色の線はlcrp通信を表す。  
   
 ![](img/3.png)  
-�}3.lcrp�ʐM�̃��f���}  
+図3.lcrp通信のモデル図  
   
-### �ʐM�v���g�R���̎d�l
-lcrp�ʐM(�Ɍ��炸���ׂĂ̒ʐM�v���g�R��)�ɂ����ẮA�N���C�A���g���ƃT�[�o���̑o�������̒ʐM�`���ɑΉ����Ă���K�v������B  
+### 通信プロトコルの仕様
+lcrp通信(に限らずすべての通信プロトコル)においては、クライアント側とサーバ側の双方がその通信形式に対応している必要がある。  
 
-#### �N���C�A���g��(lcrp.php)
-�N���C�A���g����lcrp�ʐM���s���Ă�����̂�function_get_return�֐��ł���Alcrp.php�̃C���N���[�h�ɂ�藘�p�\�ƂȂ�B  
-�ȉ��A [lcrp.php](lcrp.php) �̒��g�ɂ��Đ�������B  
+#### クライアント側(lcrp.php)
+クライアント側でlcrp通信を行っているものがfunction_get_return関数であり、lcrp.phpのインクルードにより利用可能となる。  
+以下、 [lcrp.php](lcrp.php) の中身について説明する。  
 
-##### (1�I���W��)2�s�ڋy��3�s��  
+##### (1オリジン)2行目及び3行目  
 
 ```php
 $productNumber='example0001';
 $lcrpServer='rights-for.men/lcrp';
 ```
   
-�ł́Alcrp�T�[�o��http�ŕ\�������Ƃ��̃p�X�����߂Ă���B�u�T�[�o���v�̌��o���ł���������B  
-���̏������ƂɁAlcrp�ŕ\�������p�X��http�ɏ�����������B  
-�Ⴆ��  
-`lcrp://�֐�(����)`  
-�Ƃ����p�X�́A  
-`http://$lcrpServer/$productNumber/index.php?funcName=�֐�`  
-�ɒu����������B  
-����̏ꍇ��  
-`http://rights-for.men/lcrp/example0001/index.php?funcName=�֐�`  
-�ł���B  
-�܂������Ɋւ��ẮApost���M�Ƃ���B  
+では、lcrpサーバをhttpで表現したときのパスを決めている。「サーバ側」の見出しでも説明する。  
+この情報をもとに、lcrpで表現したパスがhttpに書き換えられる。  
+例えば  
+`lcrp://関数(引数)`  
+というパスは、  
+`http://$lcrpServer/$productNumber/index.php?funcName=関数`  
+に置き換えられる。  
+今回の場合は  
+`http://rights-for.men/lcrp/example0001/index.php?funcName=関数`  
+である。  
+また引数に関しては、post送信とする。  
 
-##### 7�s�ڂ���24�s��
+##### 7行目から24行目
 
 ```php
 function function_get_return()
 {
-//����
+//準備
 $args= func_get_args();
 $url=$args[0];
 $licenseKey=$args[1];
@@ -251,8 +251,8 @@ if(count($args)>2)
     $printHeader=$args[2];
 }
 $printHeader=isset($printHeader);
-//$printHeader�́u�w�肳�ꂽ���ۂ��v�̘_���l�ɕϊ����Ă��܂�
-//���������܂�
+//$printHeaderは「指定されたか否か」の論理値に変換してしまう
+//準備ここまで
 
 /*
 function function_get_return($url, $licenseKey [, $printHeader])
@@ -260,122 +260,122 @@ function function_get_return($url, $licenseKey [, $printHeader])
 */
 ```
   
-��function_get_return�̊֐������ł���ƍl����Ƃ悢�B  
-�ϒ������ɑΉ����邽�߂��璷�ł��邪�A�����I�ɂ�22�s�ڋy��23�s�ڂ�������΂悢�B  
-�v�́A���̂悤�ɏ��������������A���ꂪ���̏������ɑΉ����Ă��Ȃ��������ߑ�֓I�ɏ璷�ȕ\�����g���ق��Ȃ������̂ł���B
+はfunction_get_returnの関数頭部であると考えるとよい。  
+可変長引数に対応するためやや冗長であるが、実質的には22行目及び23行目だけ見ればよい。  
+要は、次のように書きたかったが、言語がその書き方に対応していなかったため代替的に冗長な表現を使うほかなかったのである。
   
 ```php
 function function_get_return($url, $licenseKey [, $printHeader])
 {
 ```
   
-���̂��Ƃ���킩��悤�ɁA7�s�ڂ���77�s�ڂɂ����āAfunction_get_return�֐��̑S�̓I�Ȑ������s���Ă���B  
+このことからわかるように、7行目から77行目において、function_get_return関数の全体的な説明を行っている。  
 
-##### 27�s�ڂ���77�s��
+##### 27行目から77行目
 
-27�s�ځ`77�s�ڂł́Afunction_get_return�֐��̒��g�ł���B  
-��2�����ł��郉�C�Z���X�L�[($licenseKey)���A�T�[�o�ւ�post���M�Ɏg���O���[�o���z��$query�Ƀv�b�V�����A  
-lcrp2http�֐��ŁA��1�����Ƃ��ēn����Ă���lcrp��URL��http�ɕϊ�����B  
-��3����$printHeader���n����Ă����ꍇ�́AURL�ƁApost���M�̓��e�A������goToLcrpServer�֐��̖߂�l�����̏��print����B  
-goToLcrpServer�֐��́A���ۂ�lcrp�ʐM���s���֐��ł���A  
-�T�[�o����Ԃ��ꂽ�������(�قڂ��̂܂�)�߂�l�Ƃ�����̂ł���B  
-���̒l��$result�Ɋi�[�����B  
-61�s�ڂ� `isStatusOK($result)` �Ƃ��邪�A����̓T�[�o����Ԃ��ꂽ������ɁAlcrp�ʐM�ɐ����������Ƃ������L�q�����邩�ǂ����̐^�U�l�ł���B  
-(���C�Z���X�L�[�̔F�؂��ʂ������ǂ����ɂقړ�����)  
-�ʐM�ɐ��������Ȃ�A66�s�ڂ�getRerurnValue�֐����Ăяo�����ƂŁA�u���]�̊֐��̖߂�l�v�𓾂Ă�������̂܂�function_get_return�֐��̖߂�l�Ƃ���B  
-�u���]�̊֐��v�Ƃ́A�Ⴆ�΁A$url��lcrp://isPlus1Prime(3,1)�Ƃ����ꍇ�AisPlus1Prime(3,1)������ł���B  
+27行目～77行目では、function_get_return関数の中身である。  
+第2引数であるライセンスキー($licenseKey)を、サーバへのpost送信に使うグローバル配列$queryにプッシュし、  
+lcrp2http関数で、第1引数として渡されていたlcrpのURLをhttpに変換する。  
+第3引数$printHeaderが渡されていた場合は、URLと、post送信の内容、そしてgoToLcrpServer関数の戻り値をその場でprintする。  
+goToLcrpServer関数は、実際にlcrp通信を行う関数であり、  
+サーバから返された文字列を(ほぼそのまま)戻り値とするものである。  
+この値は$resultに格納される。  
+61行目に `isStatusOK($result)` とあるが、これはサーバから返された文字列に、lcrp通信に成功したことを示す記述があるかどうかの真偽値である。  
+(ライセンスキーの認証が通ったかどうかにほぼ等しい)  
+通信に成功したなら、66行目でgetRerurnValue関数を呼び出すことで、「所望の関数の戻り値」を得てそれをそのままfunction_get_return関数の戻り値とする。  
+「所望の関数」とは、例えば、$urlをlcrp://isPlus1Prime(3,1)とした場合、isPlus1Prime(3,1)がそれである。  
 
-##### 78�s�ڈȍ~
+##### 78行目以降
 
-78�s�ڈȍ~�́A77�s�ڂ܂ł�function_get_return�֐��̐����ɂ�����lcrp2http�֐���isStatusOK�֐��AgetReturnValue�֐��Ȃǂ�������Ă���B
+78行目以降は、77行目まででfunction_get_return関数の説明につかったlcrp2http関数やisStatusOK関数、getReturnValue関数などを説明している。
 
-#### �T�[�o��
-�����ł�lcrp�T�[�o�̍\�z���@���q�ׂ�B  
+#### サーバ側
+ここではlcrpサーバの構築方法を述べる。  
 
-##### �T�[�o�̍\�z
+##### サーバの構築
 
-�O��Ƃ��āA�ȉ��̂��̂����p�\�ł���K�v������B  
+前提として、以下のものが利用可能である必要がある。  
 
-- ���J���ꂽweb�T�[�o
-    - php�����p�\�A�ȉ��̊֐���ϐ��ɂ����Ďg�p�������󂯂Ă��Ȃ�
-        - lcrp�B�����ꂽ���ׂĂ̊֐��y�т����ŗ��p����֐�
-        - �T�[�o���̃v���O���������p����֐���ϐ�
-            - isset�֐�
-            - $_POST�X�[�p�[�O���[�o���ϐ�
-            - $_GET�X�[�p�[�O���[�o���ϐ�
-            - print�֐�
-            - time�֐�
-            - glob�֐�
+- 公開されたwebサーバ
+    - phpが利用可能、以下の関数や変数において使用制限を受けていない
+        - lcrp隠蔽されたすべての関数及びそこで利用する関数
+        - サーバ側のプログラムが利用する関数や変数
+            - isset関数
+            - $_POSTスーパーグローバル変数
+            - $_GETスーパーグローバル変数
+            - print関数
+            - time関数
+            - glob関数
             - is_file
-    - htaccess�ŁuDeny from all�v�����p�\
-    - �\���ȋ󂫗e�ʂ�����
+    - htaccessで「Deny from all」が利用可能
+    - 十分な空き容量かある
 
-�ȏ�̏����𖞂���web�T�[�o�ɁAlcrp�f�B���N�g���𐶐�����B  
-���̃f�B���N�g���ւ̃p�X����v���g�R��http(s)://����菜�������̂��A [lcrp.php](lcrp.php) ��3�s�ڂ� $lcrpServer �Ɏw�肳���ׂ��ł���B  
-���ɐ��i�ԍ�(�C�ӂł悢)�����߁Alcrp�f�B���N�g�������ɂ��̖��O�̃f�B���N�g���𐶐�����B  
-�������O��[lcrp.php](lcrp.php) ��2�s�ڂ� $productNumber �Ɏw�肷��B  
-����̗�ł� $productNumber �� example0001 �Ƃ����B  
-���i�ԍ��̃f�B���N�g���̒����� index.php �Ƃ����t�@�C���� funcDef �Ƃ����f�B���N�g���𐶐�����B  
-funcDef�̒����ɁA���̂悤�� [.htaccess](lcrp/example0001/funcDef/.htaccess) �𐶐�����B  
+以上の条件を満たすwebサーバに、lcrpディレクトリを生成する。  
+このディレクトリへのパスからプロトコルhttp(s)://を取り除いたものが、 [lcrp.php](lcrp.php) の3行目の $lcrpServer に指定されるべきである。  
+次に製品番号(任意でよい)を決め、lcrpディレクトリ直下にその名前のディレクトリを生成する。  
+同じ名前を[lcrp.php](lcrp.php) の2行目の $productNumber に指定する。  
+今回の例では $productNumber は example0001 とした。  
+製品番号のディレクトリの直下に index.php というファイルと funcDef というディレクトリを生成する。  
+funcDefの直下に、次のような [.htaccess](lcrp/example0001/funcDef/.htaccess) を生成する。  
 [lcrp/example0001/funcDef/.htaccess](lcrp/example0001/funcDef/.htaccess)  
   
 `deny from all`
   
-����A�K���قȂ�l�b�g���[�N����funcDef�f�B���N�g����http(s)�A�N�Z�X���A403 forbidden ���Ԃ邱�Ƃ��m�F����B  
+直後、必ず異なるネットワークからfuncDefディレクトリにhttp(s)アクセスし、403 forbidden が返ることを確認する。  
 
-���̌�AfuncDef�f�B���N�g���Ɂulcrp�֐���`�t�@�C���v��u���B������lcrp�B�����ꂽ�֐��̐����������ꂽphp�t�@�C���ł���B�ulcrp�֐���`�t�@�C���v�̌��o���ŏڂ�����������B
+その後、funcDefディレクトリに「lcrp関数定義ファイル」を置く。これらはlcrp隠蔽された関数の説明が書かれたphpファイルである。「lcrp関数定義ファイル」の見出しで詳しく説明する。
 
-���ɐ����ԍ��f�B���N�g��������index.php�֍s���A���̐����ɏ]���ē��e���������ށB
+次に製造番号ディレクトリ直下のindex.phpへ行き、次の説明に従って内容を書き込む。
 
-##### index.php�̓��e
-�T�[�o����lcrp�ʐM�����ۂɍs���̂͐��i�ԍ��f�B���N�g��������index.php�ł���B
-index.php�̓��e�� [������](lcrp/example0001/index.php) �Ɏ����Ƃ���B  
-�A���A���C�Z���X�L�[�̔F�؂��s��authenticate�֐��̐���
+##### index.phpの内容
+サーバ側でlcrp通信を実際に行うのは製品番号ディレクトリ直下のindex.phpである。
+index.phpの内容は [こちら](lcrp/example0001/index.php) に示すとおり。  
+但し、ライセンスキーの認証を行うauthenticate関数の説明
 
 ```php
     function authenticate($key)
     {
     /*
-    �{���͂����Ńf�[�^�x�[�X���Q�Ƃ��A���C�Z���X�L�[�̏ƍ��ɖ𗧂Ă�ׂ��ł��邪�A
-    ����͐����ȃ��C�Z���X�L�[���ukey�v�݂̂Ƃ���B
+    本当はここでデータベースを参照し、ライセンスキーの照合に役立てるべきであるが、
+    今回は正当なライセンスキーを「key」のみとする。
     */
         return $key=='key';
     }
 ```
-��A���C�Z���X�L�[���烆�[�U����肷��getWho�֐��̐���
+や、ライセンスキーからユーザを特定するgetWho関数の説明
 
 ```php
     function getWho($key)
     {
     /*
-    ���C�Z���X�L�[���痘�p�҂�ID������o����d�g�݂������Ă��悢���낤�B
-    ����͊ȒP�ɂ��邽�߁A�uunknown�v��Ԃ��݂̂Ƃ���
+    ライセンスキーから利用者のIDを割り出せる仕組みがあってもよいだろう。
+    今回は簡単にするため、「unknown」を返すのみとする
     */
-    //�܂��A���[�U����html�^�O�𖳌��ɂ��邱��
+    //また、ユーザ名はhtmlタグを無効にすること
         return "unknown";
     }
 ```
-�́A����A�b�v�f�[�g�����K�v������B  
-index.php�̓N���C�A���g����get��post�Ŏ󂯎�����������ƂɃ��C�Z���X�F�؂��s���A  
-�F�؂�����get�ɂėv������Ă���u���]�̊֐��v�����s���A���̌��ʂ��N���C�A���g�ɓn���Ƃ������Ƃ��s���Ă���B  
-���]�̊֐���run�֐����Ăяo����邱�Ƃɂ���Ď��s�����B  
-run�֐��́Aindex.php���Ŏ��̂悤�ɐ�������Ă���B  
+は、今後アップデートされる必要がある。  
+index.phpはクライアントからgetやpostで受け取った情報をもとにライセンス認証を行い、  
+認証されればgetにて要求されている「所望の関数」を実行し、その結果をクライアントに渡すということを行っている。  
+所望の関数はrun関数が呼び出されることによって実行される。  
+run関数は、index.php内で次のように説明されている。  
 
 ```php
     function run($funcName, $args)
     {
     /*
-    ����3�̔z��rtn��ԋp����B
-    0�Ԗڂ�funcName�̊֐������s�����ۂ̖߂�l
-    1�Ԗڂ�print�Ȃǂ̑���
-    2�Ԗڂ̓G���[�̗L��
+    長さ3の配列rtnを返却する。
+    0番目はfuncNameの関数を実行した際の戻り値
+    1番目はprintなどの操作
+    2番目はエラーの有無
     */
         $rtn=[];
         $dirName="funcDef";
 
         if(findFunc($dirName,$funcName))
-        //funcDef�f�B���N�g���ɂ���php�t�@�C���ɁA
-        //$funcName�ƈ�v���閼�O�̂��̂��������ꍇ
+        //funcDefディレクトリにあるphpファイルに、
+        //$funcNameと一致する名前のものがあった場合
         {
             include $dirName.'/'.$funcName.'.php';
             $rtn=lcrp_main($args);
@@ -383,7 +383,7 @@ run�֐��́Aindex.php���Ŏ��̂悤�ɐ�������Ă���B
         else
         {
             $rtn[0]='';
-            $rtn[1]='print "����`�̊֐�"';
+            $rtn[1]='print "未定義の関数"';
             $rtn[2]='error: function "'.$funcName.'" does not exist';
         }
 
@@ -392,54 +392,54 @@ run�֐��́Aindex.php���Ŏ��̂悤�ɐ�������Ă���B
     }
 ```
 
-##### lcrp�֐���`�t�@�C��
+##### lcrp関数定義ファイル
 
-findFunc($dirName,$funcName)�֐��́A$dirName�Ŏw�肳�ꂽ(�܂�funcDef)�f�B���N�g�����ɁA�u$funcName.php�v�Ŏw�肳���lcrp�֐������(��`)����php�t�@�C�������݂��邩�ǂ����𔻒f����֐��ł���B  
-lcrp�֐���`�t�@�C�������݂����ꍇ�A���̃t�@�C�����C���N���[�h���Alcrp_main($args)�̎��s�ɂ��A���̊֐������s����B  
-���̂��Ƃ���lcrp�֐���`�t�@�C���ɂ��āA�ȉ��̂��Ƃ�������B  
+findFunc($dirName,$funcName)関数は、$dirNameで指定された(つまりfuncDef)ディレクトリ内に、「$funcName.php」で指定されるlcrp関数を説明(定義)するphpファイルが存在するかどうかを判断する関数である。  
+lcrp関数定義ファイルが存在した場合、そのファイルをインクルードし、lcrp_main($args)の実行により、その関数を実行する。  
+このことからlcrp関数定義ファイルについて、以下のことがいえる。  
 
-- lcrp�֐���`�t�@�C����funcDef�f�B���N�g���̒����ɑ��݂���B
+- lcrp関数定義ファイルはfuncDefディレクトリの直下に存在する。
 
-- lcrp�֐���`�t�@�C���̖��O�́ulcrp�֐��̖��O.php�v�ł���B
+- lcrp関数定義ファイルの名前は「lcrp関数の名前.php」である。
 
-- lcrp�֐���`�t�@�C�����ł́A��`�����֐��̖��O��lcrp_main�Œu��������K�v������B
+- lcrp関数定義ファイル内では、定義される関数の名前をlcrp_mainで置き換える必要がある。
 
-- �����̌��͊elcrp�֐��ňقȂ�A����͖��ł��邽�߁A�z��ɂ��A��̈����Ƃ݂Ȃ��ēn���B  
+- 引数の個数は各lcrp関数で異なり、これは問題であるため、配列にし、一つの引数とみなして渡す。  
 
-�����āA���̂悤�Ȏd�l����������B  
+加えて、次のような仕様を強制する。  
 
-- �߂�l�͕K��3�̗v�f�����z��Ƃ���B(�ȉ������$return�ƌĂ�)
+- 戻り値は必ず3つの要素を持つ配列とする。(以下これを$returnと呼ぶ)
 
-- $return[0]�͊֐��{���̖߂�l
+- $return[0]は関数本来の戻り値
 
-- $return[1]��print�A����p�Ȃǉ��炩�̎w��
+- $return[1]はprint、副作用など何らかの指示
 
-- $return[2]�̓G���[�̗L��
+- $return[2]はエラーの有無
 
-�ȏ�7�̃��[���ɂ̂��Ƃ�A [test.php](test.php) ���́AisPlus1Prime�֐���getNext�֐��̐������A���ꂼ�ꎟ�̂悤�ɏ����������B  
+以上7つのルールにのっとり、 [test.php](test.php) 中の、isPlus1Prime関数とgetNext関数の説明を、それぞれ次のように書き換えた。  
 
-isPlus1Prime�֐��� [lcrp/example0001/funcDef/isPlus1Prime.php](lcrp/example0001/funcDef/isPlus1Prime.php)
+isPlus1Prime関数→ [lcrp/example0001/funcDef/isPlus1Prime.php](lcrp/example0001/funcDef/isPlus1Prime.php)
 
-getNextPow�֐��� [lcrp/example0001/funcDef/getNextPow.php](lcrp/example0001/funcDef/getNextPow.php)
+getNextPow関数→ [lcrp/example0001/funcDef/getNextPow.php](lcrp/example0001/funcDef/getNextPow.php)
 
-�A���A�ǂ���̃t�@�C���ł��֐������ɂ����āAlcrp.php�́u7�s�ڂ���24�s�ځv�Ɠ����H�v�����Ă���B
+但し、どちらのファイルでも関数頭部において、lcrp.phpの「7行目から24行目」と同じ工夫をしている。
 
-## LC���g�����v���O�����̗�
-�ȉ��̎菇�ɂ��A���C�Z���X�R���g���N�g���g�����v���O���������ۂɂǂ����������̂Ȃ̂��A�̌����邱�Ƃ��ł���B
+## LCを使ったプログラムの例
+以下の手順により、ライセンスコントラクトを使ったプログラムが実際にどういったものなのか、体験することができる。
 
-1. ���̃��|�W�g���ulicenseContract�v���ɂ�����Alcrp�f�B���N�g���Aimg�f�B���N�g���Areadme.md�����������ׂẴt�@�C�����Aweb�T�[�oA�ɃA�b�v���[�h����Bweb�T�[�oA�́ulcrp�N���C�A���g�v�ƂȂ�B
+1. このレポジトリ「licenseContract」内における、lcrpディレクトリ、imgディレクトリ、readme.mdを除いたすべてのファイルを、webサーバAにアップロードする。webサーバAは「lcrpクライアント」となる。
 
-2. �ulcrp�T�[�o�v�Ƃ�����web�T�[�oB��I�сA�u�T�[�o�̍\�z�v�̌��o���Ɏ������O������ׂĖ��������m�F����B
+2. 「lcrpサーバ」としたいwebサーバBを選び、「サーバの構築」の見出しに示した前提をすべて満たすか確認する。
 
-3. ���̃��|�W�g������lcrp�f�B���N�g����web�T�[�oB�ɃA�b�v���[�h����B
+3. このレポジトリ内のlcrpディレクトリをwebサーバBにアップロードする。
 
-4. web�T�[�oA�ɃA�b�v���[�h����lcrp.php��3�s�ڂ��Aweb�T�[�oB�ɃA�b�v���[�h����lcrp�f�B���N�g���̃p�X�ɏ���������(�v���g�R����Ō�́u/�v�͂��Ȃ�)
+4. webサーバAにアップロードしたlcrp.phpの3行目を、webサーバBにアップロードしたlcrpディレクトリのパスに書き換える(プロトコルや最後の「/」はつけない)
 
-5. web�T�[�oB���̃f�B���N�g�� lcrp/example0001/funcDef �ɁA�O���l�b�g���[�N����A�N�Z�X�����403�G���[���Ԃ邱�Ƃ��m�F����
+5. webサーバB内のディレクトリ lcrp/example0001/funcDef に、外部ネットワークからアクセスすると403エラーが返ることを確認する
 
-6. �T�[�oA�� test.php?num=3 �� test.php?num=6 �ȂǂɃu���E�U����A�N�Z�X���Anum�ׂ̂�����1���킦�����̂��f�����ǂ������肷��v���O����������ɓ������Ƃ��m�F����B
+6. サーバAの test.php?num=3 や test.php?num=6 などにブラウザからアクセスし、numのべき数に1くわえたものが素数かどうか判定するプログラムが正常に動くことを確認する。
 
-7. �T�[�oA�� usingLcrp.php?num=3 �ȂǂɃu���E�U����A�N�Z�X���Atest.php��(��������)�S�������v���O���������삷�邱�Ƃ��m�F����
+7. サーバAの usingLcrp.php?num=3 などにブラウザからアクセスし、test.phpと(見かけ上)全く同じプログラムが動作することを確認する
 
 
 
