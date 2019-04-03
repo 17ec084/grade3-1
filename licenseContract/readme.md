@@ -441,5 +441,9 @@ getNextPow関数→ [lcrp/example0001/funcDef/getNextPow.php](lcrp/example0001/f
 
 7. サーバAの usingLcrp.php?num=3 などにブラウザからアクセスし、test.phpと(見かけ上)全く同じプログラムが動作することを確認する
 
-
+## 今後の課題
+- [サーバ側のプログラム](lcrp/example0001/index.php) において、authenticate関数とgetWho関数が未完成
+- 「指示」($result[1])の仕様や、それを読み取るためのプログラムが全く用意されていない
+- php以外の言語にも対応したい(一人では大変...)
+- lcrp通信を、http通信と別物にして、より高速より低容量のものにしたい。
 
