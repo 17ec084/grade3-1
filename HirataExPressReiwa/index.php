@@ -16,5 +16,5 @@ else
 }
 
 print dumpContents($key,$contents);
-
-
+//ページを表示する。
+//ヒント:問題集の実行ページはtry.php
