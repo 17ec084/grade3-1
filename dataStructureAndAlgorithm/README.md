@@ -1,4 +1,4 @@
 # dataStructureAndAlgorithm
 データストラクチャと仕組み
 
-[htmlファイル](README.md) にまとめました。 
+[htmlファイル](README.html) にまとめました。 
