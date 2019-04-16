@@ -1,1 +1,29 @@
-文字列の演算の難しさは、 <font color="#FFF">数値</font> の演算と違うところにある。
+<h1>データの構造と仕組み</h1>
+選択することで空欄が見えるようになります。
+<h2>第1回</h2>省略
+<h2>第2回</h2>
+<h3>文字列演算</h3>
+<p>文字列の演算の難しさは、 <font color="#FFF">数値</font> の演算と違うところにある。</p>
+<p>「アルファベット」とは <font color="#FFF">使用する記号の集合</font> のことを言う。アルファベットは、記号 <font color="#FFF">Σ</font> で表す。</p>
+<p>Σ*とは アルファベットの<font color="#FFF">列すべての集合</font>である。 <font color="#FFF">空列</font>を含む。</p>
+<p>Gは <font color="#FFF">文法</font> といい、 <font color="#FFF">記号列を生成するルール</font>であり、Gに従う <font color="#FFF">記号列の集合</font> を言語L(G) という。 </p>
+<p>問題:Σ={0,1}のとき、Σ*の元を、記号数が少ない順に8つ答えなさい。<br>答え: <font color="#FFF">Σ*={ε,0,1,00,01,10,11,000,...}</font> </p>
+<p>問題:Σ={0,1}とし、G=「1で終わらないもの」とするとき、言語の元を、記号数が少ない順に8個答えなさい。<br>答え: <font color="#FFF">L(G)={ε,0,00,10,000,010,100,110,...}</font> </p>
+<p>問題:Σ={0,1}とし、G1=「1で終わらないもの」とし、G2=「0で終わるもの」とする。L(G1)とL(G2)は同じものか<br>答え: <font color="#FFF">空列εを含むか否かが異なる。</font></p>
+<h3>正規表現</h3>
+<p>正規表現は <font color="#FFF">アルファベット1文字</font> 及び  <font color="#FFF">正規表現 | 正規表現</font> 、 <font color="#FFF">正規表現 正規表現</font> 、  <font color="#FFF">｛正規表現｝</font> のことである。</p> 
+<p>R|Sとは <font color="#FFF">R または S</font>、RSは <font color="#FFF">RとSの連結</font>、｛R｝は <font color="#FFF">Rの0回以上の繰り返し</font> を意味する。  </p>
+<p>正規表現は文法たりうる。これを確認しよう。算用数字をアルファベットとする。<br>言語( <font color="#FFF">(1|2|3|4|5|6|7|8|9){(0|1|2|3|4|5|6|7|8|9)}</font>)は自然数の全体集合である。<br>これを簡単に、言語( <font color="#FFF">[1-9]{[0-9]} </font> )と表したりする。</p>
+<p>正規表現^[abc][abc][abc]*は<font color="#FFF">先頭2文字がa,b,cのいずれかで始まる文字列</font> を意味する。</p>
+<p>「先頭がaで始まる5文字の文字列」を正規表現で表すと<font color="#FFF">^a....$</font></p>である。
+<p>^d.*(aemon)$で表されるものを2つ挙げると、<font color="#FFF">doraemon(ドラえもん)</font>と<font color="#FFF">daemon(悪魔)</font>であるが、<br>
+^d.+(aemon)$で表されるものに、後者は含まれない。</p>
+<h3>オートマトン</h3>
+<p>オートマトンは、次の図のような<font color="#FFF">有向グラフ</font>のことである。<br><img src="http://edu.net.c.dendai.ac.jp/ad2/2019/2/automata.png"></p>
+<p><font color="#FFF">左上の「入ってくる矢印」示されている丸</font>を開始ノードという。</p>
+<p>終了ノードは<font color="#FFF">二重丸</font>で表される。</p>
+<p>開始ノードと終了ノードの存在の他、<font color="#FFF">各辺に文字がいつ以上割り振られていること</font>がオートマトンであるための条件である<font color="#FFF">が、空列を指定することもできる</font>。</p>
+<p><font color="#FFF">各辺に割り当てられている文字がすべて異なる</font>オートマトンを
+決定性オートマトンという。決定性オートマトンは本質的に<font color="#FFF">状態遷移図</font>そのものであるため、プログラムへの変換が容易である。</p>
+<p>問題:非決定性オートマトンで、正規表現を解釈することができることを証明せよ。<br>答え:<font color="#FFF">非決定性オートマトンは、空列(空文字)も含めて、アルファベットの元を辺に割り振ることができる。<br>RとSを正規表現とするとき、R|Sは<img src="http://edu.net.c.dendai.ac.jp/ad2/2019/2/case3.png">で、RSは<img src="http://edu.net.c.dendai.ac.jp/ad2/2019/2/case4.png">で、{R}は<img src="http://edu.net.c.dendai.ac.jp/ad2/2019/2/case5.png">でそれぞれ表される。</font>qed</p>
+
