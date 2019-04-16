@@ -26,4 +26,54 @@
 <p><font color="#FFF">各辺に割り当てられている文字がすべて異なる</font>オートマトンを
 決定性オートマトンという。決定性オートマトンは本質的に<font color="#FFF">状態遷移図</font>そのものであるため、プログラムへの変換が容易である。</p>
 <p>問題:非決定性オートマトンで、正規表現を解釈することができることを証明せよ。<br>答え:<font color="#FFF">非決定性オートマトンは、空列(空文字)も含めて、アルファベットの元を辺に割り振ることができる。<br>RとSを正規表現とするとき、R|Sは<img src="http://edu.net.c.dendai.ac.jp/ad2/2019/2/case3.png">で、RSは<img src="http://edu.net.c.dendai.ac.jp/ad2/2019/2/case4.png">で、{R}は<img src="http://edu.net.c.dendai.ac.jp/ad2/2019/2/case5.png">でそれぞれ表される。</font>qed</p>
+<p>問題:文字列「<strong>【悲報】Doraemonさん、Daemonだったｗｗｗｗ</strong>」から正規表現にマッチする部分を見つけ、次のように報告するプログラムを穴埋めせよ。<br><table bgcolor="#FEE"><tbody><tr><td><code>
+<xmp>マッチング位置：4
+マッチング終了位置：12
+マッチング文字列：Doraemon
+------------------------------
+マッチング位置：15
+マッチング終了位置：21
+マッチング文字列：Daemon
+------------------------------
+</xmp></code></td></tr></tbody></table><br>
+<br>
+穴あきコード:
+<br><table bgcolor="#FEE"><tbody><tr><td><code><xmp>import (ア);
+class Sample
+{
+  public static void main(String[] args)
+  {
+    final String sample="【悲報】Doraemonさん、Daemonだったｗｗｗｗ";
+    final (イ) p = (イ).(ウ)("(エ)");
+    final (オ) m = (カ)(sample);
+    while(m.find())
+    {
+      System.out.println("マッチング位置：" + (キ));
+      System.out.println("マッチング終了位置：" + (ク));
+      System.out.println("マッチング文字列：" + (ケ));
+      System.out.println("------------------------------");
+    }
+  }
+}
+//参考:http://java-code.jp/277
 
+</xmp></code></td></tr></tbody></table><br>
+答え:
+<br>(ア):<font color="#FFF">java.util.regex.*</font>
+<br>(イ):<font color="#FFF">Pattern</font>
+<br>(ウ):<font color="#FFF">compile</font>
+<br>(エ):<font color="#FFF">D(\\p{Lower})*(aemon)</font>
+<br>(オ):<font color="#FFF">Matcher</font>
+<br>(カ):<font color="#FFF">p.matcher</font>
+<br>(キ):<font color="#FFF">m.start()</font>
+<br>(ク):<font color="#FFF">m.end()</font>
+<br>(ケ):<font color="#FFF">m.group()</font>
+</p>
+<p>補足:上記のプログラムで、(エ)を D.*(aemon) としてしまうと、
+<br><table bgcolor="#FEE"><tbody><tr><td><code>
+<xmp>マッチング位置：4
+マッチング終了位置：21
+マッチング文字列：(コ)
+------------------------------
+</xmp></code></td></tr></tbody></table><br>
+(コ):<font color="#FFF">Doraemonさん、Daemon</font>となってしまう。</p>
