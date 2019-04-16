@@ -1,5 +1,7 @@
 <h1>データの構造と仕組み</h1>
-選択することで空欄が見えるようになります。
+選択することで空欄が見えるようになります。<br>
+<span id="lc"><big><big><big>宿題の答え等(動作確認はとりあえずしたけど自己責任で参考にしてください)は、<a href="https://www.change.org/p/%E5%A5%B3%E6%80%A7%E5%B0%82%E7%94%A8%E8%BB%8A%E4%B8%A1%E3%82%92%E5%B0%8E%E5%85%A5%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E9%89%84%E9%81%93%E4%BC%9A%E7%A4%BE-%E7%94%B7%E6%80%A7%E5%B0%82%E7%94%A8%E8%BB%8A%E4%B8%A1%E3%81%AE%E5%B0%8E%E5%85%A5%E3%82%92%E6%B1%82%E3%82%81%E3%81%BE%E3%81%99">僕の団体でやってる男性専用車両導入の署名活動</a>に協力の上、協力した旨を<a href="http://rights-for.men/zinsaku2.php#sendMail">ホームページの問い合わせボックス</a>あるいはLineか17ec084@ms.dendai.ac.jpまで言ってくれれば照会します。</big></big></big></span>
+
 <h2>第1回</h2>省略
 <h2>第2回</h2>
 <h3>文字列演算</h3>
@@ -46,11 +48,11 @@ class Sample
     final String sample="【悲報】Doraemonさん、Daemonだったｗｗｗｗ";
     final (イ) p = (イ).(ウ)("(エ)");
     final (オ) m = (カ)(sample);
-    while(m.find())
+    while((キ))
     {
-      System.out.println("マッチング位置：" + (キ));
-      System.out.println("マッチング終了位置：" + (ク));
-      System.out.println("マッチング文字列：" + (ケ));
+      System.out.println("マッチング位置：" + (ク));
+      System.out.println("マッチング終了位置：" + (ケ));
+      System.out.println("マッチング文字列：" + (コ));
       System.out.println("------------------------------");
     }
   }
@@ -59,21 +61,24 @@ class Sample
 
 </xmp></code></td></tr></tbody></table><br>
 答え:
-<br>(ア):<font color="#FFF">java.util.regex.*</font>
-<br>(イ):<font color="#FFF">Pattern</font>
-<br>(ウ):<font color="#FFF">compile</font>
-<br>(エ):<font color="#FFF">D(\\p{Lower})*(aemon)</font>
-<br>(オ):<font color="#FFF">Matcher</font>
-<br>(カ):<font color="#FFF">p.matcher</font>
-<br>(キ):<font color="#FFF">m.start()</font>
-<br>(ク):<font color="#FFF">m.end()</font>
-<br>(ケ):<font color="#FFF">m.group()</font>
+<br>署名に協力してくれれば開示します。詳しくは<a href="#lc">こちら</a>をクリック。
 </p>
 <p>補足:上記のプログラムで、(エ)を D.*(aemon) としてしまうと、
 <br><table bgcolor="#FEE"><tbody><tr><td><code>
 <xmp>マッチング位置：4
 マッチング終了位置：21
-マッチング文字列：(コ)
+マッチング文字列：(サ)
 ------------------------------
 </xmp></code></td></tr></tbody></table><br>
-(コ):<font color="#FFF">Doraemonさん、Daemon</font>となってしまう。</p>
+(サ):<font color="#FFF">Doraemonさん、Daemon</font>となってしまう。</p>
+<p>Javaで、入力文字列から整数を探し出すプログラムを作ろう。<br>
+整数は、0を除く算用数字をn、nまたは0をmとしたとき、<font color="#FFF">+nmmmm...、-nmmmm...、nmmmm</font>のいずれかの形で表されるものである。<br>
+従って、先頭1文字を正規表現すると<font color="#FFF">(+|-)?</font>である。<br>
+nを正規表現すると<font color="#FFF">[1-9]</font>、
+mが<font color="#FFF">0回以上繰り返す</font>を正規表現すると<font color="#FFF">([0-9]*)</font>なので、<br>
+整数を表す正規表現は<font color="#FFF">((\\+|\\-)?)[1-9]([0-9]?)</font>である。(エスケープ\\を忘れすな)<br>
+あとは、先ほどのDoraemonとDaemonを検知するプログラムを改造すればよい。<br>
+<br>
+プログラムのコード(確か宿題になっていた)は署名に協力してくれれば開示します。詳しくは<a href="#lc">こちら</a>をクリック。
+</p>
+
