@@ -24,7 +24,7 @@ i番目のデータの誤差εy_iは
 ![](img/leastSquareMethod2.png)  
 最小二乗法で、アを求めよ。  
   
-答え:![](img/leastSquareMethod3.png)  
+[答え](img/leastSquareMethod3.png)  
 
 ----
 
