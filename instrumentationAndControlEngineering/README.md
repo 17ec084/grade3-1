@@ -64,7 +64,7 @@ Xiの分散 (σ_xi)^2 は [イ](img/propagationOfError1.png) で表される。
 これにより、y_jの分散(σ_y)^2は、 [シ](img/propagationOfError7.png) とまずいえる。  
 ここで、(Σ(k,α_k))^2＝ス: <!-- hole Σ(k,(α_k)^2+2α_kΣ(l≠k,α_l)) --> より、 [セ](img/propagationOfError8.png) となる。  
 でも、 [ソ](img/propagationOfError9.png) は タ: <!-- hole 誤差の3公理の2番目の性質「同じ大きさの正負の誤差は同じ確率で生じる」 --> より、チ: <!-- hole 総和をとると0になる --> ため、  
-シ＝ [ツ](img/propagationOfError10.png) ＝[テ](img/propagationOfError11.png) とみなすことができる。  
+シ＝ [ツ](img/propagationOfError10.png) ＝ [テ](img/propagationOfError11.png) とみなすことができる。  
 この関係を [ト](ガウスの誤差伝搬の法則) という。分散シを平方根にすれば標準偏差となるが、プラスマイナス両方あることに注意。  
 
 例1  
