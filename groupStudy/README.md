@@ -46,7 +46,7 @@ S+Vの塊。文⊃節。
 ## To learn about building predictive models,
 
 S:無  
-V:無 
+V:無  
 M:to learn(学ぶために)
 M:about building pregdictive models(予測モデルについて)  
   
@@ -58,15 +58,15 @@ to+動詞はto不定詞
   
 正しい文型にない→従属節  
 
-訳:予測モデルについて学ぶため、
+訳:予測モデルについて学ぶため、  
 
 ## let's go back to the Titanic data from earlier.
 
 S:命令文なのでyouが省略されている  
 V:let  
 O:'s(us)  
-C:go back 
-M:to the Titanic data from earlier(先ほどのところから、タイタニック号のデータへ)
+C:go back  
+M:to the Titanic data from earlier(先ほどのところから、タイタニック号のデータへ)  
 
 動詞が補語に来ている→原形不定詞  
   
@@ -106,7 +106,7 @@ andの後の訳:このデータはたくさんの準備を必要としない
 
 andを使わずに書いてみると次のとおり。  
 
-This data is somewhat simpler. This data does not need a lot of preparation.
+This data is somewhat simpler. This data does not need a lot of preparation.  
 
 全体の訳:このデータは、なんか比較的単純で、面倒な準備が不要だ  
 
@@ -123,8 +123,8 @@ butも「等位接続詞」
 
 従って今回は「文 but 文」と考えるのが妥当。  
 
-S:we
-V:need
+S:we  
+V:need  
 O※:to specify which column we want to predict  
 M:still(未だ、やっぱり)  
 
@@ -137,7 +137,7 @@ O':which column we want to predict
 > あるいは、次のような構文解析も可能。  
 > S:we  
 > V:need to specify  
-> O:which column we want to predict
+> O:which column we want to predict  
 > M:still
 
 いったん訳:「そうはいっても、やっぱりwhich column we want to predictを特定しておく必要がある」  
@@ -159,7 +159,7 @@ whichは関係代名詞または疑問代名詞、または疑問形容詞
 ⇔「疑問*詞以下をitに置き換える」という実験ができる  
 逆に間接疑問文ではないなら、wh以下をitに置き換えると、意味が通じなくなる。  
 I don't know why you say good-bye and I say hello.  
-(何故あなたと私はこうもすれ違うのかがわからん)
+(何故あなたと私はこうもすれ違うのかがわからん)  
 →I don't know it  
 (それ(＝何故～すれ違うのか)がわからん)  
 itに置き換えても意味が通じたので、間接疑問文  
@@ -173,7 +173,7 @@ This is the place where I born.
   
 今回は
 We still need to specify it.  
-で通じるので間接疑問文。よってwhichは疑問詞
+で通じるので間接疑問文。よってwhichは疑問詞  
   
 疑問*詞の類は、単なる*詞である。  
 (蛇足:関係*詞の類は、従位接続詞と*詞の両方の働きをするもので、「単なる*詞」とは言えない。  
@@ -184,7 +184,7 @@ which column we want to predict
 を構文解析すると、  
 
 S:we  
-V:want 
+V:want  
 O:to predict  
 
 となり、which columnのやり場に困る。  
@@ -207,7 +207,7 @@ O:to predict which column(どのカラム(列)を予測すること)
 「私たちはwhichカラムを予測したい」  
 
 全体の訳は次のとおり  
-「そうはいっても、やっぱり『私たちが(which＝)どのカラムを予測したいか』を特定しておく必要がある」
+「そうはいっても、やっぱり『私たちが(which＝)どのカラムを予測したいか』を特定しておく必要がある」  
 
 ## Add product details to transactions.
 
@@ -266,11 +266,11 @@ Sが欠けているので、hover ... operator から借りてくる。
 ここまでを「andを使わず」書いてみると、次の通り。  
 
 Now, hover the mouse over the output port of the Retrieve operator.  
-Now, wait for a small window to pop up.
+Now, wait for a small window to pop up.  
 
 ### andの後(display some meta data about the Titanic dataset)
 
-S:無
+S:無  
 V:display  
 M:some meta ... dataset  
 
@@ -302,7 +302,7 @@ Now, wait for a small window to display some meta about the Titanic dataset.
 
 S:some of the information？それともyou？  
 V:know  
-(OまたはC):you？それともsome of the information？
+(OまたはC):you？それともsome of the information？  
 M:from the Statistics tab(statistics→統計)  
 
 となる。  
@@ -311,7 +311,7 @@ VとMだけ訳してしまうと次のとおり。
 後は常識で考えてしまえばいい。  
 「あなたは、統計タブから一部の情報を得ることができる」  
 倒置を元に戻した英文は次のとおり。  
-You (will) know some of the information from the Statistics tab.
+You (will) know some of the information from the Statistics tab.  
 
 ## Note the two columns Role and Type in the table at the bottom.
 
@@ -510,7 +510,7 @@ M:(a nominal with more than 2 values)2項以上の式
 S:we  
 V:create  
 O:three "bins"  
-M:converting the complete range of values(値の範囲全体を変換する)
+M:converting the complete range of values(値の範囲全体を変換する)  
 
 訳:では、値の範囲全体を変換する3つの「bin」sを作っていきましょう。  
 
@@ -552,7 +552,7 @@ M:which should be predicted
 
 S:命令文  
 V:add  
-C:the Set Role operator
+C:the Set Role operator  
 
 とりあえず仮に訳「Set Roleオペレータを追加してください」  
 
@@ -606,7 +606,7 @@ O:a new type
 
 S:the numerical values  
 V:have been replaced  
-M:by new names
+M:by new names  
 
 訳:「Ageを表す数値は新しい名前に置き換わっています」  
 
