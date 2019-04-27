@@ -11,30 +11,12 @@
 [イ](http://edu.net.c.dendai.ac.jp/ad2/2019/3/daaabc.png) の決定性オートマトンをプログラムに直すと、  
 次のようになる。  
 
-```
-            final Reader r = new InputStreamReader(System.in);
-            State s=State.STATE1;
 
-	    while(cをrから1文字順番にとってきて、それが終了していない){
-		switch(s){
-		case STATE1:
-		    if(c=='A'){ s=State.STATE2; }
-		    else if(c=='C'){ s=State.STATE3; }
-		    else{ throw new IllegalStateException(); }
-		    break;
-		case STATE2:
-		    if(c=='A'){ s=State.STATE2; }
-		    else if(c=='B'){ s=State.STATE3; }
-		    else{ throw new IllegalStateException(); }
-		    break;
-		case STATE3:
-		    if(c=='B'){ s=State.STATE1; }
-		    else{ throw new IllegalStateException(); }
-		    break;
-		}
-	    }
-            受理したか=(s==State.STATE3);
 ```
+ああ
+```
+
+
 
 自然数を受理する決定性オートマトンを作ると、[ウ](img/automatonN1.png) のようになる。  
 
@@ -60,28 +42,6 @@ javaで正規表現を扱うオートマトンは、 オ: <!-- hole java.util.re
 javaで「キーボード入力から自然数を取り出す」プログラムを作ると、次のようになる。  
 
 
-```
-
-import java.util.*;
-import java.util.regex.*;
-import java.io.*;
-class Rei2 {
-    public static void main(String arg[]) throws IOException {
-	final BufferedReader br = new BufferedReader(
-                                    new InputStreamReader(System.in));
-	String buf;
-	final Pattern p = Pattern.compile("[1-9][0-9]*");
-	Matcher m;
-	while((カ)){
-	    (キ);
-	    while((ク)){
-		(ケ);
-	    }	
-	}
-    }
-}
-
-```
 
 カ: <!-- hole (buf=br.readLine())!=null -->  
 キ: <!-- hole m= p.matcher(buf) -->  
