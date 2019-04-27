@@ -59,7 +59,9 @@ javaで正規表現を扱うオートマトンは、 オ: <!-- hole java.util.re
 
 javaで「キーボード入力から自然数を取り出す」プログラムを作ると、次のようになる。  
 
+
 ```
+
 import java.util.*;
 import java.util.regex.*;
 import java.io.*;
@@ -78,6 +80,7 @@ class Rei2 {
 	}
     }
 }
+
 ```
 
 カ: <!-- hole (buf=br.readLine())!=null -->  
