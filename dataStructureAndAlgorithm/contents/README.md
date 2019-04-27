@@ -18,7 +18,7 @@
 
 
 
-自然数を受理する決定性オートマトンを作ると、[ウ](img/automatonN1.png) のようになる。  
+自然数を受理する決定性オートマトンを作ると、 [ウ](img/automatonN1.png) のようになる。  
 
 ### 決定性オートマトンと非決定性オートマトンとの等価性 
 
@@ -26,9 +26,13 @@
 は、状態1のときにaが入力されたとき、1にいくのか2にいくのかわからないので非決定性オートマトンである。  
 
 「,」を「または」と読み替えて考えれば、このオートマトンでは次の表の通りの状態遷移が起こる。  
+
 [ア](img/stateList1.png)  
+
 この「～または～」自体を状態と考えてしまえば、次のような決定性オートマトンに変換できる。  
+
 [イ](http://edu.net.c.dendai.ac.jp/ad2/2019/3/da.png)  
+
 
 ### オートマトンの出力 
 文字列から、「正規表現にマッチする部分列」を抽出することを考えよう。  
@@ -41,7 +45,28 @@ javaで正規表現を扱うオートマトンは、 オ: <!-- hole java.util.re
 
 javaで「キーボード入力から自然数を取り出す」プログラムを作ると、次のようになる。  
 
+```
 
+import java.util.*;
+import java.util.regex.*;
+import java.io.*;
+class Rei2 {
+    public static void main(String arg[]) throws IOException {
+	final BufferedReader br = new BufferedReader(
+                                    new InputStreamReader(System.in));
+	String buf;
+	final Pattern p = Pattern.compile("[1-9][0-9]*");
+	Matcher m;
+	while((カ)){
+	    (キ);
+	    while((ク)){
+		(ケ);
+	    }	
+	}
+    }
+}
+
+```
 
 カ: <!-- hole (buf=br.readLine())!=null -->  
 キ: <!-- hole m= p.matcher(buf) -->  
