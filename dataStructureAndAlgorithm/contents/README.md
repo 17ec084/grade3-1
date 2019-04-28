@@ -13,7 +13,24 @@
 
 
 ```
-ああ
+import java.util.*;
+import java.util.regex.*;
+import java.io.*;
+class Rei2 {
+    public static void main(String arg[]) throws IOException {
+	final BufferedReader br = new BufferedReader(
+                                    new InputStreamReader(System.in));
+	String buf;
+	final Pattern p = Pattern.compile("[1-9][0-9]*");
+	Matcher m;
+	while((カ)){
+	    (キ);
+	    while((ク)){
+		(ケ);
+	    }	
+	}
+    }
+}
 ```
 
 
