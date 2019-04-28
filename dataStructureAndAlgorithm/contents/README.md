@@ -13,24 +13,28 @@
 
 
 ```
-import java.util.*;
-import java.util.regex.*;
-import java.io.*;
-class Rei2 {
-    public static void main(String arg[]) throws IOException {
-	final BufferedReader br = new BufferedReader(
-                                    new InputStreamReader(System.in));
-	String buf;
-	final Pattern p = Pattern.compile("[1-9][0-9]*");
-	Matcher m;
-	while((カ)){
-	    (キ);
-	    while((ク)){
-		(ケ);
-	    }	
-	}
-    }
-}
+            final Reader r = new InputStreamReader(System.in);
+            State s=State.STATE1;
+
+	    while(cをrから1文字順番にとってきて、それが終了していない){
+		switch(s){
+		case STATE1:
+		    if(c=='A'){ s=State.STATE2; }
+		    else if(c=='C'){ s=State.STATE3; }
+		    else{ throw new IllegalStateException(); }
+		    break;
+		case STATE2:
+		    if(c=='A'){ s=State.STATE2; }
+		    else if(c=='B'){ s=State.STATE3; }
+		    else{ throw new IllegalStateException(); }
+		    break;
+		case STATE3:
+		    if(c=='B'){ s=State.STATE1; }
+		    else{ throw new IllegalStateException(); }
+		    break;
+		}
+	    }
+            受理したか=(s==State.STATE3);
 ```
 
 
