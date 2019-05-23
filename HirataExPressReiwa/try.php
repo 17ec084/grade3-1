@@ -1,4 +1,8 @@
 <?php
+include "include/getTextFromTo.php";
+?>
+
+<?php
 $sent=[];
 $arr = array('cardNum','spellOfRevival');
 if(isAllNeededSet($arr))
@@ -120,34 +124,170 @@ else
 
         function putQ($Q)
         {
-            getQAStr();//未実装
-            //単語情報の書かれたファイル内容から、ライセンスキーの情報を取り除いた文字列を返す。
-            //4n行目:第n+1問の問題
-            //4n+1行目:第n+1問の制限時間(0なら無制限)
-            //4n+2行目:第n+1問の選択肢
-            //4n+3行目:第n+1問の答えと解説
+            $QAStr=getQAStr($Q);
+            //<hir:EOC:ata>の直後の行を0行目とみなすと、
+            //4n行目:	第n+1問の問題:			$QAStr[0]
+            //4n+1行目:	第n+1問の制限時間(0なら無制限)	$QAStr[1]
+            //4n+2行目:	第n+1問の選択肢			$QAStr[2]
+            //4n+3行目:	第n+1問の答えと解説		$QAStr[3]
 
-            $question=getQuestion($Q);//未実装
-            //4*($Q-1)行目を文字列として取得
-            /*
-            ここで問題文(及び解説文)の書式を定める。それに応じて変換し、printする。
-            ・改行は<hir:br:ata>
-            ・画像(./img/内のもの)は<hir:画像=ファイル名:ata>
-            ・画像(絶対パス)は<hir:画像==絶対パス:ata>
-            ・音声(./aud/内のもの)は<hir:音声=ファイル名:ata>
-            ・音声(絶対パス)は<hir:音声==絶対パス:ata>
-            ・(./aud/内のもの)は<hir:音声=ファイル名:ata>
-            ・音声(絶対パス)は<hir:音声=絶対パス:ata>
-            ・動画(youtube)は<hir:u2b=動画ID:ata>
-            ・乱数は<hir:乱数「番号」=(最小値)to(最大値):ata>
-              例:<hir:乱数「0」=2to5:ata>
-            ・計算(乱数「番号」、四則演算、指数対数、三角関数、逆三角関数、四捨五入、切り捨て、切り上げのみ)
-              <hir:(phpで変数に代入するのと同じやり方):ata>
-              但し変数名は変数「番号」に限り、番号は乱数と重ならないようにする
-              例:<hir:変数「1」=pow(乱数「0」,2):ata>
-                 <hir:変数「2」=round(変数「1」):ata>
-            ・htmlタグは無効 htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
-            */
+            $question=getQuestion($QAStr[0]);//未実装
+            //書式に応じて変換し、printする。
             
         }
 
+            function getQAStr($Q)
+            {
+                $fp=fopen($sent['cardNum'],'r');
+
+                while(strpos(fgets($fp), "<hir:EOC:ata>")!==false);
+                fgets($fp);
+
+                //この時点を0行目とみなす。
+                
+                for($i=0; $i<4*(n-1)-1; $i++)
+                {
+                    fgets($fp);
+                }
+                $question=fgets($fp);
+                $timeLimit=fgets($fp);
+                $options=fgets($fp);
+                $answer=fgets($fp);
+
+                fclose($fp);
+
+                $arr=[];
+                array_push($arr, $question, $timeLimit, $options, $answer);
+
+                return $arr;
+            }
+
+            function getQuestion($str)
+            {
+                $pass='ewr4ovflaefvrnocvzdl0fp4evsdolkfkobgoi9sdlewfkoi3q4rkonnasnlhhuj5nhewjbxfvil3w90vgsmaf88favftophjkvcsajjuw';
+                //<hir::ata>タグを一時的に書き換えるときのフレーズ
+
+                $str='<span class="question"><p>'.$str.'</p></span>';
+                $str=formalize($str, $pass);//未実装
+            }
+
+                function formalize($str, $pass)
+                {
+                /*
+                    問題文(及び解説文)の書式
+                    ・htmlタグは無効 htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+                    ・改行は<hir:改行:ata>
+                    ・中央寄せは<hir:C:ata>～<hir:/C:ata>
+                    ・左寄せは<hir:L:ata>～<hir:/L:ata>
+                    ・右寄せは<hir:R:ata>～<hir:/R:ata>
+                    ・文字を大きくするのは<hir:+n:ata>～<hir:/+n:ata>
+                      但しnは100以下の自然数
+                    ・文字を小さくするのは<hir:-n:ata>～<hir:/-n:ata>
+                    ・画像(./img/内のもの)は<hir:画像=?ファイル名:ata>
+                    ・画像(絶対パス)は<hir:画像=絶対パス:ata>
+                    ・音声(./aud/内のもの)は<hir:音声=?ファイル名:ata>
+                    ・音声(絶対パス)は<hir:音声=絶対パス:ata>
+                    ・動画(youtube)は<hir:u2b=動画ID:ata>
+
+                    ・乱数は<hir:乱数「番号」=(最小値)to(最大値):ata>
+                      例:<hir:乱数「0」=2to5:ata>
+                    ・計算(乱数「番号」、四則演算、指数対数、三角関数、逆三角関数、四捨五入、切り捨て、切り上げのみ)
+                      <hir:(phpで変数に代入するのと同じやり方):ata>
+                      但し変数名は変数「番号」に限り、番号は乱数と重ならないようにする
+                      例:<hir:変数「1」=pow(乱数「0」,2):ata>
+                      <hir:変数「2」=round(変数「1」):ata>
+                    ※乱数は、「間違えた問題一覧」や、間違えた問題の解き直しの際にその都度変化する。
+                      これの都合が悪ければ、変数に代入してしまうこと
+                  
+                */
+                    $hir=('[hirata'.$pass.']');
+                    $ata=('[/hirata'.$pass.']');
+                    $str=str_replace('<hir:', $hir, $str);
+                    $str=str_replace(':ata>', $ata, $str);
+
+                    $str=htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+                    $str=str_replace($hir.'改行'.$ata, '<br>', $str);
+
+                    $str=str_replace($hir.'C'.$ata, '</p><p align="center">', $str);
+                    $str=str_replace($hir.'/C'.$ata, '</p><p>', $str);
+                    $str=str_replace($hir.'L'.$ata, '</p><p align="left">', $str);
+                    $str=str_replace($hir.'/L'.$ata, '</p><p>', $str);
+                    $str=str_replace($hir.'R'.$ata, '</p><p align="right">', $str);
+                    $str=str_replace($hir.'/R'.$ata, '</p><p>', $str);
+
+                    for($i=1; $i<100+1; $i++)
+                    {
+                        $str=str_replace($hir.'+'.$i.$ata, '[hirataBig'.$pass.']', $str);
+                        $str=str_replace($hir.'/+'.$i.$ata, '[/hirataBig'.$pass.']', $str);
+                        $str=str_replace($hir.'-'.$i.$ata, '[hirataSmall'.$pass.']', $str);
+                        $str=str_replace($hir.'/-'.$i.$ata, '[/hirataSmall'.$pass.']', $str);
+
+                        //以下、回りくどいが、こうせねば実行されないstr_replaceのために$bigや$endBigなどをたくさん連結することになってしまい、
+                        //あまりにも非効率的。
+                        /*
+                        if(strpos($str, '[hirataBig'.$pass.']')!==false)
+                        {
+                            $big='';
+                            for($j=0; $j<$i; $j++)
+                            {
+                                $big.='<big>';
+                            }
+                            $str=str_replace('[hirataBig'.$pass.']', $big, $str);
+                        }
+                        */
+                        //同様の処理を</big>、<small>、</small>にも施すが、コード全体が冗長化するので関数tmp1にまとめる
+                        $str=tmp1($str, '[hirataBig', '<big>', $pass);
+                        $str=tmp1($str, '[/hirataBig', '</big>', $pass);
+                        $str=tmp1($str, '[hirataSmall', '<small>', $pass);
+                        $str=tmp1($str, '[/hirataSmall', '</small>', $pass);
+
+                    }
+
+                    $str=tmp2($str, '画像', 'img', '<img src="', '" width="50%">');
+                    $str=tmp2($str, '音声', 'aud', '<audio src="', '" controls><div>エラー:audioタグが無効です</div></audio>');
+                    //tmp2は画像と音声のタグ用の関数
+
+                    while(strpos($str, $hir.'u2b=')!==false)
+                    {
+                        $u2bId=getTextFromTo($str, $hir.'u2b=', $ata, false);
+                        $str=str_replace($hir.'u2b='.$u2bId.$ata, '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$u2bId.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', $str);
+                    }
+
+                    while(strpos($str, $hir.'u2b=')!==false)
+                    {
+                        $u2bId=getTextFromTo($str, $hir.'u2b=', $ata, false);
+                        $str=str_replace($hir.'u2b='.$u2bId.$ata, '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$u2bId.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', $str);
+                    }
+ ・乱数は<hir:乱数「番号」=(最小値)to(最大値):ata>
+                }
+
+                    function tmp1($str, $before, $after, $pass)
+                    {
+                        if(strpos($str, $before.$pass.']')!==false)
+                        {
+                            tmp2='';
+                            for($j=0; $j<$i; $j++)
+                            {
+                                $tmp2.=$after;
+                            }
+                            $str=str_replace($before.$pass.']', $tmp2, $str);
+                        }
+                        return $str;
+                    }
+
+                    function tmp2($str, $type, $dir, $left, $right)
+                    {
+                        $hir=('[hirata'.$pass.']');
+                        $ata=('[/hirata'.$pass.']');
+                        while(strpos($str, $hir.$type.'=?')!==false)
+                        {
+                            $fileName=getTextFromTo($str, $hir.$type.'=?', $ata, false);
+                            $str=str_replace($hir.$type.'=?'.$fileName.$ata, $left.'./'.$dir.'/'.$fileName.$right, $str);
+                        }
+                        while(strpos($str, $hir.$type.'=')!==false)
+                        {
+                            $fileName=getTextFromTo($str, $hir.$type.'=', $ata, false);
+                            $str=str_replace($hir.$type'='.$url.$ata, $left.$utl.$right, $str);
+                        }
+                        return $str;
+                    }
