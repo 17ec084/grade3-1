@@ -149,8 +149,14 @@ public class ReadCSV
                 cntOfC++;
                 isEof=putCell(i,j,isEof);
                 //arrRow(行を表すArrayList)にセル内容を追加
+            	if(isEof || text.charAt(i)==eof)
+            	{
+            		isEof=true;
+                    break;
+            	}
                 j=i;
                 i++;
+//                System.out.println("i="+i);
 
     		}
     		cntOfR++;

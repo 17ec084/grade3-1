@@ -60,7 +60,7 @@ public class ShowCSV extends ReadCSV
 
 		cntOfC=super.getCntColumn();
 		cntOfR=super.getCntRow();
-
+//		System.out.println("getCntAccepted called");
 		tmp=getCntAccepted(width, start);
 		cntAccepted=tmp[0];//何列分を1行の文字列で表示出来るか
 		//tmp[1] (sumLen)は使わない
@@ -86,7 +86,7 @@ public class ShowCSV extends ReadCSV
 			int cntAccepted=0;
 			int i;
 
-	        for(i=start+1;i<cntOfC && width>len(i,start); i++){}
+	        for(i=start;i<cntOfC && width>len(i,start); i++){}
 	        if(width>=len(i,start))
 	        {
 	        	cntAccepted=i;//1行に収まるセル数
@@ -100,10 +100,12 @@ public class ShowCSV extends ReadCSV
 
 	        res[0]=cntAccepted;
 	        res[1]=len(res[0],start);
-
-	        for(i=start+1; i<start+1+cntAccepted; i++)
+//	        System.out.println("len called");
+	        for(i=start; i<start+cntAccepted; i++)
 	        {
-	        	res[i-(start+1)+2]=len(i,i-1);
+//		        System.out.println("len called for column "+i);
+	        	res[i-(start)+2]=len(i,i);
+//	        	System.out.println("res["+(i-(start)+2)+"]="+res[i-(start)+2]);
 	        }
 
 	        return res;
@@ -116,7 +118,7 @@ public class ShowCSV extends ReadCSV
     		 */
     	    protected int len(int columnLastIndex, int columnStartIndex)
 	        {
-	            int res=2;
+	            int res=2;//左端の罫線素片
 	            int maxColLen;
 	            int biLen=0;//半角1文字→2文字、5文字→6文字に変換(罫線素片のレイアウトのため)
 
@@ -125,7 +127,6 @@ public class ShowCSV extends ReadCSV
     	        for(int columnIndex=columnStartIndex; columnIndex<=columnLastIndex; columnIndex++)
     	        //必要な各列について
     	        {
-    	        	res=2;//左端の罫線素片
     	        	maxColLen=0;
     	        	for(int i=0;i<cntOfR;i++)
     	        	//それぞれの行で
@@ -195,7 +196,7 @@ public class ShowCSV extends ReadCSV
 		protected void printTable(int cntAccepted, int start, int[] lens)
 		{
 
-			System.out.println("["+lens[2]+"]");
+//			System.out.println("["+lens[2]+"]");
 
 			printUpSide(lens);//表の上辺を適切に表示
 			for(int i=0; i<cntOfR-1; i++)//「最終行以外の」
@@ -227,13 +228,14 @@ public class ShowCSV extends ReadCSV
 				System.out.print("┌");
 				for(int i=0; i<(lens.length)-1; i++)
 				{
-					for(int j=0; j<lens[i]; j+=2)
+					for(int j=0; j<lens[i]-4; j+=2)
+					//4を引いているのは、左右の端の罫線素片の分
 					{
 						System.out.print("─");
 					}
 					System.out.print("┬");
 				}
-				for(int j=0; j<lens[(lens.length)-1]; j+=2)
+				for(int j=0; j<lens[(lens.length)-1]-4; j+=2)
 				{
 					System.out.print("─");
 				}
@@ -251,7 +253,7 @@ public class ShowCSV extends ReadCSV
 				for(int i=0; i<lens.length; i++)
 				{
 					System.out.print(getCell(rowIndex,start+i));
-					for(int j=0; j<lens[i]-getHan1Zen2(getCell(rowIndex,start+i)); j++)
+					for(int j=0; j<lens[i]-getHan1Zen2(getCell(rowIndex,start+i))-4; j++)
 					{
 						System.out.print(" ");
 					}
@@ -261,13 +263,13 @@ public class ShowCSV extends ReadCSV
 				System.out.print("├");
 				for(int i=0; i<(lens.length)-1; i++)
 				{
-					for(int j=0; j<lens[i]; j+=2)
+					for(int j=0; j<lens[i]-4; j+=2)
 					{
 						System.out.print("─");
 					}
 					System.out.print("┼");
 				}
-				for(int j=0; j<lens[(lens.length)-1]; j+=2)
+				for(int j=0; j<lens[(lens.length)-1]-4; j+=2)
 				{
 					System.out.print("─");
 				}
@@ -287,7 +289,7 @@ public class ShowCSV extends ReadCSV
 				for(int i=0; i<lens.length; i++)
 				{
 					System.out.print(getCell(cntOfR-1,start+i));
-					for(int j=0; j<lens[i]-getHan1Zen2(getCell(cntOfR-1,start+i)); j++)
+					for(int j=0; j<lens[i]-getHan1Zen2(getCell(cntOfR-1,start+i))-4; j++)
 					{
 						System.out.print(" ");
 					}
@@ -297,13 +299,13 @@ public class ShowCSV extends ReadCSV
 				System.out.print("└");
 				for(int i=0; i<(lens.length)-1; i++)
 				{
-					for(int j=0; j<lens[i]; j+=2)
+					for(int j=0; j<lens[i]-4; j+=2)
 					{
 						System.out.print("─");
 					}
 					System.out.print("┴");
 				}
-				for(int j=0; j<lens[(lens.length)-1]; j+=2)
+				for(int j=0; j<lens[(lens.length)-1]-4; j+=2)
 				{
 					System.out.print("─");
 				}
