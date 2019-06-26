@@ -44,11 +44,14 @@ public class ReadCSV
 
 	//コンストラクタ
     /**
+     * readCSVメソッドに、CSV形式の文字列を取得させている。<br>
+     * ファイルからの読み込みも可能
      * 参考:https://www.sejuku.net/blog/20924
      * @param passOrText
      * @param mode
      * @throws ParseException
      * @throws FileNotFoundException
+     * @see #readCSV
      */
     public ReadCSV(String passOrText, boolean mode) throws FileNotFoundException, ParseException
     {
@@ -70,8 +73,10 @@ public class ReadCSV
 
     //メソッド
     /**
-     * 本来コンストラクタがやるべき処理をメソッドで行っている。<br>
-     * (改行文字などのオプションに、コンストラクタが柔軟な対応をできるようにするため)
+     * 本来コンストラクタがやるべき処理をこのメソッドで行っている。<br>
+     * (改行文字などのオプションに、コンストラクタが柔軟な対応をできるようにするため)<br>
+     * また、2バイト文字は
+     * @see kabuLab.ReadCSV#ReadCSV
      */
     public void readCSV(String passOrText, boolean mode)
     {

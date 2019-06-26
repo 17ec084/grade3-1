@@ -197,7 +197,7 @@ public class CSVReader implements CSVReaderConstants {
 
   /** Generated Token Manager. */
   public CSVReaderTokenManager token_source;
-  SimpleCharStream jj_input_stream;
+  JavaCharStream jj_input_stream;
   /** Current token. */
   public Token token;
   /** Next token. */
@@ -219,7 +219,7 @@ public class CSVReader implements CSVReaderConstants {
   }
   /** Constructor with InputStream and supplied encoding */
   public CSVReader(java.io.InputStream stream, String encoding) {
-    try { jj_input_stream = new SimpleCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
+    try { jj_input_stream = new JavaCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
     token_source = new CSVReaderTokenManager(jj_input_stream);
     token = new Token();
     jj_ntk = -1;
@@ -243,7 +243,7 @@ public class CSVReader implements CSVReaderConstants {
 
   /** Constructor. */
   public CSVReader(java.io.Reader stream) {
-    jj_input_stream = new SimpleCharStream(stream, 1, 1);
+    jj_input_stream = new JavaCharStream(stream, 1, 1);
     token_source = new CSVReaderTokenManager(jj_input_stream);
     token = new Token();
     jj_ntk = -1;

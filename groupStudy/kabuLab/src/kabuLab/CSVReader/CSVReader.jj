@@ -1,6 +1,9 @@
 options
 {
 	STATIC = false;
+	UNICODE_INPUT=false;
+    JAVA_UNICODE_ESCAPE=true;
+    //参考:http://www.cmt.phys.kyushu-u.ac.jp/~M.Sakurai/java/javacc.html
 }
 PARSER_BEGIN(CSVReader)
 package kabuLab.CSVReader;
