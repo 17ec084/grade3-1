@@ -3,6 +3,10 @@
  */
 package kabuLab;
 
+import java.io.FileNotFoundException;
+
+import kabuLab.CSVReader.ParseException;
+
 /**
  * @author 17ec084(http://github.com/17ec084)
  *
@@ -12,6 +16,8 @@ public class Main
 	/**
 	 * ListToCSVのテスト
 	 * @param args
+	 * @throws ParseException
+	 * @throws FileNotFoundException
 	 */
  /*   public static void main(String args[])
     {
@@ -31,7 +37,7 @@ public class Main
         return;
     }
 */
-	public static void main(String args[])
+	public static void main(String args[]) throws FileNotFoundException, ParseException
     {
     	String csvPass="ccc.csv";
         ShowCSV arr= new ShowCSV(csvPass, true);

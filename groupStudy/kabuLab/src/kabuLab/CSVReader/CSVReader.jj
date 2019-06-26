@@ -1,0 +1,200 @@
+options
+{
+	STATIC = false;
+}
+PARSER_BEGIN(CSVReader)
+package kabuLab.CSVReader;
+import java.io.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+/**
+* CSVReader<br>
+* (This document is written in English due to the 2-byte-characters issue.)<br>
+* The CSV file's pass meaned by String that is given to the constructor of this class will be read by the Parser generated with Javacc.<br>
+* Then, the CSV file will be transrated as ArrayList&lt;ArrayList&lt;String&gt;&gt;<br>
+* Following figure is the AutoMutton of this Parser.<br>
+* <img src="../img/CSVReaderAutoMutton.png" width="100%"><br>
+* <p><strong>Caution:</strong> <font color="red">If LAST column is empty string, that column will be killed.</font >
+* This is because actionOfDelimiter() won't be called correctly by any means in actionOfNewline().<br>
+* (To call actionOfDelimiter correctly, following is needed.<br> the infomation of if one-before-input was Delimiter or other string(include newline).)<br>
+* The example of how to be killed column is shown at Javadoc of kabuLab.ReadCSV.
+* </p>
+* @author 17ec084(http://github.com/17ec084) with javacc
+* @see kabuLab.ReadCSV kabuLab.ReadCSV(The example of how to be killed column is shown there).
+* @see #actionOfNewline
+*/
+public class CSVReader
+{
+//Reference: http://itref.fc2web.com/java/javacc.html
+
+	//field
+	private static ArrayList<ArrayList<String>> arrTable;
+	private static ArrayList<String> arrRow;
+	private static int cntOfC;
+	private static int cntOfR;
+	private String str="";
+	private static int maxC;
+
+	//constructor
+	public CSVReader(String text) throws FileNotFoundException, ParseException
+	{
+		//Following code is also available
+		//InputStream in = new BufferedInputStream(new FileInputStream(String pass));
+		//Reference: http://park1.wakwak.com/~ima/java_tips0011.html
+		InputStream in = new ByteArrayInputStream(text.getBytes());
+		new CSVReader(in).Input();
+		getCntOfC();
+	}
+
+	public int getCntOfC()
+	{
+		return maxC;
+	}
+
+	public int getCntOfR()
+	{
+		return cntOfR;
+	}
+
+	private void actionOfDelimiter()
+	{
+		cntOfC++;
+		arrRow.add(str);
+		str="";
+	}
+
+    /**
+    * It is this method that let last column which is empty die.
+    *
+    */
+	private void actionOfNewline()
+	{
+		if(str.length()!=0)
+		{
+			actionOfDelimiter();
+		}
+		cntOfR++;
+		if(maxC<cntOfC)
+		{
+			maxC=cntOfC;
+		}
+		arrTable.add(arrRow);
+		arrRow=new ArrayList<String>();
+		cntOfC=0;
+	}
+
+	private void actionOfMyEof()
+	{
+		if(arrRow.size()!=0 || str.length()!=0)
+		{
+			//if(arrRow.size()!=0){cntOfR--;}
+			actionOfNewline();
+		}
+		if(maxC<cntOfC)
+		{
+			maxC=cntOfC;
+		}
+	}
+
+	public ArrayList<ArrayList<String>> getArrTable()
+	{
+		return arrTable;
+	}
+
+}
+PARSER_END(CSVReader)
+TOKEN : {
+    <DELIMITER : "\036">
+ |  <NEWLINE : "\035">
+ |  <MyEOF : "\0">
+ |  <CELL : (~["\035", "\036", "\0", "\n", "\r"]) >// got rid of "*" at 2019/6/26
+}
+SKIP : {
+    "\n" | "\r"
+}
+public void Input() :
+{
+	maxC=0;
+	Token token;
+	cntOfC=0;
+	cntOfR=0;
+	arrTable=new ArrayList<ArrayList<String>>();
+	arrRow=new ArrayList<String>();
+}
+{
+/*
+	Generation role without any action should be as follow...
+	(<CELL>(<DELIMITER>|<NEWLINE>)*)*<MyEOF>
+
+*/
+
+/*
+befor than 2019/6/26
+
+	(
+		token=<CELL>
+		{
+			str = token.image;
+		}
+		(
+			<DELIMITER>
+			{
+				actionOfDelimiter();
+			}
+			|
+			<NEWLINE>
+			{
+				actionOfNewline();
+			}
+		)*
+	)*
+	<MyEOF>
+	{
+		actionOfMyEof();
+	}
+*/
+
+	(
+		token=<CELL>			//Pattern 1 of 3: Next must be cell
+		{
+			str = token.image;
+		}
+		(
+			<DELIMITER>
+			{
+				actionOfDelimiter();
+			}
+			|
+			<NEWLINE>
+			{
+				actionOfNewline();
+			}
+		)*
+		|
+		(				//Pattern 2 of 3: Next must be delimiter or newline
+			token=<CELL>
+			{
+				str = token.image;
+			}
+		)?
+		(
+			<DELIMITER>
+			{
+				actionOfDelimiter();
+			}
+			|
+			<NEWLINE>
+			{
+				actionOfNewline();
+			}
+		)+
+	)*					//Patter 3 of 3: Next must be eof
+	<MyEOF>
+	{
+		actionOfMyEof();
+	}
+
+
+
+
+}

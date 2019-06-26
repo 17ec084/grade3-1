@@ -3,18 +3,29 @@
  */
 package kabuLab;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import kabuLab.CSVReader.ParseException;
 /**
  * CSVを読み込み、2次元ArrayList&lt;String&gt;にする。<br>
- * <strong>仕様</strong>:\u0000(eof)、\u001d(改行)、\u001e(次の列)の入力を禁ずる。<br>
- * <br>
+ * <p><strong>仕様1</strong>:\u0000(eof)、\u001d(改行)、\u001e(次の列)の入力を禁ずる。</p>
+ * <p><strong>仕様2</strong>:処理の単純化の都合上、<font color="red">列の最後が空文字の場合、その列は削除される</font>。<br>
+ * 例:<br>
+ * a,a,a<br>
+ * a,a,a<br>
+ * a,a,a<br>は3行3列として解析されるが、<br>
+ * ,,<br>
+ * ,,<br>
+ * ,,<br>は3行<font color="red">2列</font>と認識される。</p>
  * 最低限modeパラメータとCSVのパス(mode=true)あるいはCSV形式テキスト(mode=false)が必要だが、<br>
  * そのような場合は改行コードは「\r\n」、区切り文字列は「,」とみなされる。<br>
  * 但し改行コードと区切り文字はオプションで変更可<br>
  * また、
  * @author 17ec084(http://github.com/17ec084)
+ * @see kabuLab.CSVReader.CSVReader kabuLab.CSVReader.CSVReader(列が削除される理由を解説(英語))
  */
 public class ReadCSV
 {
@@ -36,8 +47,10 @@ public class ReadCSV
      * 参考:https://www.sejuku.net/blog/20924
      * @param passOrText
      * @param mode
+     * @throws ParseException
+     * @throws FileNotFoundException
      */
-    public ReadCSV(String passOrText, boolean mode)
+    public ReadCSV(String passOrText, boolean mode) throws FileNotFoundException, ParseException
     {
     	newRow="\r\n";
     	newColumn=",";
@@ -46,7 +59,7 @@ public class ReadCSV
     	rectanglize();//長方形化(各行において列数を統一にする)
     }
 
-    public ReadCSV(String passOrText, boolean mode, String newRow, String newColumn)
+    public ReadCSV(String passOrText, boolean mode, String newRow, String newColumn) throws FileNotFoundException, ParseException
     {
     	this.newRow=newRow;
     	this.newColumn=newColumn;
@@ -106,25 +119,37 @@ public class ReadCSV
     	text=text.replaceAll(newRow,String.valueOf(newR));
     	text=text.replaceAll(newColumn,String.valueOf(newC));
 //    	System.out.println("text(ReadCSV.java.108)="+text);
+/*
+		for(int i=0; i<text.length(); i++)
+		{
+			System.out.println(text.charAt(i)+"="+(int)text.charAt(i));
+		}
 
+*/
     }
 
 
     /**
      * CSV形式の文字列を2次元ArrayList&lt;String&gt;に変換。
+     * @throws ParseException
+     * @throws FileNotFoundException
+     * @see kabuLab.CSVToArray
      */
-    public void csvToArray()
+    public void csvToArray() throws FileNotFoundException, ParseException
     {
+    	kabuLab.CSVReader.CSVReader arr = new kabuLab.CSVReader.CSVReader(text);
+    	arrTable=arr.getArrTable();
+    	cntOfR=arr.getCntOfR();
+    	cntOfC=arr.getCntOfC();
 
+    	/*
     	arrTable= new ArrayList<ArrayList<String>>();
     	arrRow= new ArrayList<String>();
     	int i=0;
     	int j=0;
 
-
     	boolean isEof=false;
     	//ループを止める条件「text.charAt(i)==eof」がそろったとき、連鎖的にbreakするため
-
 
     	cntOfR=0;
     	cntOfC=0;
@@ -142,9 +167,8 @@ public class ReadCSV
                 		isEof=true;
                         break;
                 	}
-//					System.out.println("text.charAt("+i+") (ReadCSV.java.145)="+text.charAt(i)+"="+(int)text.charAt(i));
+					System.out.println("text.charAt("+i+") (ReadCSV.java.145)="+text.charAt(i)+"="+(int)text.charAt(i));
                 	i++;
-
                 }
                 cntOfC++;
                 isEof=putCell(i,j,isEof);
@@ -156,10 +180,11 @@ public class ReadCSV
             	}
                 j=i;
                 i++;
-//                System.out.println("i="+i);
+                System.out.println("i="+i);
 
     		}
     		cntOfR++;
+
 //    		System.out.println("cntOfR (ReadCSV.java.157)="+cntOfR);
     		//System.out.println(arrRow.get(0));
     		arrTable.add(arrRow);
@@ -168,6 +193,11 @@ public class ReadCSV
     		//(arrTableには参照(が値)渡しされているので)
     		//arrTable内の行が消されることになってしまう。
 
+    		if(text.charAt(i)!=eof && (i==0||(i!=0 && text.charAt(i-1)==newR)))
+    		{
+
+    		}
+
     		if(isEof || text.charAt(i)==eof)
         	{
         		isEof=true;
@@ -175,23 +205,25 @@ public class ReadCSV
         	}
     		i++;
     	}
+		if(maxC<cntOfC){maxC=cntOfC;}
     	cntOfC=maxC;
     	//cntOfR--;
+
+    	*/
     }
 
-
+/*
         private boolean putCell(int i, int j, boolean isEof)
         {
             if(i!=j)
             {
             	arrRow.add(text.substring(j, i));
-//            	System.out.println("text.substring(j, i) ReadCSV.java.182 ="+text.substring(j, i));
+            	System.out.println("text.substring("+j+", "+i+") ReadCSV.java.182 ="+text.substring(j, i).replaceAll(String.valueOf(newR),";").replaceAll(String.valueOf(newC),","));
         	    if(isEof || text.charAt(i)==eof)
             	{
             		isEof=true;
             	}
 //        	    System.out.println("arrRow="+arrRow.get(0));
-            	i++;
             }
             else
             {
@@ -200,11 +232,10 @@ public class ReadCSV
             	{
             		isEof=true;
             	}
-            	i++;
             }
             return isEof;
 	    }
-
+*/
 
 
 		/**

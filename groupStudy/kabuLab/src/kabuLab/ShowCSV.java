@@ -3,6 +3,10 @@
  */
 package kabuLab;
 
+import java.io.FileNotFoundException;
+
+import kabuLab.CSVReader.ParseException;
+
 /**
  * 「読み込んだCSVを、罫線素片を用いて表示するだけのメソッド」のようなクラス。<br>
  * ReadCSVクラスを継承しているが、オーバーライドは一切ないので、<br>
@@ -27,13 +31,13 @@ public class ShowCSV extends ReadCSV
 
 
     //コンストラクタ
-	public ShowCSV(String passOrText, boolean mode)
+	public ShowCSV(String passOrText, boolean mode) throws FileNotFoundException, ParseException
 	{
 		super(passOrText, mode);
 		showCSV(MAX_INT,0);
 	}
 
-	public ShowCSV(String passOrText, boolean mode, int width, int start)
+	public ShowCSV(String passOrText, boolean mode, int width, int start) throws FileNotFoundException, ParseException
 	{
 		super(passOrText, mode);
 		showCSV(width, start);
@@ -63,6 +67,7 @@ public class ShowCSV extends ReadCSV
 //		System.out.println("getCntAccepted called");
 		tmp=getCntAccepted(width, start);
 		cntAccepted=tmp[0];//何列分を1行の文字列で表示出来るか
+//		System.out.println(cntAccepted);
 		//tmp[1] (sumLen)は使わない
 		lens= new int[(tmp.length)-2];
 		for(int i=0; i<lens.length; i++)
@@ -226,6 +231,7 @@ public class ShowCSV extends ReadCSV
 			protected void printUpSide(int[] lens)
 			{
 				System.out.print("┌");
+//				System.out.println("lens.length="+lens.length);
 				for(int i=0; i<(lens.length)-1; i++)
 				{
 					for(int j=0; j<lens[i]-4; j+=2)
