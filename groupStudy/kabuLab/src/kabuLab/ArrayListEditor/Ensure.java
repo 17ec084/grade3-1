@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * ArrayList&lt;ArrayList&lt;String&gt;&gt;型arrTableのサイズを定義し、その分を確保する。各セルはすべてから文字列が入る<br>
- * <p>使い方1:<br>Ensure ensure = new Ensure(arrTable,3,2);<br>arrTable=ensure.ensure();<br>とすると、arrTableは3行2列となり、各列はすべて空文字列が入る。</p>
+ * <p>使い方1:<br>Ensure ensure = new Ensure(arrTable,3,2);<br>arrTable=ensure.ensure();<br>とすると、arrTableは3行2列となり、各列はすべて半角スペース1つが入る。</p>
  * <p>使い方2:<br>Ensure ensure = new Ensure(arrTable,3,2,"hello world");<br>arrTable=ensure.ensure();<br>とすると、arrTableは3行2列となり、各列はすべて"hello world"が入る。</p>
  * @param r 行数(コンストラクタのパラメータ)
  * @param c 列数(コンストラクタのパラメータ)
@@ -29,7 +29,7 @@ public class Ensure
 		this.r=r;
 		this.c=c;
 		this.arrTable=arrTable;
-		this.str="";
+		this.str=" ";
 
 	}
 	Ensure(ArrayList<ArrayList<String>> arrTable, int r, int c, String str)
