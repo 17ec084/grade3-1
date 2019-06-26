@@ -30,6 +30,8 @@ import kabuLab.CSVReader.ParseException;
  * @see #show(ArrayList) <p>show(ArrayList arrTable)<br>(static参照用)<br>ArrayList&lt;ArrayList&lt;String&gt;&gt;に記憶した表arrTableを"toBeShown.csv"へ保存の上、表示する。</p>
  * @see #show(ArrayList,String) <p>show(ArrayList arrTable, String pass)<br>(static参照用)<br>ArrayList&lt;ArrayList&lt;String&gt;&gt;に記憶した表arrTableを指定されたpassへCSV形式で保存の上、表示する。</p>
  * @see #arrayToCSV(ArrayList, String) <p>arrayToCSV<br>(static参照用)<br>ArrayList&lt;ArrayList&lt;String&gt;&gt;に記憶した表arrTableを指定されたpassへCSV形式で保存する。</p>
+ * @see #replacer(ArrayList, String, String) <p>replacer</p><br>(static参照用)<br>各セルを調べ、文字列の置き換えを行う
+ * @see #emptySpaceConverter <p>emptySpaceConverter<br>(static参照用)<br>表の各セルを調べ、空文字あるいは半角スペース1つだけだったら、相互に変換する</p>
  * @see #rotation(ArrayList, int) <p>rotation<br>(インスタンス必要)<br>表の回転を行う。<br>※</p>
  * @see #getArrSize <p>getArrSize<br>(static参照用)<br>表の大きさを 行数,列数 のように返却する。</p>
  * @see #switchRC <p>switchRC<br>(インスタンス必要)<br>行と列を入れ替える</p>
@@ -43,6 +45,10 @@ public class Miscellaneous
 	public static final int UD=2;//upside down
 	public static final int DOWN=2;
 	public static final int LEFT=3;
+
+	//emptySpaceConverter用フラグ値フィールド
+	public static final boolean TOSPACE=true;
+	public static final boolean TOEMPTY=false;
 
 	//一時ファイルのパスを示すフィールド
 	private static String tempCSVpass;
@@ -236,22 +242,17 @@ public class Miscellaneous
 
 		//設定どおりの大きさを確保
 		ArrayList<ArrayList<String>> arrTable2 = new ArrayList<ArrayList<String>>();
-		ArrayList<String> arrRow = new ArrayList<String>();;
-		arrRow.set(cntOfC_2, "");
-		arrTable2.set((cntOfR_2)-1, arrRow);
+		Ensure ensure = new Ensure(arrTable2, cntOfR_2, cntOfC_2);
+		arrTable2 = ensure.ensure();
 
 		for(int c=0; c<cntOfC_1; c++)
 		{
-			arrRow = new ArrayList<String>();
-			for(int r=0; c<cntOfR_1; r++)
+
+			for(int r=0; r<cntOfR_1; r++)
 			{
-				//与えられた行列のr行目c列目を、rを変化させながら1行に読み込むことで、
-				//与えられた行列のc列目が1行に並ぶ(列が行に変換される)
-				arrRow.set(r, readCSV.getCell(r, c));
+				arrTable2.get(c).set(r, arrTable.get(r).get(c));
 			}
-			//与えられた行列のc列目を1行にしたものを、
-			//新しい行列ではc行目として扱う
-			arrTable2.set(c, arrRow);
+
 		}
 
 		return arrTable2;
@@ -268,7 +269,7 @@ public class Miscellaneous
 	 * @throws FileNotFoundException
 	 * @throws ParseException
 	 */
-	public ArrayList<ArrayList<String>> switchRC(ArrayList<ArrayList<String>> arrTable, boolean b) throws FileNotFoundException, ParseException
+	public static ArrayList<ArrayList<String>> switchRC(ArrayList<ArrayList<String>> arrTable, boolean b) throws FileNotFoundException, ParseException
 	{
 		return switchRC(arrTable);
 	}
@@ -291,7 +292,44 @@ public class Miscellaneous
 
 		return intArr;
 	}
+	public static ArrayList<ArrayList<String>> emptySpaceConverter(ArrayList<ArrayList<String>> arrTable, boolean isToSpace)
+	{
+        String before = isToSpace ? "" : " ";
+        String after = isToSpace ? " " : "";
+        return replacer(arrTable, before, after);
+	}
+
+	/**
+	 * 文字の置き換え
+	 * @return
+	 */
+	public static ArrayList<ArrayList<String>> replacer(ArrayList<ArrayList<String>> arrTable, String before, String after)
+	{
+        int[] intArr = getArrSize(arrTable);
+        int cntOfR = intArr[0];
+        int cntOfC = intArr[1];
+
+        for(int r=0; r<cntOfR; r++)
+        {
+
+        	for(int c=0; c<cntOfC; c++)
+        	{
+        		if(arrTable.get(r).get(c).equals(before))
+        		{
+        			arrTable.get(r).set(c, after);
+        		}
+        	}
+        }
+
+		return arrTable;
+	}
+
+
+//TODO rotationの一時ファイル生成の必要が本当にあるのか考える。(作り直した方がよさそう...)
+
 }
+
+
 
 
 

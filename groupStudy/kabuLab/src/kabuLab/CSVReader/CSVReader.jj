@@ -110,7 +110,7 @@ TOKEN : {
     <DELIMITER : "\036">
  |  <NEWLINE : "\035">
  |  <MyEOF : "\0">
- |  <CELL : (~["\035", "\036", "\0", "\n", "\r"]) >// got rid of "*" at 2019/6/26
+ |  <CELL : (~["\035", "\036", "\0", "\n", "\r"])+ >// replaced "*" with "+" at 2019/6/26
 }
 SKIP : {
     "\n" | "\r"
@@ -191,7 +191,7 @@ befor than 2019/6/26
 				actionOfNewline();
 			}
 		)+
-	)*					//Patter 3 of 3: Next must be eof
+	)*					//Pattern 3 of 3: Next must be eof
 	<MyEOF>
 	{
 		actionOfMyEof();

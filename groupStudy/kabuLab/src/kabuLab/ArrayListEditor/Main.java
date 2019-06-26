@@ -59,10 +59,11 @@ public class Main
 		Miscellaneous.show(arrTable);
 		Miscellaneous rot = new Miscellaneous();
 //		arrTable=rot.rotation(arrTable, RIGHT);
-		Ensure ensure = new Ensure(arrTable,3,2, "あ");
+		arrTable=Miscellaneous.switchRC(arrTable, true);
+		Miscellaneous.show(arrTable);
+		Ensure ensure = new Ensure(arrTable,3,2, "日本語にも対応しました笑");
 		arrTable=ensure.ensure();
 		Miscellaneous.show(arrTable);
-
 	}
 
 }
