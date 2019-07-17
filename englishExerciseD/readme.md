@@ -25,3 +25,35 @@
 地球の表面の70%以上は水でおおわれている。→コ: <!-- hole More than 70 percent of the earth's surface is covered with water. -->  
 最も低いと考えられる温度は－273.5℃である。→サ: <!-- hole The lowest possible temperature is -273.15 degrees Celsius -->  
 温度が上昇すると、たいていの物質は膨張する。→シ: <!-- hole A high temperature expands most things -->
+
+## 9
+皮膚に付着した酸は、即座に大量の水で洗い流すこと。→ア: <!-- If acid adheres to your skin, you must wash it with fair qantity of water right away. -->  
+ヨード液が紫色に変わったタイミングを記録せよ。→イ: <!-- hole Record the timing at which (Record whenは、recordがO必要なのでダメ) the iodine solution turns purple -->   
+この機械ははっきりとした原因もないのにたまに故障する。→ウ: <!-- hole This machine malfunction(V) occasionally without any clear cause. -->  
+不要なメールアドレスは定期的に削除した方がいい。→エ: <!-- hole You'd better get rid of unnecessary email addresses regulary. -->  
+安楽死については賛否両論ある。→オ: <!-- hole Euthanasia has a controuersial issue. -->  
+NASAは4月3日にロケットを打ち上げる予定である。→カ: <!-- hole NASA is sucheduled to launch a rocket on(atではない) April 3rd -->  
+この村の排水はリサイクルされているので、自然に優しい。→キ: <!-- hole The fact that drainages are recycled in this village is eco friendly -->   
+雨が降るといけないから傘を持っていけ。→ク: <!-- hole Bring an umbrella in case it rains. -->  
+見渡す限り草原が広がっている。→ケ: <!-- hole Green field spreads as far as the eye could see -->  
+彼女が君に何を言おうとも、きみは彼女の考えに従わなければならない。→コ: <!-- hole You should obey whatever she says(whateverは名詞節。no matter whatは副詞節) -->  
+この川は泳ぐには危険だ。→サ: <!-- hole This river is dangerous to swim in(inを忘れずに) -->  
+デバッグ後のシステムは正常に動くはずである。→シ: <!-- hole The system after debugging should work properly -->  
+有益なセミナーであり、運営もよかったです。→ス: <!-- hole It was a useful seminar(スペル注意) and the operation was also good -->  
+貴社製品へのもっと詳しい情報を教えてください。→セ: <!-- hole Tell me more about the details of your product -->  
+
+## 10
+ご請求のあったホテルのパンフレット３部を同封いたします。→ア: <!-- hole I attach three hotel brochures that you requested -->  
+ご参考用に当社の顧客リストを添付します。→イ: <!-- hole I attach the list of our customer for your information -->  
+見積り金額には運賃と包装費が含まれます。→ウ: <!-- hole The carriage and the packing charge are included in the estimated sum -->  
+もしなにかご質問がありましたら、AA＠gmail.comまでご連絡ください。→エ: <!-- hole Any question should be sent to AA＠gmail.com -->  
+彼が窓ガラスを割った家は黒い。→オ: <!-- hole It was the black house whose window－panes were broken by him -->  
+問題は彼がどのような言い方をしたかではなく、何を言ったかである→カ: <!-- hole The problem is not how he said it(忘れるな) but what he said it -->  
+ずいぶん騙されてきたので、彼を信用できない→キ: <!-- hole Having been decieved for a long time, I can't trust him -->  
+軍事ロボットとは、軍事用途のために設計された自立ロボット、あるいは遠隔操作型の装置である。→ク: <!-- hole A military robot is an autonomous robot or a remote-controled device -->  
+コレラの主な症状は、激しい下痢と嘔吐である。→ケ: <!-- hole Cholera's main symptom is severe diarrhea and vomitting -->  
+天然資源を管理して、持続的な経済社会を実現しなくてはならない。→コ: <!-- hole We must manage natural resources and achive a sustainable economic society -->  
+  
+
+
+
