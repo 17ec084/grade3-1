@@ -327,33 +327,109 @@ public class comp extends string
 		}
 	}
 
+	public comp cos()
+	{
+		comp x = this;
+		comp ix = x.mul("1j");
+		comp mix = x.mul("-1j");
+		comp eix = ix.pow("exp", true);
+		comp emix = mix.pow("exp", true);
+
+		comp eixpemix = eix.add(doublesToStr(emix.getAsDoubles()));
+
+		return eixpemix.div("2", false);
+
+	}
+
+	public comp sin()
+	{
+		comp x = this;
+		comp ix = x.mul("1j");
+		comp mix = x.mul("-1j");
+		comp eix = ix.pow("exp", true);
+		comp emix = mix.pow("exp", true);
+
+		comp eixmemix = eix.sub(doublesToStr(emix.getAsDoubles()));
+
+		return eixmemix.div("2j", false);
+
+	}
+
+	public comp tan()
+	{
+		comp s = sin();
+		comp c = cos();
+		return s.div(doublesToStr(c.getAsDoubles()),true);
+	}
+
+	public comp cosh()
+	{
+		comp x = this;
+		comp mx = x.mul("-1");
+		comp ex = x.pow("exp", true);
+		comp emx = mx.pow("exp", true);
+		comp expemx = ex.add(doublesToStr(emx.getAsDoubles()));
+
+		return expemx.div("2", false);
+
+	}
+
+	public comp sinh()
+	{
+		comp x = this;
+		comp mx = x.mul("-1");
+		comp ex = x.pow("exp", true);
+		comp emx = mx.pow("exp", true);
+		comp exmemx = ex.sub(doublesToStr(emx.getAsDoubles()));
+
+		return exmemx.div("2", false);
+
+	}
+
+	public comp tanh()
+	{
+		comp s = sinh();
+		comp c = cosh();
+		return s.div(doublesToStr(c.getAsDoubles()),true);
+
+	}
+
 	/** @see #addThenDoubles*/public comp add(String operand){return doublesToComp(addThenDoubles(operand));}
 	/** @see #subThenDoubles*/public comp sub(String operand, boolean b){return doublesToComp(subThenDoubles(operand,b));}
 	/** @see #mulThenDoubles*/public comp mul(String operand){return doublesToComp(mulThenDoubles(operand));}
 	/** @see #divThenDoubles*/public comp div(String operand, boolean b){return doublesToComp(divThenDoubles(operand,b));}
 	/** @see #logThenDoubles*/public comp log(String operand, boolean b){return doublesToComp(logThenDoubles(operand,b));}
 	/** @see #powThenDoubles*/public comp pow(String operand, boolean b){return doublesToComp(powThenDoubles(operand,b));}
+	/** @see #cos*/public double[] cosThenDoubles(){return cos().getAsDoubles();}
+	/** @see #sin*/public double[] sinThenDoubles(){return sin().getAsDoubles();}
+	/** @see #tan*/public double[] tanThenDoubles(){return tan().getAsDoubles();}
+	/** @see #cosh*/public double[] coshThenDoubles(){return cosh().getAsDoubles();}
+	/** @see #sinh*/public double[] sinhThenDoubles(){return sinh().getAsDoubles();}
+	/** @see #tanh*/public double[] tanhThenDoubles(){return tanh().getAsDoubles();}
 
-	public comp doublesToComp(double[] val)
+	public String doublesToStr(double[] val)
 	{
 		String str = "";
-		if(val[0]!=0)
+		if(val[real]!=0)
 		{
-			str = str + val[0];
+			str = str + val[real];
 		}
-		if(val[1]!=0)
+		if(val[image]!=0)
 		{
-			str = str + " " + (val[1]>0 ? "+" : "-" );
-			str = str + Math.abs(val[1]);
+			str = str + " " + (val[image]>0 ? "+" : "-" );
+			str = str + Math.abs(val[image]);
+			str = str + "j";
 		}
-		if(val[0]==0 && val[1]==0)
+		if(val[real]==0 && val[image]==0)
 		{
 			str = "0";
 		}
 
-		comp rtn = new comp(str);
-		return rtn;
+		return str;
 	}
+
+	public comp doublesToComp(double[] val){return new comp(doublesToStr(val));}
+
 
 
 }

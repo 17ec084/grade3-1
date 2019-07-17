@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:共通="http://rights-for.men/" xmlns:統計社会学研究アプリ="http://rights-for.men/tosya/" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://rights-for.men/tosya/" />
+  <xs:element name="平田智剛マークアップ言語HTml">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="統計社会学研究アプリ:body" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="決定木から表生成">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="表生成ルール">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="次元">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="確率密度">
+                      <xs:complexType>
+                        <xs:attribute name="範囲" type="xs:string" use="required" />
+                        <xs:attribute name="値の定義" type="xs:decimal" use="required" />
+                        <xs:attribute name="優先順位" type="xs:byte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="名前" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="複合">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="AがBより大きいときCはD" />
+                    <xs:element name="AがBと同じときCはD" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="HTmlのパス" type="xs:string" use="required" />
+      <xs:attribute name="名前定義" type="xs:string" use="required" />
+      <xs:attribute name="表のパス定義" type="xs:string" use="required" />
+      <xs:attribute name="行数" type="xs:unsignedShort" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
