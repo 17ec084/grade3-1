@@ -38,7 +38,6 @@ public abstract class Joiner<T, U>
 		String typeOf1 = a.getResult();
 		a = new TPI(table_or_row2);
 		String typeOf2 = a.getResult();
-
 		Boolean isToBRoT
 		//2つのtable_or_rowがどちらも(arrRowまたはarrTableのいずれか)
 		//(isTypeOfBothRowOrTableの略)
@@ -140,22 +139,22 @@ public abstract class Joiner<T, U>
 		return arrTable;
 	}
 
-	public int getCntOfC_1()
+	protected int getCntOfC_1()
 	{
 		return cntOfC_1;
 	}
 
-	public int getCntOfC_2()
+	protected int getCntOfC_2()
 	{
 		return cntOfC_2;
 	}
 
-	public int getCntOfR_1()
+	protected int getCntOfR_1()
 	{
 		return cntOfR_1;
 	}
 
-	public int getCntOfR_2()
+	protected int getCntOfR_2()
 	{
 		return cntOfR_2;
 	}

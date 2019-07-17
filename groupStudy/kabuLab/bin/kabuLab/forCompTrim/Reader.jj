@@ -1,0 +1,200 @@
+options
+{
+	STATIC = false;
+	UNICODE_INPUT=false;
+    JAVA_UNICODE_ESCAPE=true;
+    //参考:http://www.cmt.phys.kyushu-u.ac.jp/~M.Sakurai/java/javacc.html
+}
+PARSER_BEGIN(Reader)
+package kabuLab.forComTrim;
+import java.io.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+/**
+* Reader<br>
+* (This document will be written in English due to the 2-byte-characters issue.)<br>
+* @see kabuLab.ArrayListEditor.Cut.compTrim
+* @author 17ec084(http://github.com/17ec084) with javacc
+*/
+public class Reader
+{
+//Reference: http://itref.fc2web.com/java/javacc.html
+
+	//field
+	private static ArrayList<ArrayList<String>> arrTable;
+	private static ArrayList<String> arrRow;
+	private static int cntOfC;
+	private static int cntOfR;
+	private String str="";
+	private static int maxC;
+
+	//constructor
+	public CSVReader(String text) throws FileNotFoundException, ParseException
+	{
+		//Following code is also available
+		//InputStream in = new BufferedInputStream(new FileInputStream(String pass));
+		//Reference: http://park1.wakwak.com/~ima/java_tips0011.html
+		InputStream in = new ByteArrayInputStream(text.getBytes());
+		new CSVReader(in).Input();
+		getCntOfC();
+	}
+
+	public int getCntOfC()
+	{
+		return maxC;
+	}
+
+	public int getCntOfR()
+	{
+		return cntOfR;
+	}
+
+	private void actionOfDelimiter()
+	{
+		cntOfC++;
+		arrRow.add(str);
+		str="";
+	}
+
+    /**
+    * It is this method that let last column which is empty die.
+    *
+    */
+	private void actionOfNewline()
+	{
+		if(str.length()!=0)
+		{
+			actionOfDelimiter();
+		}
+		cntOfR++;
+		if(maxC<cntOfC)
+		{
+			maxC=cntOfC;
+		}
+		arrTable.add(arrRow);
+		arrRow=new ArrayList<String>();
+		cntOfC=0;
+	}
+
+	private void actionOfMyEof()
+	{
+		if(arrRow.size()!=0 || str.length()!=0)
+		{
+			//if(arrRow.size()!=0){cntOfR--;}
+			actionOfNewline();
+		}
+		if(maxC<cntOfC)
+		{
+			maxC=cntOfC;
+		}
+	}
+
+	public ArrayList<ArrayList<String>> getArrTable()
+	{
+		return arrTable;
+	}
+
+}
+PARSER_END(Reader)
+/*
+*・kill(2to5mod7)→インデックス番号を7で割った余りが2から5の行または列を取り除く<br>
+* ・survive(0to1mod7 or 6mod7)→インデックス番号を7で割った余りが0,1,6のいずれかのもの以外を取り除く<br>
+* (上記2つは等価である)<br>
+*・kill(rate(" ?",>=0.75))→正規表現" ?"(つまり半角スペース1つだけか空文字)にマッチするセルが全体の75%以上を占めるなら取り除く<br>
+*・survive(cnt(".*[0-9]+.*",>4))→数字を最低1文字含むセルが4つ以下のものを取り除く
+*/
+TOKEN : {
+    <CMD : ["kill","survive"]>
+ |  <NEWLINE : "\035">
+ |  <MyEOF : "\0">
+ |  <CELL : (~["\035", "\036", "\0", "\n", "\r"])+ >// replaced "*" with "+" at 2019/6/26
+}
+SKIP : {
+    "\n" | "\r"
+}
+public void Input() :
+{
+	maxC=0;
+	Token token;
+	cntOfC=0;
+	cntOfR=0;
+	arrTable=new ArrayList<ArrayList<String>>();
+	arrRow=new ArrayList<String>();
+}
+{
+/*
+	Generation role without any action should be as follow...
+	(<CELL>(<DELIMITER>|<NEWLINE>)*)*<MyEOF>
+
+*/
+
+/*
+befor than 2019/6/26
+
+	(
+		token=<CELL>
+		{
+			str = token.image;
+		}
+		(
+			<DELIMITER>
+			{
+				actionOfDelimiter();
+			}
+			|
+			<NEWLINE>
+			{
+				actionOfNewline();
+			}
+		)*
+	)*
+	<MyEOF>
+	{
+		actionOfMyEof();
+	}
+*/
+
+	(
+		token=<CELL>			//Pattern 1 of 3: Next must be cell
+		{
+			str = token.image;
+		}
+		(
+			<DELIMITER>
+			{
+				actionOfDelimiter();
+			}
+			|
+			<NEWLINE>
+			{
+				actionOfNewline();
+			}
+		)*
+		|
+		(				//Pattern 2 of 3: Next must be delimiter or newline
+			token=<CELL>
+			{
+				str = token.image;
+			}
+		)?
+		(
+			<DELIMITER>
+			{
+				actionOfDelimiter();
+			}
+			|
+			<NEWLINE>
+			{
+				actionOfNewline();
+			}
+		)+
+	)*					//Pattern 3 of 3: Next must be eof
+	<MyEOF>
+	{
+		actionOfMyEof();
+	}
+
+
+
+
+}

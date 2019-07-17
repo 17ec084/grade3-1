@@ -37,7 +37,7 @@ public class ReadCSV
     final public char newR=29;
     final public char newC=30;
     final public char eof=0;
-    private ArrayList<ArrayList<String>> arrTable;
+    protected ArrayList<ArrayList<String>> arrTable;
     private ArrayList<String> arrRow;
     private int cntOfR;
     private int cntOfC;

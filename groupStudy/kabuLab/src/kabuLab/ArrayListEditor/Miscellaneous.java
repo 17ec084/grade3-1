@@ -29,13 +29,16 @@ import kabuLab.CSVReader.ParseException;
  * @author 17ec084(http://github.com/17ec084)
  * @see #show(ArrayList) <p>show(ArrayList arrTable)<br>(static参照用)<br>ArrayList&lt;ArrayList&lt;String&gt;&gt;に記憶した表arrTableを"toBeShown.csv"へ保存の上、表示する。</p>
  * @see #show(ArrayList,String) <p>show(ArrayList arrTable, String pass)<br>(static参照用)<br>ArrayList&lt;ArrayList&lt;String&gt;&gt;に記憶した表arrTableを指定されたpassへCSV形式で保存の上、表示する。</p>
+ * @see #showWithIndex <p>showWithIndex<br>(static参照用)<br>空白セルなどをインデックス情報に置き換え、show(ArrayList[,String])する。</p>
  * @see #arrayToCSV(ArrayList, String) <p>arrayToCSV<br>(static参照用)<br>ArrayList&lt;ArrayList&lt;String&gt;&gt;に記憶した表arrTableを指定されたpassへCSV形式で保存する。</p>
  * @see #replacer(ArrayList, String, String) <p>replacer</p><br>(static参照用)<br>各セルを調べ、文字列の置き換えを行う
+ * @see #replacerReg(ArrayList, String, String) <p>replacerReg</p><br>(static参照用)<br>各セルを調べ、文字列の置き換えを行う
  * @see #emptySpaceConverter <p>emptySpaceConverter<br>(static参照用)<br>表の各セルを調べ、空文字あるいは半角スペース1つだけだったら、相互に変換する</p>
- * @see #rotation(ArrayList, int) <p>rotation<br>(インスタンス必要)<br>表の回転を行う。<br>※</p>
+ * @see #rotation(ArrayList, int) <p>rotation<br>(static参照用)<br>表の回転を行う。</p>
  * @see #getArrSize <p>getArrSize<br>(static参照用)<br>表の大きさを 行数,列数 のように返却する。</p>
- * @see #switchRC <p>switchRC<br>(インスタンス必要)<br>行と列を入れ替える</p>
- *
+ * @see #switchRC <p>switchRC<br>(static参照用)<br>行と列を入れ替える</p>
+ * @see #tablize(ArrayList) <p>rowToTable<br>(static参照用)<br>「行そのもの」か「1行から成る表」を、確実に1行から成る表ArrayList&lt;ArrayList&lt;String&gt;&gt; arrTableに変換</p>
+ * @see #rectanglize(ArrayList) <p>rectanglize<br>(static参照用)<br>全ての行におけるセル数を揃える</p>
  */
 public class Miscellaneous
 {
@@ -94,6 +97,57 @@ public class Miscellaneous
 
 	}
 
+	/**
+	 * 空白等(正規表現replaceeにマッチするもの)のセルをインデックス情報に置き換えてshowする
+	 * @see #show(ArrayList) show(ArrayList arrTable)
+	 * @see #show(ArrayList,String) show(ArrayList arrTable, String pass)
+	 * @param arrTable
+	 * @param pass
+	 * @throws ParseException
+	 * @throws FileNotFoundException
+	 */
+	public static void showWithIndex(ArrayList<ArrayList<String>> arrTable, String replacee ,String pass) throws FileNotFoundException, ParseException
+	{
+		ArrayList<ArrayList<String>> arrTable2 = new ArrayList<ArrayList<String>>();
+		int[] tmp = getArrSize(arrTable);
+		int cntOfR = tmp[0];
+		int cntOfC = tmp[1];
+		Ensure ensure = new Ensure(cntOfR, cntOfC);
+		arrTable2 = ensure.ensure();
+		tmp = null;
+		for(int r=0; r<cntOfR; r++)
+		{
+			for(int c=0; c<cntOfC; c++)
+			{
+				if(arrTable.get(r).get(c).matches(replacee))
+				{
+					arrTable2.get(r).set(c, "("+r+"-"+c+")");
+				}
+				else
+				{
+					arrTable2.get(r).set(c, arrTable.get(r).get(c));
+				}
+			}
+		}
+		arrayToCSV(arrTable2, pass);
+		ShowCSV csv = new ShowCSV(pass, true);
+	}
+
+	public static void showWithIndex(ArrayList<ArrayList<String>> arrTable, String replaceeOrPass) throws FileNotFoundException, ParseException
+	{
+		if(replaceeOrPass.matches(".*[\\-\\+\\*\\[\\(\\?].*"))
+		{
+			String replacee = replaceeOrPass;
+			showWithIndex(arrTable, replacee, "toBeShown.csv");
+		}
+		else
+		{
+			String pass = replaceeOrPass;
+			showWithIndex(arrTable, " ?", pass);
+		}
+	}
+
+	public static void showWithIndex(ArrayList<ArrayList<String>> arrTable) throws FileNotFoundException, ParseException{showWithIndex(arrTable, " ?", "toBeShown.csv");}
 
 	public static void arrayToCSV(ArrayList<ArrayList<String>> arrTable, String pass)
 	{
@@ -157,17 +211,58 @@ public class Miscellaneous
 	 * @throws FileNotFoundException
 	 * @return 回転された表
 	 */
-	public ArrayList<ArrayList<String>> rotation(ArrayList<ArrayList<String>> arrTable, int count) throws FileNotFoundException, ParseException
+	public static ArrayList<ArrayList<String>> rotation(ArrayList<ArrayList<String>> arrTable, int count)
 	{
-		for(int i=0; i<count; i++)
-		{
-			arrTable=rotation(arrTable);
-		}
-		return arrTable;
 
+		if(count < 0)
+		{
+			count+=(4*((-count/4)+1));
+		}
+		if(3 < count)
+		{
+			count%=4;
+		}
+		if(count != 1)
+		{
+			for(int i=0; i<count; i++)
+			{
+				arrTable=rotation(arrTable, 1);
+			}
+			return arrTable;
+		}
+		else
+		{
+			ArrayList<ArrayList<String>> arrTable2;//とりあえず必ず初期化されないとコンパイルが通らないのでnullを。
+			int[] intArr = getArrSize(arrTable);
+			int cntOfR = intArr[0];
+			int cntOfC = intArr[1];
+
+			arrTable2 = new ArrayList<ArrayList<String>>();
+			Ensure ensure = new Ensure(cntOfR, cntOfC);
+			arrTable2 = ensure.ensure();
+
+			arrTable = rectanglize(arrTable);
+
+//System.out.println("aaa");
+			for(int r=0; r<cntOfR; r++)
+			{
+				for(int c=0; c<cntOfC; c++)
+				{
+//System.out.println("arrTable2.get("+((cntOfR-1)-r)+").set("+c+",arrTable.get("+r+").get("+c+"))");
+					arrTable2.get((cntOfR-1)-r).set(c,arrTable.get(r).get(c));
+				}
+			}
+
+			arrTable2 = switchRC(arrTable2);
+			return arrTable2;
+		}
 	}
-	private static ArrayList<ArrayList<String>> rotation(ArrayList<ArrayList<String>> arrTable) throws FileNotFoundException, ParseException
+
+
+
+/*	private static ArrayList<ArrayList<String>> rotation(ArrayList<ArrayList<String>> arrTable) throws FileNotFoundException, ParseException
 	{
+
 		//TODO 空のArrayListにいきなりsetすると、怒られる→空文字を必要数だけ詰めるクラスEnsureを作る必要
 		int[] intArr = getArrSize(arrTable);
 		int cntOfR=intArr[0];
@@ -200,7 +295,7 @@ public class Miscellaneous
 				 * 効率重視のため、
 				 * setCell((cntOfR-1)-r,c)っぽい処理をしてから
 				 * 行、列の入れ替えをする
-				 */
+				 *\
 				arrRow.set(c, str);
 
 			}
@@ -211,23 +306,23 @@ public class Miscellaneous
 		return arrTable3;
 
 	}
-
-
+*/
+/*
 	/**
 	 * 表の行と列を入れ替える。<br>
 	 * 不可視である。<br>
 	 * これはMiscellaneousクラスの設計時にも利用されるため、staticを付けたが、<br>
 	 * インスタンスが必要な「一時ファイルの読み込み」も避けられなかったため、<br>
 	 * インスタンス無しで外部からのアクセスを可能にすることを許すわけにいかず、<br>
-	 * private staticと余儀なくされたためである。<br>
+	 * private staticと余儀なくされたためである。(2019/6/26の仕様変更で、不要になったが、形式上残している。いつ消しても問題ない)<br>
 	 * 可視バージョンがオーバーロードされている。<br>
 	 * @see #switchRC(ArraList, boolean) 可視なswitchRC
 	 * @param arrTable
 	 * @return 行と列の入れ替わった表
 	 * @throws FileNotFoundException
 	 * @throws ParseException
-	 */
-	private static ArrayList<ArrayList<String>> switchRC(ArrayList<ArrayList<String>> arrTable) throws FileNotFoundException, ParseException
+	 *\
+	private static ArrayList<ArrayList<String>> switchRC(ArrayList<ArrayList<String>> arrTable)
 	{
 		//2は行数と列数を入れ替えて設定
 		int[] intArr = getArrSize(arrTable);
@@ -235,14 +330,14 @@ public class Miscellaneous
 		int cntOfC_2 = intArr[0];
 		int cntOfR_1 = intArr[0];
 		int cntOfC_1 = intArr[1];
-
+/*
 		//与えられた行列をreadCSVに読み込む
 		arrayToCSV(arrTable, tempCSVpass);
 		kabuLab.ReadCSV readCSV = new kabuLab.ReadCSV(tempCSVpass, true);
-
+*\
 		//設定どおりの大きさを確保
 		ArrayList<ArrayList<String>> arrTable2 = new ArrayList<ArrayList<String>>();
-		Ensure ensure = new Ensure(arrTable2, cntOfR_2, cntOfC_2);
+		Ensure ensure = new Ensure(cntOfR_2, cntOfC_2);
 		arrTable2 = ensure.ensure();
 
 		for(int c=0; c<cntOfC_1; c++)
@@ -258,6 +353,7 @@ public class Miscellaneous
 		return arrTable2;
 
 	}
+*/
 
 	/**
 	 * 表の行と列を入れ替える。<br>
@@ -266,12 +362,37 @@ public class Miscellaneous
 	 * @param arrTable 行と列を入れ替えたい表
 	 * @param b おとり。内部利用のswitchRCとオーバーロードするためのもの。trueでもfalseでもどちらでも同じ
 	 * @return 行と列の入れ替わった表
-	 * @throws FileNotFoundException
-	 * @throws ParseException
 	 */
-	public static ArrayList<ArrayList<String>> switchRC(ArrayList<ArrayList<String>> arrTable, boolean b) throws FileNotFoundException, ParseException
+	public static ArrayList<ArrayList<String>> switchRC(ArrayList<ArrayList<String>> arrTable/*, boolean b*/)
 	{
-		return switchRC(arrTable);
+		//2は行数と列数を入れ替えて設定
+		int[] intArr = getArrSize(arrTable);
+		int cntOfR_2 = intArr[1];
+		int cntOfC_2 = intArr[0];
+		int cntOfR_1 = intArr[0];
+		int cntOfC_1 = intArr[1];
+/*
+		//与えられた行列をreadCSVに読み込む
+		arrayToCSV(arrTable, tempCSVpass);
+		kabuLab.ReadCSV readCSV = new kabuLab.ReadCSV(tempCSVpass, true);
+*/
+		//設定どおりの大きさを確保
+		ArrayList<ArrayList<String>> arrTable2 = new ArrayList<ArrayList<String>>();
+		Ensure ensure = new Ensure(cntOfR_2, cntOfC_2);
+		arrTable2 = ensure.ensure();
+
+		for(int c=0; c<cntOfC_1; c++)
+		{
+
+			for(int r=0; r<cntOfR_1; r++)
+			{
+				arrTable2.get(c).set(r, arrTable.get(r).get(c));
+			}
+
+		}
+
+		return arrTable2;
+
 	}
 
 	public static int[] getArrSize(ArrayList<ArrayList<String>> arrTable)
@@ -324,8 +445,71 @@ public class Miscellaneous
 		return arrTable;
 	}
 
+	/**
+	 * 文字の置き換え(正規表現使用可)
+	 * @return
+	 */
+	public static ArrayList<ArrayList<String>> replacerReg(ArrayList<ArrayList<String>> arrTable, String beforeReg, String after)
+	{
+        int[] intArr = getArrSize(arrTable);
+        int cntOfR = intArr[0];
+        int cntOfC = intArr[1];
 
-//TODO rotationの一時ファイル生成の必要が本当にあるのか考える。(作り直した方がよさそう...)
+        for(int r=0; r<cntOfR; r++)
+        {
+
+        	for(int c=0; c<cntOfC; c++)
+        	{
+        		if(arrTable.get(r).get(c).matches(beforeReg))
+        		{
+        			arrTable.get(r).set(c, after);
+        		}
+        	}
+        }
+
+		return arrTable;
+	}
+
+	/**
+	 * ArrayList&lt;String&gt;型の行またはArrayList&lt;ArrayList&lt;String&gt;&gt;型の1行から成る表 であり、どちらかわからないものを、確実に1行から成る表ArrayList&lt;ArrayList&lt;String&gt;&gt; arrTableに変換<br>
+	 * もし2行以上からなる表が渡されたとしても、その表をそのまま返す(実際には空の表を下方連結する)
+	 * @param <T>
+	 * @param arrRow
+	 * @param table_or_row
+	 * @return arrTable
+	 */
+	public static <T> ArrayList<ArrayList<String>> tablize(ArrayList<T> table_or_row)
+	{
+		ArrayList<ArrayList<String>> arrTable = new ArrayList<ArrayList<String>>();
+		ArrayList<String> arrRow = new ArrayList<String>();
+		arrRow.add(" ");
+		arrTable.add(arrRow);
+		DownJoiner d = new DownJoiner(table_or_row, arrTable);
+		arrTable = new ArrayList<ArrayList<String>>();
+		arrTable = d.getResult();
+		arrTable.remove(arrTable.size()-1);
+		return arrTable;
+	}
+
+	public static ArrayList<ArrayList<String>> rectanglize(ArrayList<ArrayList<String>> arrTable)
+	{
+		int[] intArr = getArrSize(arrTable);
+		int cntOfR = intArr[0];
+		int cntOfC = intArr[1];
+//System.out.println("cntOfC="+cntOfC);
+		for(int r=0; r<cntOfR; r++)
+		{
+//System.out.println("cntOfC="+cntOfC);
+//System.out.println("arrTable.get("+r+").size()=" + arrTable.get(r).size());
+		int tmpSize = arrTable.get(r).size();
+			for(int i=0; i<cntOfC-tmpSize; i++)
+			{
+				arrTable.get(r).add(" ");
+			}
+//System.out.println("arrTable.get("+r+").size()="+arrTable.get(r).size());
+		}
+		return arrTable;
+	}
 
 }
 
