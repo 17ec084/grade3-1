@@ -394,6 +394,215 @@ public class comp extends string
 
 	}
 
+	後、微積
+
+	/**
+	 * arcsinを求める。<br>
+	 * 以下に示す理屈に従う。<br>
+	 * <p style="padding-left:2em">
+	 * y = arcsin x<br>
+	 * sin y = x<br>
+	 * (e^jy - e^-jy)/(2j) = x<br>
+	 * e^jy = kとする<br>
+	 * (k - k^-1)/(2j) = x<br>
+	 * k - k^-1 = 2jx<br>
+	 * k^2 -2jxk - 1 = 0<br>
+	 * k = e^jy = jx +- root(-x^2 + 1)<br>
+	 * jy = ln(jx +- root(-x^2 + 1))<br>
+	 * y = -j ln(jx +- root(-x^2 + 1))<br>
+	 * </p>
+	 *
+	 * 以上のように、解が2つ存在し得り、しかもどちらのほうが良いかはその時によるため、<br>
+	 * 配列にして2つとも返す。従って、この関数はcomp型ではなく、comp[]型となる。
+	 */
+	public comp[] asin()
+	{
+		comp[] res = new comp[2];
+		res[1] = res[0] = this.mul(this.getAsStr()).mul("-1").add("1").pow("0.5", false);
+		res[1] = res[1].mul("-1");
+		comp jx = this.mul("i");
+		for(int i = 0; i < 2; i++)
+		{
+			res[i] = res[i].add(jx.getAsStr());
+			res[i] = res[i].log("exp", true).mul("-i");
+		}
+		return res;
+	}
+
+	/**
+	 * arccosを求める。<br>
+	 * 以下に示す理屈に従う。<br>
+	 * <p style="padding-left:2em">
+	 * y = arccos x<br>
+	 * cos y = x<br>
+	 * (e^jy + e^-jy)/2 = x<br>
+	 * e^jy = kとする<br>
+	 * (k + k^-1)/2 = x<br>
+	 * k + k^-1 = 2x<br>
+	 * k^2 -2xk + 1 = 0<br>
+	 * k = e^jy = x +- root(x^2 - 1)<br>
+	 * jy = ln(x +- root(x^2 - 1))<br>
+	 * y = -j ln(x +- root(x^2 - 1))<br>
+	 * </p>
+	 *
+	 * 以上のように、解が2つ存在し得り、しかもどちらのほうが良いかはその時によるため、<br>
+	 * 配列にして2つとも返す。従って、この関数はcomp型ではなく、comp[]型となる。
+	 */
+	public comp[] acos()
+	{
+		comp[] res = new comp[2];
+		res[1] = res[0] = this.mul(this.getAsStr()).sub("1", false).pow("0.5", false);
+		res[1] = res[1].mul("-1");
+		for(int i = 0; i < 2; i++)
+		{
+			res[i] = res[i].add(this.getAsStr());
+			res[i] = res[i].log("exp", true).mul("-i");
+		}
+		return res;
+	}
+
+	/**
+	 * arctanを求める。<br>
+	 * 以下に示す理屈に従う。<br>
+	 * <p style="padding-left:2em">
+	 * y = arctan x<br>
+	 * tan y = x<br>
+	 * ((e^jy - e^-jy)/(2j))/((e^jy + e^-jy)/2) = x<br>
+	 * -j･(e^jy - e^-jy)/(e^jy + e^-jy) = x<br>
+	 * e^jy = kとする<br>
+	 * -j･(k - k^-1)/(k + k^-1) = x<br>
+	 * -j･(k - k^-1) = x･(k + k^-1)<br>
+	 * -j･(k^2 - 1) = x･(k^2 + 1)<br>
+	 * j･(k^2 - 1)+x･(k^2 + 1) = 0<br>
+	 * (x+j)･k^2 = j-x<br>
+	 * k^2 = (j-x)/(j+x)<br>
+	 * k = e^jy = +-root((j-x)/(j+x))<br>
+	 * jy = ln(+-root((j-x)/(j+x)))<br>
+	 * y = -j ln(+- root((j-x)/(j+x)))<br>
+	 * </p>
+	 *
+	 * 以上のように、解が2つ存在し得り、しかもどちらのほうが良いかはその時によるため、<br>
+	 * 配列にして2つとも返す。従って、この関数はcomp型ではなく、comp[]型となる。
+	 */
+	public comp[] atan()
+	{
+		comp[] res = new comp[2];
+
+		comp j_minus_x = this.sub("i", true);
+		comp j_plus_x = this.add("i");
+
+		res[1] = res[0] = j_minus_x.div(j_plus_x.getAsStr(), false).pow("0.5", false);
+		res[1] = res[1].mul("-1");
+		for(int i = 0; i < 2; i++)
+		{
+			res[i] = res[i].log("exp", true).mul("-i");
+		}
+		return res;
+	}
+
+	/**
+	 * arcsinhを求める。<br>
+	 * 以下に示す理屈に従う。<br>
+	 * <p style="padding-left:2em">
+	 * y = arcsinh x<br>
+	 * sinh y = x<br>
+	 * (e^y - e^-y)/2 = x<br>
+	 * e^y = kとする<br>
+	 * (k - k^-1)/2 = x<br>
+	 * k - k^-1 = 2x<br>
+	 * k^2 -2xk - 1 = 0<br>
+	 * k = e^y = x +- root(x^2 + 1)<br>
+	 * y = ln(x +- root(x^2 + 1))<br>
+	 * </p>
+	 *
+	 * 以上のように、解が2つ存在し得り、しかもどちらのほうが良いかはその時によるため、<br>
+	 * 配列にして2つとも返す。従って、この関数はcomp型ではなく、comp[]型となる。
+	 */
+	public comp[] asinh()
+	{
+		comp[] res = new comp[2];
+		res[1] = res[0] = this.mul(this.getAsStr()).add("1").pow("0.5", false);
+		res[1] = res[1].mul("-1");
+		for(int i = 0; i < 2; i++)
+		{
+			res[i] = res[i].add(this.getAsStr());
+			res[i] = res[i].log("exp", true);
+		}
+		return res;
+	}
+
+	/**
+	 * arccoshを求める。<br>
+	 * 以下に示す理屈に従う。<br>
+	 * <p style="padding-left:2em">
+	 * y = arccosh x<br>
+	 * cosh y = x<br>
+	 * (e^y + e^-y)/2 = x<br>
+	 * e^y = kとする<br>
+	 * (k + k^-1)/2 = x<br>
+	 * k + k^-1 = 2x<br>
+	 * k^2 -2xk + 1 = 0<br>
+	 * k = e^y = x +- root(x^2 - 1)<br>
+	 * y = ln(x +- root(x^2 - 1))<br>
+	 * </p>
+	 *
+	 * 以上のように、解が2つ存在し得り、しかもどちらのほうが良いかはその時によるため、<br>
+	 * 配列にして2つとも返す。従って、この関数はcomp型ではなく、comp[]型となる。
+	 */
+	public comp[] acosh()
+	{
+		comp[] res = new comp[2];
+		res[1] = res[0] = this.mul(this.getAsStr()).sub("1", false).pow("0.5", false);
+		res[1] = res[1].mul("-1");
+		for(int i = 0; i < 2; i++)
+		{
+			res[i] = res[i].add(this.getAsStr());
+			res[i] = res[i].log("exp", true);
+		}
+		return res;
+	}
+
+	/**
+	 * arctanhを求める。<br>
+	 * 以下に示す理屈に従う。<br>
+	 * <p style="padding-left:2em">
+	 * y = arctanh x<br>
+	 * tanh y = x<br>
+	 * (e^y - e^-y)/(e^y + e^-y) = x<br>
+	 * e^y = kとする<br>
+	 * (k - k^-1)/(k + k^-1) = x<br>
+	 * k - k^-1 = (k + k^-1)x<br>
+	 * k^2 - 1 = (k^2 + 1)x<br>
+	 * (1-x)k^2  = 1+x<br>
+	 * k^2  = (1+x)/(1-x)<br>
+	 * k = e^y = +- root((1+x)/(1-x))<br>
+	 * y = ln(+- root((1+x)/(1-x)))<br>
+	 * </p>
+	 *
+	 * 以上のように、解が2つ存在し得り、しかもどちらのほうが良いかはその時によるため、<br>
+	 * 配列にして2つとも返す。従って、この関数はcomp型ではなく、comp[]型となる。
+	 */
+	public comp[] atanh()
+	{
+		comp[] res = new comp[2];
+
+		comp one_minus_x = this.sub("1", true);
+		comp one_plus_x = this.add("1");
+
+		res[1] = res[0] = one_plus_x.div(one_minus_x.getAsStr(), false).pow("0.5", false);
+		res[1] = res[1].mul("-1");
+		for(int i = 0; i < 2; i++)
+		{
+			res[i] = res[i].log("exp", true);
+		}
+		return res;
+	}
+
+	public comp integrate(comp start, comp end, String func)
+	//途中
+	//参考:https://www.hibikore-tanren.com/sekibun01/
+
+
 	/** @see #addThenDoubles*/public comp add(String operand){return doublesToComp(addThenDoubles(operand));}
 	/** @see #subThenDoubles*/public comp sub(String operand, boolean b){return doublesToComp(subThenDoubles(operand,b));}
 	/** @see #mulThenDoubles*/public comp mul(String operand){return doublesToComp(mulThenDoubles(operand));}
@@ -406,6 +615,12 @@ public class comp extends string
 	/** @see #cosh*/public double[] coshThenDoubles(){return cosh().getAsDoubles();}
 	/** @see #sinh*/public double[] sinhThenDoubles(){return sinh().getAsDoubles();}
 	/** @see #tanh*/public double[] tanhThenDoubles(){return tanh().getAsDoubles();}
+	/** @see #acos*/public double[][] acosThenDoubless(){comp[] a=acos();double[][] res;int i=0; for(comp c : a){res[i]=c.getAsDoubles();i++;}return res;}
+	/** @see #asin*/public double[][] asinThenDoubless(){comp[] a=asin();double[][] res;int i=0; for(comp c : a){res[i]=c.getAsDoubles();i++;}return res;}
+	/** @see #atan*/public double[][] atanThenDoubless(){comp[] a=atan();double[][] res;int i=0; for(comp c : a){res[i]=c.getAsDoubles();i++;}return res;}
+	/** @see #acosh*/public double[][] acoshThenDoubless(){comp[] a=acosh();double[][] res;int i=0; for(comp c : a){res[i]=c.getAsDoubles();i++;}return res;}
+	/** @see #asinh*/public double[][] asinhThenDoubless(){comp[] a=asinh();double[][] res;int i=0; for(comp c : a){res[i]=c.getAsDoubles();i++;}return res;}
+	/** @see #atanh*/public double[][] atanhThenDoubless(){comp[] a=atanh();double[][] res;int i=0; for(comp c : a){res[i]=c.getAsDoubles();i++;}return res;}
 
 	public String doublesToStr(double[] val)
 	{
@@ -429,6 +644,7 @@ public class comp extends string
 	}
 
 	public comp doublesToComp(double[] val){return new comp(doublesToStr(val));}
+	public String getAsStr() {return doublesToStr(this.getAsDoubles());}
 
 
 

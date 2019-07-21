@@ -5,6 +5,7 @@ package kabuLab.type;
 
 /**
  * 平田型の機能を提供するクラス<br>
+ * メタデータセルの型。書かれた数学関数を読むなどもしたい
  * @author 17ec084(http://github.com/17ec084)
  *
  */

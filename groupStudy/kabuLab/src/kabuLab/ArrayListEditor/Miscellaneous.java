@@ -39,6 +39,7 @@ import kabuLab.CSVReader.ParseException;
  * @see #switchRC <p>switchRC<br>(static参照用)<br>行と列を入れ替える</p>
  * @see #tablize(ArrayList) <p>rowToTable<br>(static参照用)<br>「行そのもの」か「1行から成る表」を、確実に1行から成る表ArrayList&lt;ArrayList&lt;String&gt;&gt; arrTableに変換</p>
  * @see #rectanglize(ArrayList) <p>rectanglize<br>(static参照用)<br>全ての行におけるセル数を揃える</p>
+ * @see #javaNameRoleAsReg <p>javaNameRoleAsReg<br>(static参照用)<br>javaの変数名等のルール(指針ではない)の正規表現を返す。<br>(どれを返すかは引数で決まる)</p>
  */
 public class Miscellaneous
 {
@@ -509,6 +510,19 @@ public class Miscellaneous
 //System.out.println("arrTable.get("+r+").size()="+arrTable.get(r).size());
 		}
 		return arrTable;
+	}
+
+
+	/**
+	 * @param select
+	 * @return
+	 */
+	public static String javaNameRoleAsReg()
+	{
+		//参考:http://kaya-soft.com/java-toranomaki/programming/datatype/entry3-3_named-rule/
+
+			return "[_$a-zA-z][_$a-zA-z0-9]*";
+
 	}
 
 }
