@@ -25,6 +25,10 @@ public class booleanArray
 	public final int length;
 	public final int lengthAsBytes;
 	private byte[] eightBoolss;
+	/** デフォルトコンストラクタにより、入力された10進数を変換したものであり、かつその値が負である場合のみtrueとなる。<br>
+	 * 符号の有無を判断するのに用いる。
+	 */
+	private boolean isFromDecimalAndMinus = false;
 
 	booleanArray(int size)
 	{
@@ -114,6 +118,13 @@ public class booleanArray
 		length = bools.length;
 		lengthAsBytes = bools.lengthAsBytes;
 		eightBoolss = bools.getAsBytes();
+		for(int i=0; i < eightBoolss.length/2; i++)
+		{
+			byte tmp = eightBoolss[i];
+			eightBoolss[i] = eightBoolss[eightBoolss.length-1-i];
+			eightBoolss[eightBoolss.length-1-i] = tmp;
+		}
+		isFromDecimalAndMinus = isMinus;
 
 
 	}
@@ -128,9 +139,17 @@ public class booleanArray
 
 			BitsCalculator bools_ = new BitsCalculator(bools.getAsBytes()), boolsToBeAdded_;
 
+	/*
+			byte[] reversed8boolss = new byte[eightBoolss.length];
+			for(int i=0; i < eightBoolss.length; i++)
+				reversed8boolss[i] = eightBoolss[eightBoolss.length-1-i];
+			return reversed8boolss;
+	*/
+
 			for(int i=0; i < str.length(); i++)
 			{
-
+System.out.println("booleanArray");
+newSetFromBytes(bools_.getAsBytes()).dump();
 				if('0' <= str.charAt(i) && str.charAt(i) <= '9')
 				{
 					boolsToBeAdded = Pows10.get(index-i, (byte)(str.charAt(i)-'0'));
@@ -138,12 +157,11 @@ public class booleanArray
 					//10のindex-i乗の(str.charAt(i)が示す数字)倍をbooleanArrayにしたもの。
 
 					boolsToBeAdded_ = new BitsCalculator(boolsToBeAdded.getAsBytes());
-					bools_ = new BitsCalculator(bools_.plus(boolsToBeAdded_, true));
+					bools_ = new BitsCalculator(bools_.plus(boolsToBeAdded_, false));//符号なしとみなさないとキャリが消える
 
 				}
 
 			}
-
 			return newSetFromBytes(bools_.getAsBytes());
 
 		}
@@ -177,7 +195,11 @@ public class booleanArray
 
 	public byte[] getAsBytes()
 	{
-		return eightBoolss;
+		byte[] rtn = new byte[eightBoolss.length];
+		for(int i=0; i < eightBoolss.length; i++)
+			rtn[i] = eightBoolss[eightBoolss.length-1-i];
+
+		return rtn;
 	}
 
 	//setter
@@ -234,7 +256,7 @@ public class booleanArray
 		booleanArray bools = new booleanArray(bytes.length*8);
 		int indexAsBools = 0;
 		boolean isMsb1;
-		for(int indexAsBytes=0; indexAsBytes<bytes.length; indexAsBytes++)
+		for(int indexAsBytes=bytes.length-1; indexAsBytes>=0; indexAsBytes--)
 			for(int indexInAByte=0; indexInAByte < 8; indexInAByte++)
 			{
 				isMsb1 = (bytes[indexAsBytes] < 0);

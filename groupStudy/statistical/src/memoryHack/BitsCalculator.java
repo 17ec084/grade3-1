@@ -60,9 +60,9 @@ public class BitsCalculator implements Cloneable
 			short biggerLength = (short) bigger.b.length;
 			byte fill = (smaller.b[0]<0)?(byte)-1:(byte)0;
 			for(short i=0; i < gap; i++)
-				enlarged[i] = fill;
+				enlarged[i] = fill;//符号拡張
 			for(short i=gap; i < biggerLength; i++)
-				enlarged[i] = smaller.b[i-gap];
+				enlarged[i] = smaller.b[i-gap];//smallerの内容をenlargedの下位bitへ
 			return new BitsCalculator(enlarged);
 		}
 		private boolean isCarry(short aByte)
@@ -74,7 +74,7 @@ public class BitsCalculator implements Cloneable
 		{
 			boolean signA = a<0, signB = b<0, signAPlusB = a+b<0;
 			boolean OV = (signA && signB && !signAPlusB) || (!signA && !signB && signAPlusB);
-			boolean CA = (short)a + (short)b > 255;
+			boolean CA = (short)a+(a<0?256:0) + (short)b+(b<0?256:0) > 255;
 			return (byte)((OV?2:0)+(CA?1:0));
 		}
 
@@ -120,6 +120,9 @@ public class BitsCalculator implements Cloneable
 				rtn[0] = 1;
 				for(short i=0; i<length; i++)
 					rtn[i+1] = bytes[i];
+			/*	rtn[length] = 1;
+				for(short i=0; i<length; i++)
+					rtn[i] = bytes[i];*/
 				return rtn;
 			}
 
@@ -129,7 +132,6 @@ public class BitsCalculator implements Cloneable
 				bc.setBitByIndex(idx, true, false);
 				return bc;
 			}
-
 
 	//引き算では必ず符号あり
 	public BSC minus(BitsCalculator subtrahend)
@@ -163,6 +165,7 @@ public class BitsCalculator implements Cloneable
 	{
 		return this.minus(new BitsCalculator(1));
 	}
+
 
 	/**
 	 * 二つのBitsCalculator型変数を入力し、これらを符号あり整数とみなす。第一引数の示す数字のほうが大きいときは1を、第2引数の示す数字のほうが大きいときは-1を、どちらも同じときは0を返却する。

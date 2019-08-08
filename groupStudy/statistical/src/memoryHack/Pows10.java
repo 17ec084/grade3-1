@@ -40,13 +40,15 @@ public class Pows10
 
 			for(int i=0; i < from0to9-1; i++)
 			{
-				bc = new BitsCalculator(bc.plus(oldBc, true));
-//booleanArray.newSetFromBytes(bc.getAsBytes()).dump();
+				bc = new BitsCalculator(bc.plus(oldBc, false));//符号なしとみなさないとキャリが消える
+System.out.println("Pows10");
+booleanArray.newSetFromBytes(bc.getAsBytes()).dump();
 			}
 			if(from0to9 == 0)
 			{
 				bc = new BitsCalculator(bc.minus(oldBc));
 			}
+
 			return booleanArray.newSetFromBytes(bc.getAsBytes());
 		}
 		else//まだ計算していなかった場合
@@ -61,7 +63,7 @@ public class Pows10
 
 				for(int i=0; i < 9; i++)
 				{
-					bc = new BitsCalculator(bc.plus(oldBc, true));
+					bc = new BitsCalculator(bc.plus(oldBc, false));
 				}
 				//ストリングに変換し配列として記録
 				String str = (String)new BSC(bc.getAsBytes()).result;
