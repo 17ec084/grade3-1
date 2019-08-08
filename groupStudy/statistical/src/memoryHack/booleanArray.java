@@ -64,12 +64,12 @@ public class booleanArray
 		boolean isMinus = false;
 
 		System.out.println("10進数を入力し、それに対応するbit列を得るためのコンストラクタbooleanArray()が呼ばれました。");
-		System.out.println("まず「0以外の」10進桁数を入力してください。(負号は数えないが、左に0を詰めている場合はそれらも数える)");
+		System.out.println("まず10進桁数を入力してください。(負号は数えないが、左に0を詰めている場合はそれらも数える)");
 		Scanner scan = new Scanner(System.in);
 		int digit = scan.nextInt(), count = 0;
 		System.out.println("桁数は"+ digit + "と把握しました。\nでは次に、実際にその10進整数を入力してください。\n長い場合は途中の桁でいったん入力し、後から続きを入力することも出来ます。");
 		String str;
-		booleanArray bools = new booleanArray(digit);
+		booleanArray bools = new booleanArray(1);
 		while(count < digit)
 		{
 			//方針:最初のみ負号の個数も調べる。それ以外は[0-9]にマッチする文字数を桁数として加算していく。
@@ -78,7 +78,7 @@ public class booleanArray
 			{
 				if
 				(
-					str.length() - str.replaceAll("\\-", "").length()
+					(str.length() - str.replaceAll("\\-", "").length())
 					//負号の個数を調べ、
 					%2 == 1
 				)//その偶奇によっては
@@ -99,13 +99,6 @@ public class booleanArray
 		{
 			for(int i=0; i < bools.length; i++)
 				bools.inverter(i);
-System.out.println
-(
-new BitsCalculator
-(
-	bools.getAsBytes()
-).increment(true).getAsBytes()[0]
-);
 
 			bools =
 			booleanArray.newSetFromBytes
@@ -127,23 +120,23 @@ new BitsCalculator
 
 		private booleanArray boolsMaker(int digit, int count, String str, booleanArray bools)
 		{
-			//TODO 負数の場合がまだ
 
 			int index = digit - count - 1;
 
-System.out.println(index);
 
 			booleanArray boolsToBeAdded;
 
-			BitsCalculator bools_ = new BitsCalculator(0), boolsToBeAdded_;
+			BitsCalculator bools_ = new BitsCalculator(bools.getAsBytes()), boolsToBeAdded_;
 
 			for(int i=0; i < str.length(); i++)
 			{
+
 				if('0' <= str.charAt(i) && str.charAt(i) <= '9')
 				{
-					boolsToBeAdded = Pows10.get(index, (byte)(str.charAt(i)-'0'));
-					//10のindex乗の(str.charAt(i)が示す数字)倍をbooleanArrayにしたもの。
-					bools_ = new BitsCalculator(bools.getAsBytes());
+					boolsToBeAdded = Pows10.get(index-i, (byte)(str.charAt(i)-'0'));
+
+					//10のindex-i乗の(str.charAt(i)が示す数字)倍をbooleanArrayにしたもの。
+
 					boolsToBeAdded_ = new BitsCalculator(boolsToBeAdded.getAsBytes());
 					bools_ = new BitsCalculator(bools_.plus(boolsToBeAdded_, true));
 

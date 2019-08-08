@@ -28,7 +28,7 @@ public class Pows10
 			new Pows10();
 		int maxIndex = getMaxIndex(readPath());
 
-		if(from0to9<=0)
+		if(from0to9<0)
 		{
 			System.out.println("Pows10クラスのgetメソッドのfrom0to9が不正");
 			return null;
@@ -43,15 +43,23 @@ public class Pows10
 				bc = new BitsCalculator(bc.plus(oldBc, true));
 //booleanArray.newSetFromBytes(bc.getAsBytes()).dump();
 			}
+			if(from0to9 == 0)
+			{
+				bc = new BitsCalculator(bc.minus(oldBc));
+			}
 			return booleanArray.newSetFromBytes(bc.getAsBytes());
 		}
 		else//まだ計算していなかった場合
 		{
+
+
 			for(; maxIndex < index; maxIndex++)
 			{
+
 				BitsCalculator bc = new BitsCalculator(pow10(maxIndex));
 				BitsCalculator oldBc = bc.clone();
-				for(int i=0; i < 10; i++)
+
+				for(int i=0; i < 9; i++)
 				{
 					bc = new BitsCalculator(bc.plus(oldBc, true));
 				}
@@ -62,8 +70,8 @@ public class Pows10
 				appendP(str);//P.javaに追加
 
 			}
+			return get(index, from0to9);//再試行すればよい。
 		}
-		return null;
 	}
 		private static int getMaxIndex(String path)
 		{
@@ -97,6 +105,7 @@ public class Pows10
 				BufferedReader br = new BufferedReader(fr);
 				for(int i=-1; i < index; i++)
 					br.readLine();
+				fr.close();
 				return 	escapeRevivaler(br.readLine());
 
 			}
@@ -240,10 +249,10 @@ public class Pows10
 					if(readStr != null)
 					{
 						fw.write(str+"\r\n"+"*/");
-						fw.close();
-						return;
+						break;
 					}
 				}
+
 				int i = 0;
 
 				fw.close();//クローズしないと書き込まれない
