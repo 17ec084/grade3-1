@@ -41,8 +41,6 @@ public class Pows10
 			for(int i=0; i < from0to9-1; i++)
 			{
 				bc = new BitsCalculator(bc.plus(oldBc, false));//符号なしとみなさないとキャリが消える
-System.out.println("Pows10");
-booleanArray.newSetFromBytes(bc.getAsBytes()).dump();
 			}
 			if(from0to9 == 0)
 			{

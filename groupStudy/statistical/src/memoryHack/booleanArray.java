@@ -148,8 +148,6 @@ public class booleanArray
 
 			for(int i=0; i < str.length(); i++)
 			{
-System.out.println("booleanArray");
-newSetFromBytes(bools_.getAsBytes()).dump();
 				if('0' <= str.charAt(i) && str.charAt(i) <= '9')
 				{
 					boolsToBeAdded = Pows10.get(index-i, (byte)(str.charAt(i)-'0'));
