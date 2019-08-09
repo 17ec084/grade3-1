@@ -354,29 +354,32 @@ public class DBG
 	}
 
 	//スリープ
-	public static void sleep(long millisec, boolean leftTimeView) throws InterruptedException
+	public static void sleep(long millisec, boolean leftTimeView)
 	{
-		while(leftTimeView && millisec > 1000)
+		try
 		{
-			Thread.sleep(1000);
-			cln("sleep left "+ (millisec/1000) + " sec.");
-			millisec -= 1000;
-		}
-		Thread.sleep(millisec);
+			while(leftTimeView && millisec >= 1000)
+			{
+				cln("sleep left "+ (millisec/1000) + " sec.");
+				Thread.sleep(1000);
+				millisec -= 1000;
+			}
+			Thread.sleep(millisec);
+		}catch (InterruptedException e) {e.printStackTrace();}
 
 	}
 
-	public static void slp(long millisec, boolean leftTimeView) throws InterruptedException
+	public static void slp(long millisec, boolean leftTimeView)
 	{
 		sleep(millisec, leftTimeView);
 	}
 
-	public static void sleep(long millisec) throws InterruptedException
+	public static void sleep(long millisec)
 	{
 		sleep(millisec, true);
 	}
 
-	public static void slp(long millisec) throws InterruptedException
+	public static void slp(long millisec)
 	{
 		sleep(millisec, true);
 	}
