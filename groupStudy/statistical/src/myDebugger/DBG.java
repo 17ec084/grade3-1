@@ -180,4 +180,58 @@ public class DBG
 		}
 		return "";
 	}
+
+	//ループカウンタ(1回目は何も表示せず、二回目以降に回数を報告)
+	//slcまたはclc
+	//ループの外でnewする必要がある。
+	//インスタンス変数をループ内で複数回呼ぶとそれだけカウントして誤作動する。
+	//どうしてもやりたいのならslc、clcでなく、sl,clを呼ぶこと。
+
+	//フィールド
+	long cnt = 0;
+	String loopName;
+
+	//コンストラクタ
+	public DBG(String loopName){this.loopName = loopName;}
+
+	public String slc()
+	{
+		if(cnt != 0)
+		{
+			Object[] mAA = {"ln", "\""+ loopName + "\" has been looped "+ (cnt+1) + " times."};
+			privateSee(mAA);
+		}
+		cnt++;
+		return "";
+	}
+
+	public String clc()
+	{
+
+		if(cnt != 0)
+		{
+			System.out.println("\"" + loopName + "\" has been looped "+ (cnt+1) + " times.");
+		}
+		cnt++;
+		return "";
+	}
+
+	public String sl()
+	{
+		if(cnt != 0)
+		{
+			Object[] mAA = {"ln", "\""+ loopName + "\" has been looped "+ (cnt+1) + " times."};
+			privateSee(mAA);
+		}
+		return "";
+	}
+
+	public String cl()
+	{
+		if(cnt != 0)
+		{
+			System.out.println("\"" + loopName + "\" has been looped "+ (cnt+1) + " times.");
+		}
+		return "";
+	}
 }
