@@ -346,4 +346,39 @@ public class DBG
 
 		return str.replaceAll(oldReturnRegex, newReturn)+(endWithReturn?"\n":"");
 	}
+
+	public static void cI()//see Indentの意味。
+	{
+		for(int j=0; j < i; j++)
+			System.out.print(" ");
+	}
+
+	//スリープ
+	public static void sleep(long millisec, boolean leftTimeView) throws InterruptedException
+	{
+		while(leftTimeView && millisec > 1000)
+		{
+			Thread.sleep(1000);
+			cln("sleep left "+ (millisec/1000) + " sec.");
+			millisec -= 1000;
+		}
+		Thread.sleep(millisec);
+
+	}
+
+	public static void slp(long millisec, boolean leftTimeView) throws InterruptedException
+	{
+		sleep(millisec, leftTimeView);
+	}
+
+	public static void sleep(long millisec) throws InterruptedException
+	{
+		sleep(millisec, true);
+	}
+
+	public static void slp(long millisec) throws InterruptedException
+	{
+		sleep(millisec, true);
+	}
+
 }
