@@ -86,7 +86,7 @@ public class DBG
 
 	public static void cln(Object o)
 	{
-	    System.out.print(o);
+	    System.out.println(o);
 	}
 
 	public static void cln()
@@ -94,5 +94,90 @@ public class DBG
 	    System.out.println();
 	}
 
+	//さらに発展させたsee系
+	public static String sif(boolean bool, String condSymbol)
+	{
+		if(bool)
+		{
+			Object[] mAA = {"ln", condSymbol+" is true."};
+			privateSee(mAA);
+		}
+		else
+		{
+			Object[] mAA = {"ln", condSymbol+" is false."};
+			privateSee(mAA);
+		}
+		return "";
+	}
 
+	public static String seeif(boolean bool, String condSymbol)
+	{
+		if(bool)
+		{
+			Object[] mAA = {"ln", condSymbol+" is true."};
+			privateSee(mAA);
+		}
+		else
+		{
+			Object[] mAA = {"ln", condSymbol+" is false."};
+			privateSee(mAA);
+		}
+		return "";
+	}
+
+	public static String cif(boolean bool, String condSymbol)
+	{
+		if(bool)
+		{
+			System.out.println(condSymbol + " is true.");
+		}
+		else
+		{
+			System.out.println(condSymbol + " is false.");
+		}
+		return "";
+	}
+
+	public static String sif(boolean bool, Object whenTrue, Object whenFalse)
+	{
+		if(bool)
+		{
+			Object[] mAA = {"ln", whenTrue};
+				privateSee(mAA);
+		}
+		else
+		{
+			Object[] mAA = {"ln", whenFalse};
+				privateSee(mAA);
+		}
+		return "";
+	}
+
+	public static String seeif(boolean bool, Object whenTrue, Object whenFalse)
+	{
+		if(bool)
+		{
+			Object[] mAA = {"ln", whenTrue};
+				privateSee(mAA);
+		}
+		else
+		{
+			Object[] mAA = {"ln", whenFalse};
+				privateSee(mAA);
+		}
+		return "";
+	}
+
+	public static String cif(boolean bool, Object whenTrue, Object whenFalse)
+	{
+		if(bool)
+		{
+			System.out.println(whenTrue);
+		}
+		else
+		{
+			System.out.println(whenFalse);
+		}
+		return "";
+	}
 }
