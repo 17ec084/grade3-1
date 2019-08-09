@@ -18,48 +18,56 @@ public class DBG
 	//see系
 	public static void see(Object o)
 	{
+		indenter();
 		Object[] mAA = {"see",o};
 		privateSee(mAA);
 	}
 
 	public static void see()
 	{
+		indenter();
 		Object[] mAA = {"see"};
 		privateSee(mAA);
 	}
 
 	public static void seeln(Object o)
 	{
+		indenter();
 		Object[] mAA = {"seeln",o};
 		privateSee(mAA);
 	}
 
 	public static void seeln()
 	{
+		indenter();
 		Object[] mAA = {"seeln"};
 		privateSee(mAA);
 	}
 
 	public static void s(Object o)
 	{
+		indenter();
 		Object[] mAA = {"s",o};
 		privateSee(mAA);
 	}
 
 	public static void s()
 	{
+		indenter();
 		Object[] mAA = {"s"};
 		privateSee(mAA);
 	}
 
 	public static void sln(Object o)
 	{
+		indenter();
 		Object[] mAA = {"sln",o};
 		privateSee(mAA);
 	}
 
 	public static void sln()
 	{
+		indenter();
 		Object[] mAA = {"sln"};
 		privateSee(mAA);
 	}
@@ -71,26 +79,37 @@ public class DBG
 			String mname = ste.getMethodName();
 			String methodName = (String)methodAndArg[0];
 			Object o = ((methodAndArg.length==2) ? methodAndArg[1] : "");
-			System.out.print( cname+"#"+mname+" called."+o + (methodName.matches(".*ln")?"\n":"") );
+			System.out.print
+			(
+				indenter
+				(
+					(Object)
+					(cname+"#"+mname+" called."+o + (methodName.matches(".*ln")?"\n":""))
+				)
+			);
 		}
 
 	public static void c(Object o)
 	{
-	    System.out.print(o);
+		indenter();
+	    System.out.print(indenter(o));
 	}
 
 	public static void c()
 	{
+		indenter();
 	    System.out.println();
 	}
 
 	public static void cln(Object o)
 	{
-	    System.out.println(o);
+		indenter();
+	    System.out.println(indenter(o));
 	}
 
 	public static void cln()
 	{
+		indenter();
 	    System.out.println();
 	}
 
@@ -99,11 +118,13 @@ public class DBG
 	{
 		if(bool)
 		{
+			indenter();
 			Object[] mAA = {"ln", condSymbol+" is true."};
 			privateSee(mAA);
 		}
 		else
 		{
+			indenter();
 			Object[] mAA = {"ln", condSymbol+" is false."};
 			privateSee(mAA);
 		}
@@ -114,11 +135,13 @@ public class DBG
 	{
 		if(bool)
 		{
+			indenter();
 			Object[] mAA = {"ln", condSymbol+" is true."};
 			privateSee(mAA);
 		}
 		else
 		{
+			indenter();
 			Object[] mAA = {"ln", condSymbol+" is false."};
 			privateSee(mAA);
 		}
@@ -129,10 +152,12 @@ public class DBG
 	{
 		if(bool)
 		{
+			indenter();
 			System.out.println(condSymbol + " is true.");
 		}
 		else
 		{
+			indenter();
 			System.out.println(condSymbol + " is false.");
 		}
 		return "";
@@ -142,11 +167,13 @@ public class DBG
 	{
 		if(bool)
 		{
+			indenter();
 			Object[] mAA = {"ln", whenTrue};
 				privateSee(mAA);
 		}
 		else
 		{
+			indenter();
 			Object[] mAA = {"ln", whenFalse};
 				privateSee(mAA);
 		}
@@ -157,11 +184,13 @@ public class DBG
 	{
 		if(bool)
 		{
+			indenter();
 			Object[] mAA = {"ln", whenTrue};
 				privateSee(mAA);
 		}
 		else
 		{
+			indenter();
 			Object[] mAA = {"ln", whenFalse};
 				privateSee(mAA);
 		}
@@ -172,10 +201,12 @@ public class DBG
 	{
 		if(bool)
 		{
+			indenter();
 			System.out.println(whenTrue);
 		}
 		else
 		{
+			indenter();
 			System.out.println(whenFalse);
 		}
 		return "";
@@ -198,6 +229,7 @@ public class DBG
 	{
 		if(cnt != 0)
 		{
+			indenter();
 			Object[] mAA = {"ln", "\""+ loopName + "\" has been looped "+ (cnt+1) + " times."};
 			privateSee(mAA);
 		}
@@ -210,6 +242,7 @@ public class DBG
 
 		if(cnt != 0)
 		{
+			indenter();
 			System.out.println("\"" + loopName + "\" has been looped "+ (cnt+1) + " times.");
 		}
 		cnt++;
@@ -220,6 +253,7 @@ public class DBG
 	{
 		if(cnt != 0)
 		{
+			indenter();
 			Object[] mAA = {"ln", "\""+ loopName + "\" has been looped "+ (cnt+1) + " times."};
 			privateSee(mAA);
 		}
@@ -230,8 +264,86 @@ public class DBG
 	{
 		if(cnt != 0)
 		{
+			indenter();
 			System.out.println("\"" + loopName + "\" has been looped "+ (cnt+1) + " times.");
 		}
 		return "";
+	}
+
+	//コンソールへの表示にインデントを付ける
+	private static int i = 0;
+
+	public static void goRight()
+	{
+		writeI(readI()+1);
+	}
+
+	public static void goLeft()
+	{
+
+		writeI(readI()-1);
+	}
+
+	public static void setI(int indent)
+	{
+		writeI(indent);
+	}
+
+		private static void writeI(int j)
+		{
+			/*
+			try
+			{
+				FileWriter fw = new FileWriter(new File("_hirata_i"));
+				fw.write((j+'0'));
+				fw.close();
+			}
+			catch (IOException e){e.printStackTrace();}
+			// */i = j;
+
+		}
+
+	public static int readI()
+	{
+		/*
+		try
+		{
+			FileReader fr = new FileReader(new File("_hirata_i"));
+			int rtn = Integer.parseInt(new BufferedReader(fr).readLine());
+			fr.close();
+			if(rtn >= 0)
+				return rtn;
+			else
+				return 0;
+		}
+		catch (IOException e){e.printStackTrace();}
+
+		return 0;
+		// */return i;
+	}
+
+	private static void indenter()
+	{
+		int i = readI();
+		for(int j=0; j < i; j++)
+			System.out.print(" ");
+	}
+
+	private static String indenter(Object o)
+	{
+		int i = readI();
+		boolean endWithReturn = false;
+		String newReturn = "\n", oldReturnRegex = "(\\\r|\\\n|(\\\r\\\n))";
+		String str = o.toString();
+		if(str.matches(".*"+oldReturnRegex))
+		{
+			endWithReturn = true;
+			while(str.matches(".*"+oldReturnRegex))
+				str = str.substring(0, str.length()-1);
+		}
+		for(int j=0; j < i; j++)
+			newReturn += " ";
+
+		return str.replaceAll(oldReturnRegex, newReturn)+(endWithReturn?"\n":"");
 	}
 }
