@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DBG
 {
@@ -391,6 +392,9 @@ public class DBG
 	}
 
 	//DBGの撤去
+
+	protected static ArrayList<String> DBGKilledContent;
+
 	/**
 	 * 「/*DBG」と「DBG*&#047;」で囲まれたところ、そして
 	 * DBGのメソッド呼び出しをソースコードから取り除く。<br>
@@ -406,9 +410,17 @@ public class DBG
 	{
 		File f = new File(findJavaFile());
 
-		String source = readSource(f);
+		ArrayList<String> source = DBGKilledContent;
+		if(source == null)
+		{
+			System.out.println("javaファイルの発見に失敗したか、あるいはjavaファイル内にDBG宣言がないか、Don't kill宣言がありました");
+			return;
+		}
+		for(int i=0; i < source.size(); i++)
+			System.out.print(source.get(i));
 		//javaファイルを全行読み込む
-System.out.println(source);
+
+//System.out.println(source);
 
 	}
 
@@ -428,28 +440,52 @@ System.out.println(source);
 			return search(f, javaFileName).replaceAll("\\\\_hirata_breakRecursion", "");
 		}
 
+
 			protected static String search(File dir, String javaFileName)
 			{
 				File[] childlen = dir.listFiles();
 				String rtn;
+				Object[] o;
 		        for(int i=0; i<childlen.length; i++)
 		        {
 		        	String split = "( |\t|\r|\n|(\r\n))*";
 		        	String split_must = "( |\\t|\\r|\\n|(\\r\\n))+";
+
 		        	if
 		        	(
 		        			childlen[i].isDirectory()
 		        		&&	has(childlen[i], javaFileName)
-		        		&&	hasRegex(childlen[i].getPath() + javaFileName, "import" + ".*" + "(myDebugger\\.)?" + myClassName + ".*" + ";")
-		        		&&	!hasRegex(childlen[i].getPath() + javaFileName, "//DBG" +split_must+ "((don\\'t)|(do"+split_must+"not))" +split_must+ "kill" +split_must+ "me")
+		        		&&	(boolean)
+		        			(
+		        				o =
+		        				hasRegex
+		        				(
+		        					childlen[i].getPath() + "\\"+javaFileName,
+		        					"import" + ".*" + "(myDebugger\\.)?" + myClassName
+		        				)
+		        			)[1]
+		        		&&	!
+		        			(
+		        				(boolean)
+		        				(
+		        					hasRegex
+		        					(
+		        						childlen[i].getPath() + "\\"+javaFileName,
+		        						"//" +split+ "(((d|D)on\\'t)|((d|D)o"+split_must+"not))" +split_must+ "kill" +split_must+ myClassName
+		        					)
+		        		        )[1]
+		        			)
 		        	)
+		        	{
+		        		DBGKilledContent = (ArrayList<String>) o[0];
 		        		return childlen[i].getPath() + "\\"+javaFileName+"\\_hirata_breakRecursion";
+		        	}
 		        	else
 		        	if(childlen[i].isDirectory())
 		                if((rtn=search(childlen[i], javaFileName)).matches(".*_hirata_breakRecursion"))
 		                	return rtn;
 		        }
-		        return javaFileName + " (which ) not found";
+		        return javaFileName + " not found";
 		    }
 
 				protected static boolean has(File dir, String child)
@@ -461,10 +497,191 @@ System.out.println(source);
 					return false;
 				}
 
-				protected static boolean hasRegex(String fileName, String regex)
+
+				/**
+				 * DBG撤去用のメソッドである。他の用途には向かない仕様があるのでDBG拡張の際は注意のこと。以下説明する。
+				 * 全てを一気に読み込み、正規表現にマッチするか調べるのは原理的にほぼ不可能なので、「;」の出現ごとに読み込みを区切る。<br>
+				 * 1行DBGコメントが出現した場合、改行までを消去する。<br>
+				 * 「/\\*(\\*)?」で始まるDBGコメントが出現した場合、「DBG\\*&#047;」までを消去する。
+				 *
+				 * @param fileName
+				 * @param regex
+				 * @return
+				 */
+				protected static Object[] hasRegex(String fileName, String regex)
 				{
-					return (readSource(new File(fileName)).matches(".*("+regex+").*"));
+/*
+					String content = readSource(new File(fileName));
+
+					String tmp = "";
+					int i;
+					for(i=0; i<content.length() ; )
+					{
+						i = killcharsIfComment1(i, content);
+						i = killcharsIfComment2(i, content);
+						if(isFileEnd(i, content))
+						{
+							break;
+						}
+						else
+						{
+							if(content.charAt(i)!=';' && content.length()!=i+1)
+							{
+								tmp += content.charAt(i);
+								i++;
+							}
+							else
+							{
+								if(tmp.matches("(.|\\r|\\n|(\\r\\n))*("+regex+")(.|\\r|\\n|(\\r\\n))*"))
+									return true;
+								tmp = "";
+								i++;
+							}
+
+						}
+					}
+
+					return false;
+*/
+					Object[] rtn = {null,null};
+					rtn[0] = getDBGKilledContentIfHasRegex(fileName, regex);
+					rtn[1] = rtn[0]!=null;
+
+					return rtn;
 				}
+
+
+				protected static ArrayList<String> getDBGKilledContentIfHasRegex(String fileName, String regex)
+				{
+					//「.」は改行コードを含まない
+					//長い文字列.matches("(高確率でmatchするもの)+あるいは*")は高確率でStackOverflowErrorが起きる。
+					//極端な例:readSource(new File(fileName)).matches("(.|\\r|\\n|(\\r\\n))+")
+					//→何かを基準に区切って読んでいくしかない。
+
+					String content = readSource(new File(fileName));
+
+					ArrayList<String> strs = killDBGComments(content);
+					for(int i=0; i < strs.size(); i++ )
+						if(strs.get(i).matches("(.|\\r|\\n|(\\r\\n))*("+regex+")(.|\\r|\\n|(\\r\\n))*"))
+							return strs;
+
+					return null;
+				}
+
+					protected static ArrayList<String> killDBGComments(String content)
+					{
+						ArrayList<String> rtn = new ArrayList<String>();
+
+						String tmp = "";
+						int i;
+						for(i=0; i<content.length() ; )
+						{
+							i = killcharsIfComment1(i, content);
+							i = killcharsIfComment2(i, content);
+							if(isFileEnd(i, content))
+							{
+								break;
+							}
+							else
+							{
+								if(content.charAt(i)!=';' && content.length()!=i+1)
+								{
+									tmp += content.charAt(i);
+									i++;
+								}
+								else
+								{
+									rtn.add(tmp);
+									tmp = "";
+									i++;
+								}
+							}
+						}
+						return rtn;
+
+					}
+
+
+						protected static int killcharsIfComment1(int i, String content)
+						{
+							if(i+2+myClassName.length()>=content.length() || i==-1)
+								return i;
+
+							//DBGコメント「以外」を消す場合は次のようにして、matches(commentThaiIsntDBG)とする。
+							//String otherThanDBG = "((?!" + myClassName + ")(.|\\r|\\n|(\\r\\n)))";
+							//String commentThatIsntDBG = "//" + otherThanDBG;
+
+							String DBGcomment = "//DBG";
+
+							if(content.substring(i,i+2+myClassName.length()).matches(DBGcomment))
+							// 1行コメントで、かつDBGコメントでなければ
+							{
+
+								while(content.length() > i && content.charAt(i) != '\r' && content.charAt(i) != '\n')
+								//改行コードに遭遇するまで
+									i++;
+									//iを足す
+								if(i+1 < content.length()  &&  content.substring(i,i+2).matches("\r\n"))
+								//特に、\r\nでの改行なら
+									i++;
+									//もう1つiを進める
+								if(i >= content.length())
+								//ファイル終端を超えていたら
+									i = -1;
+									//その旨示す(-1)
+							}
+							return i;
+						}
+
+						protected static int killcharsIfComment2(int i, String content)
+						{
+
+							if(i+3+4+myClassName.length()+4>=content.length() || i==-1)
+								return i;
+
+							//DBGコメント「以外」を消す場合は次のようにして、matches(commentThaiIsntDBG)とする。
+							//String otherThanDBG = "((?!<\\!\\-\\-" + myClassName + "\\-\\->)(.|\\r|\\n|(\\r\\n)))*";
+							//String commentThatIsntDBG = "/\\*(\\*)?"+otherThanDBG;
+
+							String DBGcomment = "/\\*(\\*)?<\\!\\-\\-"+myClassName+"\\-\\->(.|\\r|\\n|(\\r\\n))?";
+
+							if(content.substring(i,i+3+4+myClassName.length()+4).matches(DBGcomment))
+							// &#047;*DBGコメントなら
+							{
+								while
+								(
+									(
+										content.length() > i+myClassName.length()+2
+									&&
+										!(content.substring(i,i+myClassName.length()+2+7).equals("<!--"+myClassName+"-->*/"))
+									)
+									&&
+									(
+										content.length() > i+myClassName.length()+1+7
+									&&
+										!(content.substring(i).equals("<!--"+myClassName+"-->*/"))
+									)
+								)
+								//コメント終了に遭遇するまで
+									i++;
+
+									//iを足す
+								i+=myClassName.length()+2;
+								if(i >= content.length())
+								//ファイル終端を超えていたら
+									i = -1;
+									//その旨示す(-1)
+							}
+							return i;
+						}
+
+						protected static boolean isFileEnd(int i, String content)
+						{
+							//-1は「ファイルが既に終了したこと」を示す
+							return (i == -1) || (content.length() <= i);
+						}
+
+
 
 		/**
 		 * 参考:https://qiita.com/penguinshunya/items/353bb1c555f337b0cf6d
