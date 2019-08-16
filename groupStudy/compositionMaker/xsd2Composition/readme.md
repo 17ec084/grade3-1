@@ -20,5 +20,5 @@ xsdの書式は参考文献・資料<sup>[1](readme.md#ref1)</sup>
 </span>
 
 
-[[2]XML Schema schema for XML Schemas](https://www.w3.org/2001/XMLSchema.xsd)
+[\[2\]XML Schema schema for XML Schemas](https://www.w3.org/2001/XMLSchema.xsd)
 xsdの提供元団体であるw3cが管理するページであるため、「XML Schemaの公式ドキュメント」と同等の信頼を寄せてよいだろう。が、非常に難解。
