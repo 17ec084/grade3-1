@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:element name="shain" type="xsd:string">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element name="shimei" />
+      <xsd:element name="nenrei" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+</xsd:schema>

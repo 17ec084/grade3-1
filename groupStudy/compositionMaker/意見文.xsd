@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation=""></xs:include>
+    <xs:include schemaLocation=""></xs:include>
+    <xs:include schemaLocation=""></xs:include>
+    <xs:include schemaLocation=""></xs:include>
+    <xs:include schemaLocation=""></xs:include>
+    <xs:include schemaLocation=""></xs:include>
+    <xs:include schemaLocation=""></xs:include>
+    <xs:element name="意見文">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="設定" maxOccurs="1" minOccurs="1">
+<!--command 一人称=ask("一人称を入力してください。\n例:僕、私、筆者")-->
+          <xs:complexType>
+            <xs:attribute name="一人称" type="xs:string" use="required" />
+            <xs:attribute name="常体or敬体" type="常体or敬体" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="テーマ" maxOccurs="1" minOccurs="1">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="課題" type="endWithについてor_ウ段_こと" use="required" />
+                <xs:attribute name="意見" type="意見" use="required" />
+                <xs:attribute name="結論" type="begenWith以上のように" use="required" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="理由" maxOccurs="unbounded" minOccurs="1">
+          <xs:complexType mixed="true">
+            <xs:sequence>
+            	<xs:element maxOccurs="unbounded" name="具体例">
+            		<xs:complexType>
+            			<xs:choice>
+
+            				<xs:element minOccurs="0" name="客観的事実">
+            					<xs:complexType>
+            						<xs:sequence>
+            							<xs:element name="数字" minOccurs="0" maxOccurs="unbounded">
+            								<xs:complexType>
+            									<xs:attribute name="no"
+            										type="xs:unsignedByte" use="required" />
+            									<xs:attribute name="内容"
+            										type="xs:string" use="required" />
+            									<xs:attribute name="数値"
+            										type="xs:unsignedByte" use="required" />
+            								</xs:complexType>
+            							</xs:element>
+
+            						</xs:sequence>
+            						<xs:attribute name="いつ" type="いつ"
+            							use="optional" />
+            						<xs:attribute name="どこで" type="どこで"
+            							use="optional" />
+            						<xs:attribute name="誰が" type="誰が"
+            							use="optional" />
+            						<xs:attribute name="何を" type="何を"
+            							use="optional" />
+            						<xs:attribute name="何故" type="何故"
+            							use="optional" />
+            						<xs:attribute name="どのようにどうした"
+            							type="xs:string" use="required" />
+            						<xs:attribute name="ソース" type="ソース"
+            							use="optional" />
+            						<xs:attribute name="ソース信頼妥当性"
+            							type="xs:string" use="optional" />
+            					</xs:complexType>
+            				</xs:element>
+            				<xs:element minOccurs="0" name="経験">
+            					<xs:complexType>
+            						<xs:sequence>
+            							<xs:element name="数字">
+            								<xs:complexType>
+            									<xs:attribute name="no"
+            										type="xs:unsignedByte" use="required" />
+            									<xs:attribute name="内容"
+            										type="xs:string" use="required" />
+            									<xs:attribute name="数値"
+            										type="xs:unsignedByte" use="required" />
+            								</xs:complexType>
+            							</xs:element>
+            						</xs:sequence>
+            						<xs:attribute name="いつ" type="いつ"
+            							use="optional" />
+            						<xs:attribute name="どこで" type="どこで"
+            							use="optional" />
+            						<xs:attribute name="誰が" type="誰が"
+            							use="optional" />
+            						<xs:attribute name="何を" type="何を"
+            							use="optional" />
+            						<xs:attribute name="何故" type="何故"
+            							use="optional" />
+            						<xs:attribute name="どのようにどうした"
+            							type="xs:string" use="required" />
+            					</xs:complexType>
+            				</xs:element>
+            			</xs:choice>
+            			<xs:attribute name="no" type="xs:unsignedByte"
+            				use="required" />
+            			<xs:attribute name="_親_における割合"
+            				type="変域付きパーセンテージ" use="required" />
+            		</xs:complexType>
+            	</xs:element>
+<xs:element name="引用" minOccurs="0" maxOccurs="unbounded">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="出典" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="書籍など">
+							<xs:complexType>
+								<xs:attribute name="タイトル" type="xs:string" use="required"></xs:attribute>
+            	    			<xs:attribute name="著者" type="xs:string" use="required"></xs:attribute>
+            	    			<xs:attribute name="出版社" type="xs:string" use="optional"></xs:attribute>
+            	    			<xs:attribute name="発行年" type="xs:unsignedShort" use="optional"></xs:attribute>
+            	    			<xs:attribute name="ページ" type="ページ範囲"></xs:attribute>
+            	    		</xs:complexType>
+            	    	</xs:element>
+            	    	<xs:element name="インターネット">
+            	    		<xs:complexType>
+		            	    	<xs:attribute name="ページアドレス" type="xs:anyURI" use="required"></xs:attribute>
+            	    			<xs:attribute name="タイトル" type="xs:string" use="required"></xs:attribute>
+            	    			<xs:attribute name="著者名" type="xs:string" use="optional"></xs:attribute>
+		            	    	<xs:attribute name="発行年" type="xs:unsignedShort"></xs:attribute>
+            	    		</xs:complexType>
+            	    	</xs:element>
+            	    </xs:choice>
+            	</xs:complexType>
+            </xs:element>
+		</xs:sequence>
+        <xs:attribute name="引用文" type="引用文" use="required"></xs:attribute>
+    	<xs:attribute name="引用文への感想あるいは意見" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
+</xs:element>
+            </xs:sequence>
+            <xs:attribute name="no" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="_親_における割合" type="変域付きパーセンテージ" use="optional" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="論理的展開" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="道筋" maxOccurs="unbounded"
+            		minOccurs="1">
+            		<xs:complexType>
+            			<xs:sequence>
+            				<xs:element name="数字" minOccurs="0"
+            					maxOccurs="unbounded">
+            					<xs:complexType>
+            						<xs:attribute name="no"
+            							type="xs:unsignedByte" use="required" />
+            						<xs:attribute name="内容"
+            							type="xs:string" use="required" />
+            						<xs:attribute name="数値"
+            							type="xs:string" use="required" />
+            					</xs:complexType>
+            				</xs:element>
+            				<xs:element name="キーワード" minOccurs="0"
+            					maxOccurs="unbounded">
+            					<xs:complexType>
+            						<xs:attribute name="no"
+            							type="xs:unsignedByte" use="required" />
+            						<xs:attribute name="単語"
+            							type="xs:string" use="required" />
+            						<xs:attribute name="定義"
+            							type="xs:string" use="required" />
+            					</xs:complexType>
+            				</xs:element>
+            				<xs:element name="反論や再反論" minOccurs="0"
+            					maxOccurs="unbounded">
+            					<xs:complexType>
+            						<xs:attribute name="no"
+            							type="xs:unsignedByte" use="required" />
+            						<xs:attribute name="_親_における割合"
+            							type="xs:string" use="required" />
+            						<xs:attribute name="予想される反論"
+            							type="xs:string" use="required" />
+            						<xs:attribute name="反論の問題点"
+            							type="xs:string" use="required" />
+            						<xs:attribute name="反論の利用可能な点"
+            							type="xs:string" use="required" />
+            						<xs:attribute name="再反論"
+            							type="xs:string" use="required" />
+            					</xs:complexType>
+            				</xs:element>
+            			</xs:sequence>
+            			<xs:attribute name="no" type="xs:unsignedByte"
+            				use="required" />
+            			<xs:attribute name="_親_における割合"
+            				type="変域付きパーセンテージ" use="optional" />
+            			<xs:attribute name="主語" type="誰が"
+            				use="required" />
+            			<xs:attribute name="述語及び目的語" type="xs:string"
+            				use="required" />
+            		</xs:complexType>
+            	</xs:element>
+<xs:element name="引用" minOccurs="0" maxOccurs="unbounded">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="出典" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="書籍など">
+							<xs:complexType>
+								<xs:attribute name="タイトル" type="xs:string" use="required"></xs:attribute>
+            	    			<xs:attribute name="著者" type="xs:string" use="required"></xs:attribute>
+            	    			<xs:attribute name="出版社" type="xs:string" use="optional"></xs:attribute>
+            	    			<xs:attribute name="発行年" type="xs:unsignedShort" use="optional"></xs:attribute>
+            	    			<xs:attribute name="ページ" type="ページ範囲"></xs:attribute>
+            	    		</xs:complexType>
+            	    	</xs:element>
+            	    	<xs:element name="インターネット">
+            	    		<xs:complexType>
+		            	    	<xs:attribute name="ページアドレス" type="xs:anyURI" use="required"></xs:attribute>
+            	    			<xs:attribute name="タイトル" type="xs:string" use="required"></xs:attribute>
+            	    			<xs:attribute name="著者名" type="xs:string" use="optional"></xs:attribute>
+		            	    	<xs:attribute name="発行年" type="xs:unsignedShort"></xs:attribute>
+            	    		</xs:complexType>
+            	    	</xs:element>
+            	    </xs:choice>
+            	</xs:complexType>
+            </xs:element>
+		</xs:sequence>
+        <xs:attribute name="引用文" type="引用文" use="required"></xs:attribute>
+    	<xs:attribute name="引用文への感想あるいは意見" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
+</xs:element>
+            </xs:sequence>
+            <xs:attribute name="no" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="_親_における割合" type="変域付きパーセンテージ" use="optional" />
+            <xs:attribute name="根拠番号" type="番号パス" use="required" />
+            <xs:attribute name="導き出したい結論" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="最大文字数" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="最小文字数" type="xs:unsignedByte" use="optional" />
+      <xs:attribute name="超過すべき割合" type="xs:unsignedByte" use="optional" />
+      <xs:attribute name="超過してはならない割合" type="xs:unsignedByte" use="optional" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="常体or敬体">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value="(常|敬)体"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="endWithについてor_ウ段_こと">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value=".+(について|[うくすつぬふむゆる]こと)"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="意見">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value="(賛成)|(反対)|(.+と((思う)|(考える)))"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="begenWith以上のように">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value="(以上のように、).+。"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="変域付きパーセンテージ">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value="\d\d?\d?-\d\d?\d?"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="いつ">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value="((.+(年|月|日))*前?)|(この前)|(最近)|(.+((とき)|(頃)))"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="どこで">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value=".+(で|(にて))"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="誰が">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value=".+(が|は)"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="何を">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value=".+を"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="何故">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value=".+((という理由)|(から)|(こと)|(ため))"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="ソース">
+  	<xs:restriction base="xs:string">
+  		<xs:pattern value=".+によると"></xs:pattern>
+  	</xs:restriction>
+  </xs:simpleType>
+
+
+    <xs:simpleType name="番号パス">
+    	<xs:restriction base="xs:string">
+    		<xs:pattern value="([^/]+\/)*\d+"></xs:pattern>
+    	</xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="引用文">
+    	<xs:restriction base="xs:string">
+    		<xs:pattern value="「[^「」｢｣]+」"></xs:pattern>
+    	</xs:restriction>
+    </xs:simpleType>
+
+
+
+    <xs:simpleType name="ページ範囲">
+    	<xs:restriction base="xs:string">
+    	  		<xs:pattern value="p\d{1,}-\d{1,}"></xs:pattern>
+    	</xs:restriction>
+    </xs:simpleType>
+<!--end-->
+</xs:schema>
