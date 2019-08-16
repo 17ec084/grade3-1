@@ -15,7 +15,7 @@ xsdの書式は参考文献・資料<sup>[1](readme.md#ref1)</sup>
 ## 参考文献・資料
 
 <span id="ref1">
-[[1]XML スキーマリファレンス](http://memopad.bitter.jp/w3c/schema/schema_elements_ref.html)
+[\[1\]XML スキーマリファレンス](http://memopad.bitter.jp/w3c/schema/schema_elements_ref.html)
 著者不明だが、体系的に整理されていて、xsdのルールを網羅的に知るのに最適
 </span>
 

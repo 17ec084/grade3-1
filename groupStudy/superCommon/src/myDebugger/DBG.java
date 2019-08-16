@@ -393,7 +393,9 @@ public class DBG
 
 	//DBGの撤去
 
+	/**killDBGメソッドで実行クラスに関連づいたファイルを読み込んだ時、DBGコメントを取り除き、さらに「;」毎に区切ってコレクションにしたもの*/
 	protected static ArrayList<String> DBGKilledContent;
+
 
 	/**
 	 * 「/*DBG」と「DBG*&#047;」で囲まれたところ、そして
@@ -417,10 +419,9 @@ public class DBG
 			return;
 		}
 		for(int i=0; i < source.size(); i++)
-			System.out.print(source.get(i));
+			System.out.print("\n---\n"+source.get(i));
 		//javaファイルを全行読み込む
 
-//System.out.println(source);
 
 	}
 
@@ -666,7 +667,7 @@ public class DBG
 									i++;
 
 									//iを足す
-								i+=myClassName.length()+2;
+								i+=myClassName.length()+2+7;
 								if(i >= content.length())
 								//ファイル終端を超えていたら
 									i = -1;
@@ -785,4 +786,18 @@ public class DBG
 		{
 			setDBGClassName(newName);
 		}
+
+
+		//クラス名だけでなく、メソッド名も変更可
+
+		/**
+		 * デバッガクラスのメソッド名を変更する。
+		 *
+		 */
+		public static void renameMethodFromTo
+
+		/**
+		 * 名前変更不可。メソッド名、クラス名の一覧取得
+		 */
+		public static void _hirata_DBGInfo
 }
