@@ -35,14 +35,7 @@ import java.lang.reflect.Field;
 public class Charsets
 {
 
-	private static void ifDefaultIsNotUTF8NthenExceptionThrow() throws Exception
-	{
-		class デフォルトエンコーディングをBOM無しUTF8に変更してください extends Exception{}
-		if(!System.getProperty("file.encoding").matches("UTF\\-?8"))
-			throw new デフォルトエンコーディングをBOM無しUTF8に変更してください();
-	}
-
-
+	private static String systemCharset = System.getProperty("file.encoding");
 
 	/**
 	 * 各文字コードの言語の定数クラス。<br>
@@ -1506,7 +1499,6 @@ public class Charsets
 	//*切り替え型コメント
 	public Charsets(Object[] charset) throws Exception
 	{
-		ifDefaultIsNotUTF8NthenExceptionThrow();
 		class Charsetsクラスのコンストラクタに文字コードを意味しない定数が渡されました extends Exception{}
 		try
 		{
@@ -1531,14 +1523,14 @@ public class Charsets
 	//*/
 
 	/**
-	 * 第1引数に任意の文字コードでの文字列に対応するバイト列、第二引数にその文字列をUTF-8で表現した文字列を入力すると、<br>第1引数の文字コードを
+	 * 第1引数に任意の文字コードでの文字列に対応するバイト列、第二引数にその文字列を「このシステムのデフォルトエンコーディング」で表現した文字列を入力すると、<br>第1引数の文字コードを
 	 * java.nio API用の正準名やjava.ioおよびjava.lang API用の正準名で返却する。
 	 * @param byteArrayByAnyCharset
-	 * @param sameStringByUTF8N
+	 * @param sameStringBySystemCharset
 	 * @return 0番目:java.nio API用正準名<br>1番目:java.ioやjava.lang API用正準名
 	 * @throws Exception
 	 */
-	public static String[] detect(byte[] byteArrayByAnyCharset, String sameStringByUTF8N) throws Exception
+	public static String[] detect(byte[] byteArrayByAnyCharset, String sameStringBySystemCharset) throws Exception
 	{
 
 		int idx = 0;
@@ -1549,7 +1541,7 @@ public class Charsets
 			Object[] charset;
 			String[] strs;
 			byte[] bytesByAnyCharset;
-			byte[] bytesByUTF8N;
+			byte[] bytesBySystemCharset;
 			int j = 0;
 
 			TryMatching(int idx) throws Exception
@@ -1574,7 +1566,7 @@ public class Charsets
 				this.strs = strs;
 
 				this.bytesByAnyCharset = byteArrayByAnyCharset;
-				this.bytesByUTF8N = sameStringByUTF8N.getBytes("UTF-8");
+				this.bytesBySystemCharset = sameStringBySystemCharset.getBytes();
 				j = 0;
 			}
 
@@ -1590,7 +1582,7 @@ public class Charsets
 				//java.util.Arrays.equals(new String(bytesByAnyCharset,strs[0]).getBytes("UTF-8"), bytesByUTF8);
 				//new Stringをすると置き換え先のルールで勝手に変換されたりして壊れる。「new String(文字列, 本来通りではない文字コ―ド)」避けるべき。
 				//但し、bytesByUTF8は、もともと文字コードがわかっているのだから、new Stringしてもよい(但しutf8以外を指定するな)
-				new String(bytesByAnyCharset, strs[0]).equals(new String(bytesByUTF8N, "UTF-8"));
+				new String(bytesByAnyCharset, strs[0]).equals(new String(bytesBySystemCharset));
 
 			}
 			String[] getStrs()
@@ -1618,7 +1610,6 @@ public class Charsets
 
 		throw new Exception("適切な文字コードが見つかりませんでした");
 
-
 	}
 
 	@Override
@@ -1634,7 +1625,42 @@ public class Charsets
 
 	}
 
+	/**
+	 * プラットフォームのデフォルトエンコーディングを返却する。
+	 * @return デフォルトエンコーディングの文字コードを表すObject[]型定数
+	 * @throws Exception
+	 */
+	public static Object[] getSystemCharset() throws Exception
+	{
+		return getCharsetByName(systemCharset);
+	}
 
+	/**
+	 * 文字列で文字コード名を指定するとそれに対応する文字コード定数を返却する。<br>
+	 * <dl>
+	 * <dt>
+	 * アルゴリズム:
+	 * </dt>
+	 * <dd>
+	 * {@link java.nio.charset.Charset#forName(String charsetName)}へ引数を代入し、その結果を文字コード定数へ変換する。<br>
+	 * 例外を受け取った場合、そのまま投げる。
+	 * </dd>
+	 * </dl>
+	 * @param charsetName 文字コード名
+	 * @return 文字コード定数
+	 * @throws Exception forNameメソッドは非検査例外で、new Charsets(Object[])は今回例外が起こり得ないので実際には発生しない。
+	 * @throws Error forNameメソッドが例外を投げず、かつ文字コードが見つからなかった場合
+	 */
+	public static Object[] getCharsetByName(String charsetName) throws Exception
+	{
+
+		for(Object[] charset : charsets)
+			if(new Charsets(charset).toString().equals(java.nio.charset.Charset.forName(charsetName).name()))
+				return charset;
+
+		throw new Error("発生しないはずのエラー。プログラムに問題あり。");
+
+	}
 
 	/**
 	 * クラス定数としての文字コードを選択して引数として入力すると<br>
@@ -1642,7 +1668,7 @@ public class Charsets
 	 * IDEなどの環境でクラス定数選択画面から利用するのが便利。<br>
 	 * 但し、ややこしくなるので隠した。外部からは{@link Charsets#toString()}から利用可能(0番目のみ)
 	 * @param charset CharsetsのObject[]型クラス定数
-	 * @return ava.nio API用正準名<br>1番目:java.ioやjava.lang API用正準名
+	 * @return java.nio API用正準名<br>1番目:java.ioやjava.lang API用正準名
 	 * @throws Exception
 	 */
 	protected static String[] toString(Object[] charset) throws Exception
@@ -1676,17 +1702,17 @@ public class Charsets
 
 	/**
 	 * 文字列を指定された文字コードでurlエンコードする。結果は正規表現<code>(%([0-9A-F][0-9A-F]))*</code>にマッチする(はず)
-	 * @param sentenceByUTF8N urlエンコードしたい文字列(bom無UTF-8)
+	 * @param sentenceBySystemCharset urlエンコードしたい文字列
 	 * @param charsetTo urlエンコードする際の文字コード
 	 * @return urlエンコードされた文字列<code>(%([0-9A-F][0-9A-F]))*</code>
 	 * @throws UnsupportedEncodingException
 	 * @throws Exception
 	 */
-	public static String urlEncode(String sentenceByUTF8N, Object[] charsetTo) throws UnsupportedEncodingException, Exception
+	public static String urlEncode(String sentenceBySystemCharset, Object[] charsetTo) throws UnsupportedEncodingException, Exception
 	{
 		class CharsetsクラスメソッドurlEncodeを実行中にバイト列の長さに異常が発生しました extends Exception{}
 
-		byte[] bytes = sentenceByUTF8N.getBytes(new Charsets(charsetTo).toString());
+		byte[] bytes = sentenceBySystemCharset.getBytes(new Charsets(charsetTo).toString());
 		String rtn = "";
 		String hex_str;
 		for(short byt : bytes)
@@ -1708,23 +1734,15 @@ public class Charsets
 
 	/**
 	 * 文字列を指定された文字コードに変換し、バイト列として返却するメソッド<br>
-	 * <dl>
-	 * <dt>
-	 * 注意:
-	 * </dt>
-	 * <dd>
-	 * 変換前の文字列はbom無utf-8で与えられているとみなす。
-	 * </dd>
-	 * </dl>
-	 * @param sentenceByUTF8N 変換する文字列(bom無utf-8)
+	 * @param sentenceBySystemCharset 変換したい文字列
 	 * @param charsetTo 変換後の文字コード
 	 * @return 変換されたバイト列
 	 * @throws Exception
 	 */
-	public static byte[] transrate(String sentenceByUTF8N, Object[] charsetTo) throws Exception
+	public static byte[] transrate(String sentenceBySystemCharset, Object[] charsetTo) throws Exception
 	{
-		byte[] rtn = sentenceByUTF8N.getBytes(new Charsets(charsetTo).toString());
-		detect(rtn, sentenceByUTF8N);
+		byte[] rtn = sentenceBySystemCharset.getBytes(new Charsets(charsetTo).toString());
+		detect(rtn, sentenceBySystemCharset);
 		return rtn;
 	}
 
@@ -1740,78 +1758,69 @@ public class Charsets
 
 	static
 	{
-		boolean defaultNG = false;
-		try{ifDefaultIsNotUTF8NthenExceptionThrow();}catch(Exception e){defaultNG = true;}
-		if(defaultNG)
-		{
-			charsets = null;
-			System.out.println("デフォルトエンコーディングをBOM無しUTF8に変更してください");
-		}
-		else
-		{
-			charsets = new Object[総数][];
+		charsets = new Object[総数][];
 
-			//大量に定義した文字コードのObject配列をcharsetsへ取得するため、自分自身をリフレクト
-			try
+		//大量に定義した文字コードのObject配列をcharsetsへ取得するため、自分自身をリフレクト
+		try
+		{
+			Class<Charsets> clazz = Charsets.class;
+			short count = (short)(clazz.getDeclaredField("総数").get(null));
+			Field[] fields = clazz.getDeclaredFields();//この時点で順番は約束されていない。
+
+			for(Field f : fields)
 			{
-				Class<Charsets> clazz = Charsets.class;
-				short count = (short)(clazz.getDeclaredField("総数").get(null));
-				Field[] fields = clazz.getDeclaredFields();//この時点で順番は約束されていない。
-
-				for(Field f : fields)
+				try //インスタンス生成を可にしてしまったため、get(null)で例外が発生するのでcontinueさせる
 				{
-					try //インスタンス生成を可にしてしまったため、get(null)で例外が発生するのでcontinueさせる
+					if(f.getType().equals(Object[].class) && !f.getName().equals("charsets"))
+					//Object[]型のものだけ取り出す。さらにcharsets除外
 					{
-						if(f.getType().equals(Object[].class) && !f.getName().equals("charsets"))
-						//Object[]型のものだけ取り出す。さらにcharsets除外
-						{
-							int idx
-							=
-							(int)
-							//③それをint型にキャストする
+						int idx
+						=
+						(int)
+						//③それをint型にキャストする
+						(
 							(
-								(
-									(Object[])f.get(null)
-									//①文字コードの情報を入れた各フィールドはObjectとしてgetされるので、
-									//Object[]にキャストする
-								)
-								[0]
-								//②Object[]フィールドの0番目に通し番号が入っている。
-							);
-							if((int)idx != -1)
-							//unsupported以外は
-							{
-								charsets[idx] = (Object[]) f.get(null);
-								//通し番号を基準にcharsetsへ書き込み。
-								//(finalされた配列では、要素の書き換えは可能。)
-							}
-							else
-							//unsupportedは
-							{
-								charsets[総数-1] = (Object[]) f.get(null);
-								//一番最後へ書き込み
-							}
-							//System.out.println(f.getName()+"="+((Object[])f.get(null))[0]);
-
+								(Object[])f.get(null)
+								//①文字コードの情報を入れた各フィールドはObjectとしてgetされるので、
+								//Object[]にキャストする
+							)
+							[0]
+							//②Object[]フィールドの0番目に通し番号が入っている。
+						);
+						if((int)idx != -1)
+						//unsupported以外は
+						{
+							charsets[idx] = (Object[]) f.get(null);
+							//通し番号を基準にcharsetsへ書き込み。
+							//(finalされた配列では、要素の書き換えは可能。)
 						}
+						else
+						//unsupportedは
+						{
+							charsets[総数-1] = (Object[]) f.get(null);
+							//一番最後へ書き込み
+						}
+						//System.out.println(f.getName()+"="+((Object[])f.get(null))[0]);
 
-					}
-					catch(NullPointerException e)
-					{
-						continue;
 					}
 
 				}
-				//System.out.println(count);
-
+				catch(NullPointerException e)
+				{
+					continue;
+				}
 
 			}
-			catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e)
-			{
-				e.printStackTrace();
-			}
+			//System.out.println(count);
+
 
 		}
+		catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e)
+		{
+			e.printStackTrace();
+		}
+
+
 	}
 
 
