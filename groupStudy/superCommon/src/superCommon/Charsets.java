@@ -19,7 +19,7 @@ import java.lang.reflect.Field;
  * <code>Charsets(文字コードを表すObject[]定数).toString(void)</code><br>
  * なども用意。<br>
  * <!-- 廃止 また<code>isSupported(String 文字列,Object[] クラス定数)</code>とすると、<br>
- * 文字コードがその文字列をサポートしているかがわかる。-->
+ * 文字コードがその文字列をサポートしているかがわかる
  * <dl>
  * <dt>
  * 前提:
@@ -28,7 +28,7 @@ import java.lang.reflect.Field;
  * {@link String#getBytes()}が{@link String#getBytes(String) String.getBytes("UTF-8")}に等価であること。<br>
  * つまりデフォルトエンコーディングがBOM無しUTF-8であること。この前提を満たさない場合はコンストラクタあるいはstaticイニシャライザが例外を投げる。
  * </dd>
- * </dl>
+ * </dl>-->
  * @author <a href=http://github.com/17ec084>Tomotaka Hirata(17ec084)</a>
  *
  */
