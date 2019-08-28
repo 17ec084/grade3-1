@@ -77,6 +77,13 @@
  * O_ o = args -> (String)args[0]+" "+(String)a[1];//this is $ method
  * String str = (String)o.$(a) +"\n"+ (String)o.$(b);
  * </xmp>
+ * (2019年8月28日追記)あるいは次のようにもできることに気がついた。(コンパイル済み、未実行)<br>
+ * <xmp>
+ * String[] a = {"hello", "world"}, b = {"good", "bye"};
+ *
+ * O_ o = (Object[] args) -> (String)args[0]+" "+(String)a[1];//this is $ method
+ * String str = (String)o.$(a) +"\n"+ (String)o.$(b);
+ * </xmp>
  *
  *
  * @author <a href=http://github.com/17ec084>Tomotaka Hirata(17ec084)</a>
