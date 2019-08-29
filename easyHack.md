@@ -1,6 +1,6 @@
 <big><big><big><big><a href="https://raw.githubusercontent.com/17ec084/grade3-1/master/easyHack.md">こちら</a></big></big></big></big>
 
-
+<!--
 ①https://www.eeb.co.jp/wordpress/?p=476 を参考にjavaのnativeメソッドtest()をC言語で実装する。
 printf("warning: you've been hacked!!");
 
@@ -43,3 +43,5 @@ native test();
 Eclipseでは動くんだろうね。(根拠: http://blogs.wankuma.com/nagise/archive/2008/04/02/131242.aspx)
 悪用すればEclipseからウイルスを呼ぶこともできちゃうだろうし金銭とか扱うプログラムでやられれば実害も出そう。
 冗談ネタが冗談ではなくなってきてるなと思ったのでまとめてみた。確認はしていない。
+
+-->
