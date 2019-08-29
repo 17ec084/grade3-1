@@ -1,3 +1,6 @@
+<big><big><big><big><a href="https://raw.githubusercontent.com/17ec084/grade3-1/master/easyHack.md">こちら</a></big></big></big></big>
+
+
 ①https://www.eeb.co.jp/wordpress/?p=476 を参考にjavaのnativeメソッドtest()をC言語で実装する。
 printf("warning: you've been hacked!!");
 
