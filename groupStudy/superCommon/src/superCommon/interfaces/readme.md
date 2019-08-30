@@ -1,8 +1,8 @@
 # javaでGUIを作ったときのメモ
 
 ## 実際に作っているもの
-[抽象GUI](https://github.com/17ec084/grade3-1/blob/master/groupStudy/superCommon/src/superCommon/interfaces/AbstractGUI.java]) を作っています。
-[Configインタフェース](https://github.com/17ec084/grade3-1/blob/master/groupStudy/superCommon/src/superCommon/interfaces/Config.java])を実装するクラスは、この抽象GUIを継承して具体化するとよい(別に強制ではない)。
+[抽象GUI](https://github.com/17ec084/grade3-1/blob/master/groupStudy/superCommon/src/superCommon/interfaces/AbstractGUI.java) を作っています。
+[Configインタフェース](https://github.com/17ec084/grade3-1/blob/master/groupStudy/superCommon/src/superCommon/interfaces/Config.java)を実装するクラスは、この抽象GUIを継承して具体化するとよい(別に強制ではない)。
 
 ## 最初にお断り
 本稿では「クラスとはプログラムのことである」と説明する。<br>
@@ -163,11 +163,11 @@ class ConfigGUIframe extends JFrame
 <br>
 フレームに直接パネルを乗せる(つまり、「getContentPane().」を取り除く)実験もしてみたが、この段階では全く同じように表示された。<br>
 このことについて、[公式ドキュメント](https://docs.oracle.com/javase/jp/6/api/javax/swing/JFrame.html) では次のように書かれている。(引用する)<br>
-<quote>
-JFrame は JRootPane を唯一の子として保持します。(中略) 便宜上、add とその派生メソッド、remove および setLayout は、必要に応じて contentPane に転送されるようにオーバーライドされています。つまり、次のように記述できます。
 
-       frame.add(child);
-</quote>
+> JFrame は JRootPane を唯一の子として保持します。(中略) 便宜上、add とその派生メソッド、remove および setLayout は、必要に応じて contentPane に転送されるようにオーバーライドされています。つまり、次のように記述できます。
+>
+>       frame.add(child);
+
 つまり、「getContentPane().」が省略されても「getContentPane().」があった場合と同じ処理を内部でしているのである。<br>
 
 #### ボタンの機能
