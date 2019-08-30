@@ -156,7 +156,9 @@ class ConfigGUIframe extends JFrame
 ```
 <br>
 コードを実行した結果は図4のようになる。<br>
+
 ![](button.png) <br>
+
 図4 ボタンを追加したウィンドウ<br>
 <br>
 フレームに直接パネルを乗せる(つまり、「getContentPane().」を取り除く)実験もしてみたが、この段階では全く同じように表示された。<br>
