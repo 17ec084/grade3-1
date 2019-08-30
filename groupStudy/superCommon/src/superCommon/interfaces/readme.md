@@ -9,7 +9,9 @@
 そしてインスタンスは「プログラムの実行命令」と考える。<br>
 これは筆者なりの「オブジェクト指向をできるだけ簡単に考える方法の前提」である。<br>
 例えば最もシンプルなjavaプログラムは<br>
+
 <xmp>
+
 public class Main
 {
 	public static void main(String[] args)
@@ -17,6 +19,7 @@ public class Main
 		System.out.println("hello, world");
 	}
 }
+
 </xmp>
 
 
