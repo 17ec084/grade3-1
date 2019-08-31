@@ -164,7 +164,7 @@ class ConfigGUIframe extends JFrame
 図4 ボタンを追加したウィンドウ<br>
 <br>
 フレームに直接パネルを乗せる(つまり、「getContentPane().」を取り除く)実験もしてみたが、この段階では全く同じように表示された。<br>
-このことについて、[公式ドキュメント](https://docs.oracle.com/javase/jp/6/api/javax/swing/JFrame.html) では次のように書かれている。(引用する)<br>
+このことについて、<a href="https://docs.oracle.com/javase/jp/6/api/javax/swing/JFrame.html">公式ドキュメント</a> では次のように書かれている。(引用する)<br>
 <quote>
 JFrame は JRootPane を唯一の子として保持します。(中略) 便宜上、add とその派生メソッド、remove および setLayout は、必要に応じて contentPane に転送されるようにオーバーライドされています。つまり、次のように記述できます。
 
@@ -176,7 +176,7 @@ JFrame は JRootPane を唯一の子として保持します。(中略) 便宜�
 
 ボタン「zombieBootButton」に機能を追加するためには、リスナを作ってzombieBootButtonに追加すれ(＝ボタンにセンサをしかけれ)ばよい。<br>
 「どんな種類のイベントが発生したか調べて、イベントがボタン押下を意味するのか条件分岐する必要があるのでは？」という疑問もあるだろうが、<br>
-その疑問については [こちらのサイト](https://www.javadrive.jp/tutorial/event/index2.html) で解決できる。<br>
+その疑問については <a href="https://www.javadrive.jp/tutorial/event/index2.html">こちらのサイト</a>で解決できる。<br>
 同サイトの説明によれば、ボタンのイベントはボタン押下の時に起こるのだから、ボタンからイベントを受け取ったのなら、ボタン押下があったのだと考えてよい。<br>
 リスナはjava.awt.event.ActionListenerインタフェースを実装し、actionPerformedメソッドに処理内容を書けばよいから、<br>
 次のようなコードで実現できる。<br>
@@ -223,7 +223,7 @@ class ZombieBooter implements ActionListener
 
 <h5> ラムダ式 </h5>
 
-さて、<a href="https://docs.oracle.com/javase/jp/8/docs/api/java/awt/event/ActionListener.html">公式ドキュメント</a>)でActionListenerインタフェースの説明を見てみると、<br>
+さて、<a href="https://docs.oracle.com/javase/jp/8/docs/api/java/awt/event/ActionListener.html">公式ドキュメント</a>でActionListenerインタフェースの説明を見てみると、<br>
 「抽象メソッドが1つしかない」ということがわかる。そしてその「唯一の抽象メソッド」(のシグネチャ)が以下のどれでもない場合※、それは「関数型インタフェース」と呼ばれる特別なインタフェースである。<br>
 <ul>
 <li>
