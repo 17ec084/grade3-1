@@ -165,11 +165,11 @@ class ConfigGUIframe extends JFrame
 <br>
 フレームに直接パネルを乗せる(つまり、「getContentPane().」を取り除く)実験もしてみたが、この段階では全く同じように表示された。<br>
 このことについて、<a href="https://docs.oracle.com/javase/jp/6/api/javax/swing/JFrame.html">公式ドキュメント</a> では次のように書かれている。(引用する)<br>
-<quote>
+<blockquote>
 JFrame は JRootPane を唯一の子として保持します。(中略) 便宜上、add とその派生メソッド、remove および setLayout は、必要に応じて contentPane に転送されるようにオーバーライドされています。つまり、次のように記述できます。
 
        frame.add(child);
-</quote>
+</blockquote>
 つまり、「getContentPane().」が省略されても「getContentPane().」があった場合と同じ処理を内部でしているのである。<br>
 
 <h4> ボタンの機能 </h4>
